@@ -4,6 +4,12 @@
  */
 package view.panel.pelanggan;
 
+import util.ApplicationState;
+import util.Routing;
+
+import javax.swing.*;
+import java.awt.*;
+
 /**
  *
  * @author haris
@@ -53,6 +59,11 @@ public class FormPelangganPanel extends javax.swing.JPanel {
         cancelBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         cancelBtn.setForeground(new java.awt.Color(255, 255, 255));
         cancelBtn.setText("Batal");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
 
         addBtn.setBackground(new java.awt.Color(13, 110, 253));
         addBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
@@ -161,6 +172,14 @@ public class FormPelangganPanel extends javax.swing.JPanel {
             .addComponent(rootPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        // TODO add your handling code here:
+        ApplicationState appState = ApplicationState.getInstance();
+        JPanel contentPanel = appState.getContentPanel();
+        CardLayout cl = (CardLayout) (contentPanel.getLayout());
+        cl.show(contentPanel, Routing.PELANGGAN.toString());
+    }//GEN-LAST:event_cancelBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

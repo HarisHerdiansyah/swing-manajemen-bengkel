@@ -4,6 +4,12 @@
  */
 package view.panel.pelanggan;
 
+import util.ApplicationState;
+import util.Routing;
+
+import javax.swing.*;
+import java.awt.*;
+
 /**
  *
  * @author haris
@@ -80,10 +86,20 @@ public class PelangganPanel extends javax.swing.JPanel {
         addBtn.setBackground(new java.awt.Color(13, 110, 253));
         addBtn.setForeground(new java.awt.Color(255, 255, 255));
         addBtn.setText("Tambah");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
 
         editBtn.setBackground(new java.awt.Color(255, 193, 7));
         editBtn.setForeground(new java.awt.Color(0, 0, 0));
         editBtn.setText("Edit");
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
 
         deleteBtn.setBackground(new java.awt.Color(220, 53, 69));
         deleteBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -144,6 +160,23 @@ public class PelangganPanel extends javax.swing.JPanel {
             .addComponent(rootPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void toForm() {
+        ApplicationState appState = ApplicationState.getInstance();
+        JPanel contentPanel = appState.getContentPanel();
+        CardLayout cl = (CardLayout) (contentPanel.getLayout());
+        cl.show(contentPanel, Routing.FORM_PELANGGAN.toString());
+    }
+
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        // TODO add your handling code here:
+        toForm();
+    }//GEN-LAST:event_addBtnActionPerformed
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        // TODO add your handling code here:
+        toForm();
+    }//GEN-LAST:event_editBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
