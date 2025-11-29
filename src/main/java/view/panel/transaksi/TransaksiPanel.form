@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
-  <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
-  </Properties>
-  <SyntheticProperties>
-    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
-  </SyntheticProperties>
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -52,7 +45,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
@@ -61,7 +54,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="keluhanLabel" max="32767" attributes="0"/>
+                              <Component id="keluhanLabel" alignment="0" max="32767" attributes="0"/>
                               <Component id="mekanikLabel" alignment="1" max="32767" attributes="0"/>
                               <Component id="pelangganLabel" alignment="1" max="32767" attributes="0"/>
                               <Component id="nopolLabel" alignment="1" pref="140" max="32767" attributes="0"/>
@@ -81,7 +74,7 @@
                   </Group>
                   <EmptySpace min="-2" pref="394" max="-2" attributes="0"/>
               </Group>
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
@@ -91,17 +84,17 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="namaBarangLabel" min="-2" pref="140" max="-2" attributes="0"/>
-                              <Component id="jumlahItemLabel" min="-2" pref="140" max="-2" attributes="0"/>
-                              <Component id="hargaDibayarLabel" min="-2" pref="140" max="-2" attributes="0"/>
-                              <Component id="jenisLabel" min="-2" pref="140" max="-2" attributes="0"/>
+                              <Component id="namaBarangLabel" alignment="1" min="-2" pref="140" max="-2" attributes="0"/>
+                              <Component id="jumlahItemLabel" alignment="1" min="-2" pref="140" max="-2" attributes="0"/>
+                              <Component id="hargaDibayarLabel" alignment="1" min="-2" pref="140" max="-2" attributes="0"/>
+                              <Component id="jenisLabel" alignment="1" min="-2" pref="140" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jumlahItemField" min="-2" pref="200" max="-2" attributes="0"/>
-                              <Component id="namaBarangComboBox" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="jumlahItemField" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="namaBarangComboBox" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                               <Component id="hargaDibayarField" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                              <Component id="jenisComboBox" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="jenisComboBox" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -113,8 +106,8 @@
                                   <Component id="jScrollPane2" min="-2" pref="251" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="listBtn" pref="100" max="32767" attributes="0"/>
-                                      <Component id="addBtn" pref="100" max="32767" attributes="0"/>
+                                      <Component id="listBtn" alignment="0" pref="100" max="32767" attributes="0"/>
+                                      <Component id="addBtn" alignment="0" pref="100" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                               </Group>
@@ -147,8 +140,8 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                      <Component id="keluhanLabel" min="-2" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="keluhanLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   <Component id="separator" min="-2" pref="10" max="-2" attributes="0"/>
@@ -160,7 +153,7 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="namaBarangComboBox" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="namaBarangLabel" alignment="3" min="-2" max="-2" attributes="0"/>

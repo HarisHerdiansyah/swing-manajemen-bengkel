@@ -4,6 +4,15 @@
  */
 package view;
 
+import view.panel.barang.BarangPanel;
+import view.panel.dashboard.DashboardPanel;
+import view.panel.mekanik.MekanikPanel;
+import view.panel.pelanggan.PelangganPanel;
+import view.panel.transaksi.HistoriTransaksiPanel;
+import view.panel.transaksi.TransaksiPanel;
+
+import java.awt.*;
+
 /**
  *
  * @author haris
@@ -17,6 +26,16 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+
+        contentPanel.add(new DashboardPanel(), "dashboardPanel");
+        contentPanel.add(new BarangPanel(), "barangPanel");
+        contentPanel.add(new MekanikPanel(), "mekanikPanel");
+        contentPanel.add(new PelangganPanel(), "pelangganPanel");
+        contentPanel.add(new TransaksiPanel(), "transaksiPanel");
+        contentPanel.add(new HistoriTransaksiPanel(), "historiTransaksiPanel");
+
+        CardLayout cl = (CardLayout) (contentPanel.getLayout());
+        cl.show(contentPanel, "dashboardPanel");
     }
 
     /**
@@ -63,31 +82,61 @@ public class MainFrame extends javax.swing.JFrame {
         dashboardNav.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 14)); // NOI18N
         dashboardNav.setForeground(new java.awt.Color(0, 49, 31));
         dashboardNav.setText("Dashboard");
+        dashboardNav.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dashboardNavActionPerformed(evt);
+            }
+        });
 
         stokBarangNav.setBackground(new java.awt.Color(254, 250, 224));
         stokBarangNav.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 14)); // NOI18N
         stokBarangNav.setForeground(new java.awt.Color(0, 49, 31));
         stokBarangNav.setText("Stok Barang");
+        stokBarangNav.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stokBarangNavActionPerformed(evt);
+            }
+        });
 
         mekanikNav.setBackground(new java.awt.Color(254, 250, 224));
         mekanikNav.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 14)); // NOI18N
         mekanikNav.setForeground(new java.awt.Color(0, 49, 31));
         mekanikNav.setText("Mekanik");
+        mekanikNav.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mekanikNavActionPerformed(evt);
+            }
+        });
 
         pelangganNav.setBackground(new java.awt.Color(254, 250, 224));
         pelangganNav.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 14)); // NOI18N
         pelangganNav.setForeground(new java.awt.Color(0, 49, 31));
         pelangganNav.setText("Pelanggan");
+        pelangganNav.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pelangganNavActionPerformed(evt);
+            }
+        });
 
         transaksiNav.setBackground(new java.awt.Color(254, 250, 224));
         transaksiNav.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 14)); // NOI18N
         transaksiNav.setForeground(new java.awt.Color(0, 49, 31));
         transaksiNav.setText("Transaksi");
+        transaksiNav.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transaksiNavActionPerformed(evt);
+            }
+        });
 
         laporanNav.setBackground(new java.awt.Color(254, 250, 224));
         laporanNav.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 14)); // NOI18N
         laporanNav.setForeground(new java.awt.Color(0, 49, 31));
         laporanNav.setText("Laporan");
+        laporanNav.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                laporanNavActionPerformed(evt);
+            }
+        });
 
         logoutNav.setBackground(new java.awt.Color(254, 250, 224));
         logoutNav.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 14)); // NOI18N
@@ -131,6 +180,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         contentPanel.setOpaque(false);
+        contentPanel.setPreferredSize(new java.awt.Dimension(868, 479));
         contentPanel.setLayout(new java.awt.CardLayout());
 
         javax.swing.GroupLayout rootPanelLayout = new javax.swing.GroupLayout(rootPanel);
@@ -166,6 +216,42 @@ public class MainFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void dashboardNavActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardNavActionPerformed
+        // TODO add your handling code here:
+        CardLayout cl = (CardLayout) (contentPanel.getLayout());
+        cl.show(contentPanel, "dashboardPanel");
+    }//GEN-LAST:event_dashboardNavActionPerformed
+
+    private void stokBarangNavActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stokBarangNavActionPerformed
+        // TODO add your handling code here:
+        CardLayout cl = (CardLayout) (contentPanel.getLayout());
+        cl.show(contentPanel, "barangPanel");
+    }//GEN-LAST:event_stokBarangNavActionPerformed
+
+    private void mekanikNavActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mekanikNavActionPerformed
+        // TODO add your handling code here:
+        CardLayout cl = (CardLayout) (contentPanel.getLayout());
+        cl.show(contentPanel, "mekanikPanel");
+    }//GEN-LAST:event_mekanikNavActionPerformed
+
+    private void pelangganNavActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pelangganNavActionPerformed
+        // TODO add your handling code here:
+        CardLayout cl = (CardLayout) (contentPanel.getLayout());
+        cl.show(contentPanel, "pelangganPanel");
+    }//GEN-LAST:event_pelangganNavActionPerformed
+
+    private void transaksiNavActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transaksiNavActionPerformed
+        // TODO add your handling code here:
+        CardLayout cl = (CardLayout) (contentPanel.getLayout());
+        cl.show(contentPanel, "transaksiPanel");
+    }//GEN-LAST:event_transaksiNavActionPerformed
+
+    private void laporanNavActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laporanNavActionPerformed
+        // TODO add your handling code here:
+        CardLayout cl = (CardLayout) (contentPanel.getLayout());
+        cl.show(contentPanel, "historiTransaksiPanel");
+    }//GEN-LAST:event_laporanNavActionPerformed
 
     /**
      * @param args the command line arguments

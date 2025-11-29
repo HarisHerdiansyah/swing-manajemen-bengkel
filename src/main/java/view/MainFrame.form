@@ -146,6 +146,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Dashboard"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dashboardNavActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="stokBarangNav">
               <Properties>
@@ -160,6 +163,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Stok Barang"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="stokBarangNavActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="mekanikNav">
               <Properties>
@@ -174,6 +180,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Mekanik"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mekanikNavActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="pelangganNav">
               <Properties>
@@ -188,6 +197,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Pelanggan"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pelangganNavActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="transaksiNav">
               <Properties>
@@ -202,6 +214,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Transaksi"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="transaksiNavActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="laporanNav">
               <Properties>
@@ -216,6 +231,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Laporan"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="laporanNavActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="logoutNav">
               <Properties>
@@ -236,6 +254,9 @@
         <Container class="javax.swing.JPanel" name="contentPanel">
           <Properties>
             <Property name="opaque" type="boolean" value="false"/>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[868, 479]"/>
+            </Property>
           </Properties>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>

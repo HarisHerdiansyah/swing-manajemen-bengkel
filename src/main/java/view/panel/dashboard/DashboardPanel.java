@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package view.panel.dashboard;
 
@@ -8,14 +8,12 @@ package view.panel.dashboard;
  *
  * @author haris
  */
-public class DashboardFrame extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DashboardFrame.class.getName());
+public class DashboardPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form DashboardFrame
+     * Creates new form DashboardPanel
      */
-    public DashboardFrame() {
+    public DashboardPanel() {
         initComponents();
     }
 
@@ -42,8 +40,6 @@ public class DashboardFrame extends javax.swing.JFrame {
         tableLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         transaksiTerakhirTable = new javax.swing.JTable();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         rootPanel.setBackground(new java.awt.Color(255, 255, 255));
         rootPanel.setForeground(new java.awt.Color(0, 0, 0));
@@ -174,12 +170,6 @@ public class DashboardFrame extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(transaksiTerakhirTable);
-        if (transaksiTerakhirTable.getColumnModel().getColumnCount() > 0) {
-            transaksiTerakhirTable.getColumnModel().getColumn(0).setResizable(false);
-            transaksiTerakhirTable.getColumnModel().getColumn(1).setResizable(false);
-            transaksiTerakhirTable.getColumnModel().getColumn(2).setResizable(false);
-            transaksiTerakhirTable.getColumnModel().getColumn(3).setResizable(false);
-        }
 
         javax.swing.GroupLayout rootPanelLayout = new javax.swing.GroupLayout(rootPanel);
         rootPanel.setLayout(rootPanelLayout);
@@ -220,8 +210,8 @@ public class DashboardFrame extends javax.swing.JFrame {
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(rootPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -230,34 +220,8 @@ public class DashboardFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(rootPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new DashboardFrame().setVisible(true));
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;

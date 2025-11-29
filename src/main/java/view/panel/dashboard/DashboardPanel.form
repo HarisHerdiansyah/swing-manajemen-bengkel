@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
-  <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
-  </Properties>
-  <SyntheticProperties>
-    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
-  </SyntheticProperties>
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -52,17 +45,17 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="title" min="-2" pref="401" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="tableLabel" min="-2" pref="401" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
+                              <Component id="tableLabel" alignment="0" min="-2" pref="401" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="totalPendapatanCard" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                                   <Component id="totalTransaksiCard" min="-2" max="-2" attributes="0"/>
@@ -84,9 +77,9 @@
                   <Component id="title" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="totalPendapatanCard" min="-2" max="-2" attributes="0"/>
-                      <Component id="totalTransaksiCard" min="-2" max="-2" attributes="0"/>
-                      <Component id="stokKritisCard" min="-2" max="-2" attributes="0"/>
+                      <Component id="totalPendapatanCard" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="totalTransaksiCard" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="stokKritisCard" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                   <Component id="tableLabel" min="-2" max="-2" attributes="0"/>
@@ -119,11 +112,11 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="totalPendapatanLabel" pref="178" max="32767" attributes="0"/>
-                          <Component id="totalPendapatanValue" max="32767" attributes="0"/>
+                          <Component id="totalPendapatanLabel" alignment="0" pref="178" max="32767" attributes="0"/>
+                          <Component id="totalPendapatanValue" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -172,11 +165,11 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="totalTransaksiLabel" pref="178" max="32767" attributes="0"/>
-                          <Component id="totalTransaksiValue" max="32767" attributes="0"/>
+                          <Component id="totalTransaksiLabel" alignment="0" pref="178" max="32767" attributes="0"/>
+                          <Component id="totalTransaksiValue" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -225,11 +218,11 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="stokKritisLabel" pref="178" max="32767" attributes="0"/>
-                          <Component id="stokKritisValue" max="32767" attributes="0"/>
+                          <Component id="stokKritisLabel" alignment="0" pref="178" max="32767" attributes="0"/>
+                          <Component id="stokKritisValue" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -304,30 +297,6 @@
                     <Column editable="false" title="Keluhan" type="java.lang.Object"/>
                     <Column editable="false" title="Total" type="java.lang.Object"/>
                   </Table>
-                </Property>
-                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                  <TableColumnModel selectionModel="0">
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                  </TableColumnModel>
                 </Property>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>

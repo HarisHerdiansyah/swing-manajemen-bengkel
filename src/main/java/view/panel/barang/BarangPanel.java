@@ -1,21 +1,19 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package view.panel.transaksi;
+package view.panel.barang;
 
 /**
  *
  * @author haris
  */
-public class HistoriTransaksiFrame extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(HistoriTransaksiFrame.class.getName());
+public class BarangPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form HistoriTransaksiFrame
+     * Creates new form BarangPanel
      */
-    public HistoriTransaksiFrame() {
+    public BarangPanel() {
         initComponents();
     }
 
@@ -31,11 +29,12 @@ public class HistoriTransaksiFrame extends javax.swing.JFrame {
         rootPanel = new javax.swing.JPanel();
         title = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        transaksiTable = new javax.swing.JTable();
+        barangTable = new javax.swing.JTable();
         searchField = new javax.swing.JTextField();
         searchBtn = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addBtn = new javax.swing.JButton();
+        editBtn = new javax.swing.JButton();
+        deleteBtn = new javax.swing.JButton();
 
         rootPanel.setBackground(new java.awt.Color(255, 255, 255));
         rootPanel.setForeground(new java.awt.Color(0, 0, 0));
@@ -44,12 +43,12 @@ public class HistoriTransaksiFrame extends javax.swing.JFrame {
 
         title.setFont(new java.awt.Font("Microsoft JhengHei", 1, 24)); // NOI18N
         title.setForeground(new java.awt.Color(0, 0, 0));
-        title.setText("Histori Transaksi");
+        title.setText("Stok Barang");
 
-        transaksiTable.setBackground(new java.awt.Color(255, 255, 255));
-        transaksiTable.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        transaksiTable.setForeground(new java.awt.Color(0, 0, 0));
-        transaksiTable.setModel(new javax.swing.table.DefaultTableModel(
+        barangTable.setBackground(new java.awt.Color(255, 255, 255));
+        barangTable.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        barangTable.setForeground(new java.awt.Color(0, 0, 0));
+        barangTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -57,25 +56,18 @@ public class HistoriTransaksiFrame extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "No. Faktur", "Tanggal", "Pelanggan", "Mekanik", "Total"
+                "Kode", "Nama Barang", "Harga Beli (Modal)", "Harga Jual", "Stok Tersedia"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                true, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(transaksiTable);
-        if (transaksiTable.getColumnModel().getColumnCount() > 0) {
-            transaksiTable.getColumnModel().getColumn(0).setResizable(false);
-            transaksiTable.getColumnModel().getColumn(1).setResizable(false);
-            transaksiTable.getColumnModel().getColumn(2).setResizable(false);
-            transaksiTable.getColumnModel().getColumn(3).setResizable(false);
-            transaksiTable.getColumnModel().getColumn(4).setResizable(false);
-        }
+        jScrollPane1.setViewportView(barangTable);
 
         searchField.setBackground(new java.awt.Color(255, 255, 255));
         searchField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
@@ -84,6 +76,18 @@ public class HistoriTransaksiFrame extends javax.swing.JFrame {
         searchBtn.setBackground(new java.awt.Color(108, 117, 125));
         searchBtn.setForeground(new java.awt.Color(255, 255, 255));
         searchBtn.setText("Cari");
+
+        addBtn.setBackground(new java.awt.Color(13, 110, 253));
+        addBtn.setForeground(new java.awt.Color(255, 255, 255));
+        addBtn.setText("Tambah");
+
+        editBtn.setBackground(new java.awt.Color(255, 193, 7));
+        editBtn.setForeground(new java.awt.Color(0, 0, 0));
+        editBtn.setText("Edit");
+
+        deleteBtn.setBackground(new java.awt.Color(220, 53, 69));
+        deleteBtn.setForeground(new java.awt.Color(255, 255, 255));
+        deleteBtn.setText("Hapus");
 
         javax.swing.GroupLayout rootPanelLayout = new javax.swing.GroupLayout(rootPanel);
         rootPanel.setLayout(rootPanelLayout);
@@ -96,12 +100,18 @@ public class HistoriTransaksiFrame extends javax.swing.JFrame {
                         .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(rootPanelLayout.createSequentialGroup()
                         .addGap(85, 85, 85)
-                        .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(rootPanelLayout.createSequentialGroup()
                                 .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(rootPanelLayout.createSequentialGroup()
+                                .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(96, Short.MAX_VALUE))
         );
         rootPanelLayout.setVerticalGroup(
@@ -111,15 +121,20 @@ public class HistoriTransaksiFrame extends javax.swing.JFrame {
                 .addComponent(title)
                 .addGap(18, 18, 18)
                 .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(searchField, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(searchField)
                     .addComponent(searchBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(27, 27, 27)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(deleteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(editBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                .addGap(46, 46, 46))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(rootPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -128,41 +143,18 @@ public class HistoriTransaksiFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(rootPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new HistoriTransaksiFrame().setVisible(true));
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addBtn;
+    private javax.swing.JTable barangTable;
+    private javax.swing.JButton deleteBtn;
+    private javax.swing.JButton editBtn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel rootPanel;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchField;
     private javax.swing.JLabel title;
-    private javax.swing.JTable transaksiTable;
     // End of variables declaration//GEN-END:variables
 }
