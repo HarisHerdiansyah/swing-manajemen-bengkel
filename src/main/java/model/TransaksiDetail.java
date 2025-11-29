@@ -8,11 +8,12 @@ public class TransaksiDetail {
     private int qty;
     private double hargaModal;
     private double hargaDeal;
+    private String catatan;
 
     public TransaksiDetail() {
     }
 
-    public TransaksiDetail(String id, String noFaktur, String namaItem, String jenis, int qty, double hargaModal, double hargaDeal) {
+    public TransaksiDetail(String id, String noFaktur, String namaItem, String jenis, int qty, double hargaModal, double hargaDeal, String catatan) {
         this.id = id;
         this.noFaktur = noFaktur;
         this.namaItem = namaItem;
@@ -20,6 +21,7 @@ public class TransaksiDetail {
         this.qty = qty;
         this.hargaModal = hargaModal;
         this.hargaDeal = hargaDeal;
+        this.catatan = catatan;
     }
 }
 
