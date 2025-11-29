@@ -4,6 +4,13 @@
  */
 package view.panel.barang;
 
+import util.ApplicationState;
+import util.Routing;
+
+import javax.smartcardio.Card;
+import javax.swing.*;
+import java.awt.*;
+
 /**
  *
  * @author haris
@@ -80,6 +87,11 @@ public class BarangPanel extends javax.swing.JPanel {
         addBtn.setBackground(new java.awt.Color(13, 110, 253));
         addBtn.setForeground(new java.awt.Color(255, 255, 255));
         addBtn.setText("Tambah");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
 
         editBtn.setBackground(new java.awt.Color(255, 193, 7));
         editBtn.setForeground(new java.awt.Color(0, 0, 0));
@@ -144,6 +156,14 @@ public class BarangPanel extends javax.swing.JPanel {
             .addComponent(rootPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        // TODO add your handling code here:
+        ApplicationState appState = ApplicationState.getInstance();
+        JPanel contentPanel = appState.getContentPanel();
+        CardLayout cl = (CardLayout) (contentPanel.getLayout());
+        cl.show(contentPanel, Routing.FORM_BARANG.toString());
+    }//GEN-LAST:event_addBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

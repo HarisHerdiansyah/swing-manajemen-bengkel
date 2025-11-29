@@ -4,6 +4,12 @@
  */
 package view.panel.barang;
 
+import util.ApplicationState;
+import util.Routing;
+
+import javax.swing.*;
+import java.awt.*;
+
 /**
  *
  * @author haris
@@ -29,7 +35,7 @@ public class FormBarangPanel extends javax.swing.JPanel {
 
         rootPanel = new javax.swing.JPanel();
         title = new javax.swing.JLabel();
-        Batal = new javax.swing.JButton();
+        cancelBtn = new javax.swing.JButton();
         addBtn = new javax.swing.JButton();
         namaBarangLabel = new javax.swing.JLabel();
         namaBarangField = new javax.swing.JTextField();
@@ -49,10 +55,15 @@ public class FormBarangPanel extends javax.swing.JPanel {
         title.setForeground(new java.awt.Color(0, 0, 0));
         title.setText(this.isEdit ? "Edit Barang" : "Tambah Barang");
 
-        Batal.setBackground(new java.awt.Color(108, 117, 125));
-        Batal.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        Batal.setForeground(new java.awt.Color(255, 255, 255));
-        Batal.setText("Batal");
+        cancelBtn.setBackground(new java.awt.Color(108, 117, 125));
+        cancelBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        cancelBtn.setForeground(new java.awt.Color(255, 255, 255));
+        cancelBtn.setText("Batal");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
 
         addBtn.setBackground(new java.awt.Color(13, 110, 253));
         addBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
@@ -104,7 +115,7 @@ public class FormBarangPanel extends javax.swing.JPanel {
                         .addGap(85, 85, 85)
                         .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(rootPanelLayout.createSequentialGroup()
-                                .addComponent(Batal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(488, 488, 488)
                                 .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(rootPanelLayout.createSequentialGroup()
@@ -146,7 +157,7 @@ public class FormBarangPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
                 .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Batal, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                    .addComponent(cancelBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
                 .addGap(46, 46, 46))
         );
 
@@ -162,10 +173,18 @@ public class FormBarangPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        // TODO add your handling code here:
+        ApplicationState appState = ApplicationState.getInstance();
+        JPanel contentPanel = appState.getContentPanel();
+        CardLayout cl = (CardLayout) (contentPanel.getLayout());
+        cl.show(contentPanel, Routing.BARANG.toString());
+    }//GEN-LAST:event_cancelBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Batal;
     private javax.swing.JButton addBtn;
+    private javax.swing.JButton cancelBtn;
     private javax.swing.JTextField hargaBeliField;
     private javax.swing.JLabel hargaBeliLabel;
     private javax.swing.JTextField hargaJualField;
