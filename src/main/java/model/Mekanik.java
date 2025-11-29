@@ -3,13 +3,15 @@ package model;
 public class Mekanik {
     private String id;
     private String nama;
+    private int status;
 
     public Mekanik() {
     }
 
-    public Mekanik(String id, String nama) {
+    public Mekanik(String id, String nama, int status) {
         this.id = id;
         this.nama = nama;
+        this.status = status;
     }
 
     public String getId() {
@@ -26,6 +28,14 @@ public class Mekanik {
 
     public void setNama(String nama) {
         this.nama = nama;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     @Override

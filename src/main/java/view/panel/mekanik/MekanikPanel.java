@@ -4,6 +4,12 @@
  */
 package view.panel.mekanik;
 
+import util.ApplicationState;
+import view.component.FormMekanikDialog;
+
+import javax.swing.*;
+import java.awt.*;
+
 /**
  *
  * @author haris
@@ -50,17 +56,17 @@ public class MekanikPanel extends javax.swing.JPanel {
         barangTable.setForeground(new java.awt.Color(0, 0, 0));
         barangTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Kode", "Nama Barang", "Harga Beli (Modal)", "Harga Jual", "Stok Tersedia"
+                "Nama", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -68,6 +74,9 @@ public class MekanikPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(barangTable);
+        if (barangTable.getColumnModel().getColumnCount() > 0) {
+            barangTable.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         searchField.setBackground(new java.awt.Color(255, 255, 255));
         searchField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
@@ -80,10 +89,20 @@ public class MekanikPanel extends javax.swing.JPanel {
         addBtn.setBackground(new java.awt.Color(13, 110, 253));
         addBtn.setForeground(new java.awt.Color(255, 255, 255));
         addBtn.setText("Tambah");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
 
         editBtn.setBackground(new java.awt.Color(255, 193, 7));
         editBtn.setForeground(new java.awt.Color(0, 0, 0));
         editBtn.setText("Edit");
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
 
         deleteBtn.setBackground(new java.awt.Color(220, 53, 69));
         deleteBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -144,6 +163,20 @@ public class MekanikPanel extends javax.swing.JPanel {
             .addComponent(rootPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        // TODO add your handling code here:
+        ApplicationState appState = ApplicationState.getInstance();
+        JPanel contentPanel = appState.getContentPanel();
+        new FormMekanikDialog((Frame) contentPanel.getParent().getParent().getParent().getParent().getParent(), true).setVisible(true);
+    }//GEN-LAST:event_addBtnActionPerformed
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        // TODO add your handling code here:
+        ApplicationState appState = ApplicationState.getInstance();
+        JPanel contentPanel = appState.getContentPanel();
+        new FormMekanikDialog((Frame) contentPanel.getParent().getParent().getParent().getParent().getParent(), true, true).setVisible(true);
+    }//GEN-LAST:event_editBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

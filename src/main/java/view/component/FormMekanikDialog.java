@@ -21,6 +21,12 @@ public class FormMekanikDialog extends javax.swing.JDialog {
         initComponents();
     }
 
+    public FormMekanikDialog(java.awt.Frame parent, boolean modal, boolean isEdit) {
+        super(parent, modal);
+        this.isEdit = isEdit;
+        initComponents();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,6 +42,8 @@ public class FormMekanikDialog extends javax.swing.JDialog {
         namaMekanikField = new javax.swing.JTextField();
         closeBtn = new javax.swing.JButton();
         closeBtn1 = new javax.swing.JButton();
+        namaMekanikLabel1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -57,10 +65,24 @@ public class FormMekanikDialog extends javax.swing.JDialog {
         closeBtn.setBackground(new java.awt.Color(108, 117, 125));
         closeBtn.setForeground(new java.awt.Color(255, 255, 255));
         closeBtn.setText("Tutup");
+        closeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeBtnActionPerformed(evt);
+            }
+        });
 
         closeBtn1.setBackground(new java.awt.Color(13, 110, 253));
         closeBtn1.setForeground(new java.awt.Color(255, 255, 255));
         closeBtn1.setText(this.isEdit ? "Edit" : "Tambah");
+
+        namaMekanikLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        namaMekanikLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        namaMekanikLabel1.setText("Nama Mekanik");
+
+        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBox1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aktif", "Tidak Aktif" }));
 
         javax.swing.GroupLayout rootPanelLayout = new javax.swing.GroupLayout(rootPanel);
         rootPanel.setLayout(rootPanelLayout);
@@ -75,12 +97,14 @@ public class FormMekanikDialog extends javax.swing.JDialog {
                         .addGap(46, 46, 46)
                         .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(rootPanelLayout.createSequentialGroup()
-                                .addComponent(closeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(closeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
-                                .addComponent(closeBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(closeBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(namaMekanikLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(namaMekanikField))
-                        .addGap(0, 48, Short.MAX_VALUE)))
+                            .addComponent(namaMekanikField)
+                            .addComponent(namaMekanikLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox1, 0, 302, Short.MAX_VALUE))
+                        .addGap(0, 46, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         rootPanelLayout.setVerticalGroup(
@@ -92,11 +116,15 @@ public class FormMekanikDialog extends javax.swing.JDialog {
                 .addComponent(namaMekanikLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(namaMekanikField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(18, 18, 18)
+                .addComponent(namaMekanikLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(closeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                     .addComponent(closeBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
-                .addGap(24, 24, 24))
+                .addGap(29, 29, 29))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -112,6 +140,11 @@ public class FormMekanikDialog extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_closeBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,8 +186,10 @@ public class FormMekanikDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeBtn;
     private javax.swing.JButton closeBtn1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JTextField namaMekanikField;
     private javax.swing.JLabel namaMekanikLabel;
+    private javax.swing.JLabel namaMekanikLabel1;
     private javax.swing.JPanel rootPanel;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
