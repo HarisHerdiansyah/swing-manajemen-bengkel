@@ -86,9 +86,9 @@ public class MekanikService {
         }
     }
 
-    public Response<Void> deleteMekanik(int idMekanik) {
+    public Response<Void> deleteMekanik(String namaMekanik) {
         try {
-            boolean deleted = repository.delete(idMekanik);
+            boolean deleted = repository.delete(namaMekanik);
             if (deleted) {
                 return Response.success("Mekanik berhasil dihapus", null);
             } else {
