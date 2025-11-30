@@ -163,6 +163,9 @@
               <Connection code="this.isEdit ? &quot;Edit&quot; : &quot;Tambah&quot;" type="code"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addBtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="nopolLabel">
           <Properties>

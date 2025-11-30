@@ -11,7 +11,7 @@ import java.util.List;
 public class PelangganRepository {
 
     public PelangganResponseDTO create(PelangganRequestDTO request) {
-        String sql = "INSERT INTO pelanggan (nopol, nama_pemilik) VALUES (?, ?)";
+        String sql = "INSERT INTO pelanggan (nopol, nama_pemilik, no_hp, jenis_motor) VALUES (?, ?, ?, ?)";
         Connection conn = null;
         PreparedStatement stmt = null;
 
@@ -20,6 +20,8 @@ public class PelangganRepository {
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, request.getNopol());
             stmt.setString(2, request.getNama());
+            stmt.setString(3, request.getNoTelp());
+            stmt.setString(4, request.getJenisMotor());
 
             int rowsAffected = stmt.executeUpdate();
             if (rowsAffected > 0) {
@@ -170,7 +172,7 @@ public class PelangganRepository {
     }
 
     public boolean update(String nopol, PelangganRequestDTO request) {
-        String sql = "UPDATE pelanggan SET nama_pemilik = ? WHERE nopol = ?";
+        String sql = "UPDATE pelanggan SET nama_pemilik = ?, no_hp = ?, jenis_motor = ? WHERE nopol = ?";
         Connection conn = null;
         PreparedStatement stmt = null;
 
@@ -178,7 +180,9 @@ public class PelangganRepository {
             conn = DBConnection.get();
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, request.getNama());
-            stmt.setString(2, nopol);
+            stmt.setString(2, request.getNoTelp());
+            stmt.setString(3, request.getJenisMotor());
+            stmt.setString(4, nopol);
 
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;
