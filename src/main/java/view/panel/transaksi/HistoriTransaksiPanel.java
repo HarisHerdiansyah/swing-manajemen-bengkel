@@ -4,11 +4,20 @@
  */
 package view.panel.transaksi;
 
+import dto.response.TransaksiResponseDTO;
+import service.TransaksiService;
+import util.Response;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
+
 /**
  *
  * @author haris
  */
 public class HistoriTransaksiPanel extends javax.swing.JPanel {
+    private TransaksiService service = new TransaksiService();
 
     /**
      * Creates new form HistoriTransaksiPanel
@@ -119,6 +128,27 @@ public class HistoriTransaksiPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void initialLoad() {
+        Response<List<TransaksiResponseDTO>> response = service.getAllTransaksi();
+        if (!response.isSuccess()) {
+            JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) transaksiTable.getModel();
+        model.setRowCount(0);
+
+        for (TransaksiResponseDTO dto : response.getData()) {
+            Object[] row = {
+                dto.getNoFaktur(),
+                dto.getTanggal(),
+                dto.getNamaPelanggan(),
+                dto.getNamaMekanik(),
+                dto.getTotalBelanja()
+            };
+            model.addRow(row);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
