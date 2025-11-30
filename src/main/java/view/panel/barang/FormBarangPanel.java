@@ -4,7 +4,11 @@
  */
 package view.panel.barang;
 
+import dto.request.BarangRequestDTO;
+import dto.response.BarangResponseDTO;
+import service.BarangService;
 import util.ApplicationState;
+import util.Response;
 import util.Routing;
 
 import javax.swing.*;
@@ -15,13 +19,28 @@ import java.awt.*;
  * @author haris
  */
 public class FormBarangPanel extends javax.swing.JPanel {
+    private ApplicationState appState = ApplicationState.getInstance();
+    private BarangService barangService = new BarangService();
     private boolean isEdit = false;
-    
+    private String kodeBarang = null;
+
     /**
      * Creates new form FormBarangPanel
      */
     public FormBarangPanel() {
         initComponents();
+    }
+
+    public FormBarangPanel(BarangResponseDTO barang) {
+        this.isEdit = true;
+        this.kodeBarang = barang.getKodeBarang();
+
+        initComponents();
+
+        namaBarangField.setText(barang.getNamaBarang());
+        stokBarangField.setText(String.valueOf(barang.getStok()));
+        hargaBeliField.setText(String.valueOf(barang.getHargaBeli()));
+        hargaJualField.setText(String.valueOf(barang.getHargaJual()));
     }
 
     /**
@@ -69,6 +88,11 @@ public class FormBarangPanel extends javax.swing.JPanel {
         addBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         addBtn.setForeground(new java.awt.Color(255, 255, 255));
         addBtn.setText(this.isEdit ? "Edit" : "Tambah");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
 
         namaBarangLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         namaBarangLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -175,12 +199,55 @@ public class FormBarangPanel extends javax.swing.JPanel {
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         // TODO add your handling code here:
-        ApplicationState appState = ApplicationState.getInstance();
-        JPanel contentPanel = appState.getContentPanel();
-        CardLayout cl = (CardLayout) (contentPanel.getLayout());
-        cl.show(contentPanel, Routing.BARANG.toString());
+        backAction();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        // TODO add your handling code here:
+        String namaBarang = namaBarangField.getText();
+        int stokBarang = Integer.parseInt(stokBarangField.getText());
+        double hargaBeliText = Double.parseDouble(hargaBeliField.getText());
+        double hargaJualText = Double.parseDouble(hargaJualField.getText());
+
+        BarangRequestDTO request = new BarangRequestDTO(namaBarang, stokBarang, hargaBeliText,  hargaJualText);
+        if (isEdit) {
+            editAction(kodeBarang, request);
+        } else {
+            addAction(request);
+        }
+    }//GEN-LAST:event_addBtnActionPerformed
+
+    private void addAction(BarangRequestDTO request) {
+        Response<BarangResponseDTO> response = barangService.createBarang(request);
+        if (!response.isSuccess()) {
+            JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Success", JOptionPane.INFORMATION_MESSAGE);
+        backAction();
+    }
+
+    private void editAction(String kodeBarang, BarangRequestDTO request) {
+        Response<Void> response = barangService.updateBarang(kodeBarang, request);
+        if (!response.isSuccess()) {
+            JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Success", JOptionPane.INFORMATION_MESSAGE);
+        backAction();
+    }
+
+    private void backAction() {
+        appState.setFormObject(null);
+
+        JPanel contentPanel = appState.getContentPanel();
+        contentPanel.add(new BarangPanel(), Routing.BARANG.toString());
+
+        CardLayout cl = (CardLayout) (contentPanel.getLayout());
+        cl.show(contentPanel, Routing.BARANG.toString());
+
+        contentPanel.remove(this);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;

@@ -42,10 +42,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         contentPanel.add(new DashboardPanel(), Routing.DASHBOARD.toString());
         contentPanel.add(new BarangPanel(), Routing.BARANG.toString());
-        contentPanel.add(new FormBarangPanel(), Routing.FORM_BARANG.toString());
         contentPanel.add(new MekanikPanel(), Routing.MEKANIK.toString());
         contentPanel.add(new PelangganPanel(), Routing.PELANGGAN.toString());
-        contentPanel.add(new FormPelangganPanel(), Routing.FORM_PELANGGAN.toString());
         contentPanel.add(new TransaksiPanel(), Routing.TRANSAKSI.toString());
         contentPanel.add(new HistoriTransaksiPanel(), Routing.HISTORI_TRANSAKSI.toString());
 

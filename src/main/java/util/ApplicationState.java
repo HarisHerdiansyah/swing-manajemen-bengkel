@@ -8,10 +8,12 @@ public class ApplicationState {
     private static ApplicationState instance;
     private JPanel contentPanel;
     private Admin admin;
+    private Object formObject;
 
     private ApplicationState() {
         contentPanel = null;
         admin = null;
+        formObject = null;
     }
 
     public static ApplicationState getInstance() {
@@ -37,5 +39,13 @@ public class ApplicationState {
 
     public void setAdmin(Admin admin) {
         this.admin = admin;
+    }
+
+    public Object getFormObject() {
+        return formObject;
+    }
+
+    public void setFormObject(Object formObject) {
+        this.formObject = formObject;
     }
 }
