@@ -31,6 +31,13 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         ApplicationState appState = ApplicationState.getInstance();
 
+        if (appState.getAdmin() == null) {
+            logger.severe("Admin is not authenticated, redirecting to LoginFrame");
+            new LoginFrame().setVisible(true);
+            dispose();
+            return;
+        }
+
         initComponents();
 
         contentPanel.add(new DashboardPanel(), Routing.DASHBOARD.toString());
@@ -148,10 +155,15 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        logoutNav.setBackground(new java.awt.Color(254, 250, 224));
+        logoutNav.setBackground(new java.awt.Color(220, 53, 69));
         logoutNav.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 14)); // NOI18N
-        logoutNav.setForeground(new java.awt.Color(0, 49, 31));
+        logoutNav.setForeground(new java.awt.Color(255, 255, 255));
         logoutNav.setText("Keluar");
+        logoutNav.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutNavActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout navigationPanelLayout = new javax.swing.GroupLayout(navigationPanel);
         navigationPanel.setLayout(navigationPanelLayout);
@@ -262,6 +274,14 @@ public class MainFrame extends javax.swing.JFrame {
         CardLayout cl = (CardLayout) (contentPanel.getLayout());
         cl.show(contentPanel, Routing.HISTORI_TRANSAKSI.toString());
     }//GEN-LAST:event_laporanNavActionPerformed
+
+    private void logoutNavActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutNavActionPerformed
+        // TODO add your handling code here:
+        ApplicationState appState = ApplicationState.getInstance();
+        appState.setAdmin(null);
+        new LoginFrame().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_logoutNavActionPerformed
 
     /**
      * @param args the command line arguments

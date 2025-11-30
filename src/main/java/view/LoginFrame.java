@@ -4,6 +4,12 @@
  */
 package view;
 
+import dto.request.AdminRequestDTO;
+import service.AdminService;
+import util.Response;
+
+import javax.swing.*;
+
 /**
  *
  * @author haris
@@ -43,6 +49,8 @@ public class LoginFrame extends javax.swing.JFrame {
         rootPanel.setBackground(new java.awt.Color(255, 255, 255));
         rootPanel.setForeground(new java.awt.Color(0, 0, 0));
 
+        jPanel1.setBackground(new java.awt.Color(0, 49, 31));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -53,6 +61,8 @@ public class LoginFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 70, Short.MAX_VALUE)
         );
+
+        jPanel2.setBackground(new java.awt.Color(0, 49, 31));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -160,6 +170,20 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
         // TODO add your handling code here:
+        String username = usernameField.getText();
+        String password = new String(passwordField.getPassword());
+        AdminRequestDTO dto = new AdminRequestDTO(username, password);
+        AdminService service = new AdminService();
+
+        Response<String> response = service.login(dto);
+
+        if (!response.isSuccess()) {
+            JOptionPane.showMessageDialog(rootPane, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        new MainFrame().setVisible(true);
+        dispose();
     }//GEN-LAST:event_submitBtnActionPerformed
 
     private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
