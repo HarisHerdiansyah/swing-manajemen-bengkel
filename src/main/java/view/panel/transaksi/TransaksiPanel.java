@@ -227,6 +227,11 @@ public class TransaksiPanel extends javax.swing.JPanel {
         hitungBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         hitungBtn.setForeground(new java.awt.Color(255, 255, 255));
         hitungBtn.setText("Hitung");
+        hitungBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hitungBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout rootPanelLayout = new javax.swing.GroupLayout(rootPanel);
         rootPanel.setLayout(rootPanelLayout);
@@ -484,6 +489,14 @@ public class TransaksiPanel extends javax.swing.JPanel {
         hargaDibayarField.setText("");
         catatanField.setText("");
     }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void hitungBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hitungBtnActionPerformed
+        // TODO add your handling code here:
+        double hargaJual = (double) ((ComboBoxItem) Objects.requireNonNull(namaBarangComboBox.getSelectedItem())).getValue();
+        int jumlahItem = Integer.parseInt(jumlahItemField.getText());
+        double totalHarga = hargaJual * jumlahItem;
+        hargaDibayarField.setText(String.valueOf(totalHarga));
+    }//GEN-LAST:event_hitungBtnActionPerformed
 
     private void populateMekanikComboBox() {
         mekanikComboBox.setEnabled(true);
