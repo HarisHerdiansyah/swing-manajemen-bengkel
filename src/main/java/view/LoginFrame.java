@@ -85,11 +85,21 @@ public class LoginFrame extends javax.swing.JFrame {
         closeBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         closeBtn.setForeground(new java.awt.Color(255, 255, 255));
         closeBtn.setText("Batal");
+        closeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeBtnActionPerformed(evt);
+            }
+        });
 
         submitBtn.setBackground(new java.awt.Color(13, 110, 253));
         submitBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         submitBtn.setForeground(new java.awt.Color(255, 255, 255));
         submitBtn.setText("Login");
+        submitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout rootPanelLayout = new javax.swing.GroupLayout(rootPanel);
         rootPanel.setLayout(rootPanelLayout);
@@ -147,6 +157,15 @@ public class LoginFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_submitBtnActionPerformed
+
+    private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_closeBtnActionPerformed
 
     /**
      * @param args the command line arguments
