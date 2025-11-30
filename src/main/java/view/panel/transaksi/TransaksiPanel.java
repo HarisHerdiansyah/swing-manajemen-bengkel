@@ -4,6 +4,8 @@
  */
 package view.panel.transaksi;
 
+import view.component.ComboBoxItem;
+
 /**
  *
  * @author haris
@@ -15,6 +17,17 @@ public class TransaksiPanel extends javax.swing.JPanel {
      */
     public TransaksiPanel() {
         initComponents();
+
+        pelangganField.setEnabled(false);
+        mekanikComboBox.setEnabled(false);
+        keluhanField.setEnabled(false);
+
+        String jenis = (String) jenisComboBox.getSelectedItem();
+        if (jenis != null && jenis.equals("JASA")) {
+            namaBarangComboBox.setEnabled(false);
+            jumlahItemField.setEnabled(false);
+            jumlahItemField.setText(String.valueOf(1));
+        }
     }
 
     /**
@@ -52,6 +65,7 @@ public class TransaksiPanel extends javax.swing.JPanel {
         catatanField = new javax.swing.JTextArea();
         listBtn = new javax.swing.JButton();
         addBtn = new javax.swing.JButton();
+        saveBtn = new javax.swing.JButton();
 
         rootPanel.setBackground(new java.awt.Color(255, 255, 255));
         rootPanel.setForeground(new java.awt.Color(0, 0, 0));
@@ -90,7 +104,6 @@ public class TransaksiPanel extends javax.swing.JPanel {
         mekanikComboBox.setBackground(new java.awt.Color(255, 255, 255));
         mekanikComboBox.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         mekanikComboBox.setForeground(new java.awt.Color(0, 0, 0));
-        mekanikComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         keluhanLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         keluhanLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -110,7 +123,7 @@ public class TransaksiPanel extends javax.swing.JPanel {
         jenisComboBox.setBackground(new java.awt.Color(255, 255, 255));
         jenisComboBox.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         jenisComboBox.setForeground(new java.awt.Color(0, 0, 0));
-        jenisComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jenisComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "JASA", "BARANG" }));
 
         namaBarangLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         namaBarangLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -119,7 +132,6 @@ public class TransaksiPanel extends javax.swing.JPanel {
         namaBarangComboBox.setBackground(new java.awt.Color(255, 255, 255));
         namaBarangComboBox.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         namaBarangComboBox.setForeground(new java.awt.Color(0, 0, 0));
-        namaBarangComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jumlahItemLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         jumlahItemLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -139,7 +151,7 @@ public class TransaksiPanel extends javax.swing.JPanel {
 
         catatanLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         catatanLabel.setForeground(new java.awt.Color(0, 0, 0));
-        catatanLabel.setText("Nama Barang");
+        catatanLabel.setText("Catatan");
 
         catatanField.setBackground(new java.awt.Color(255, 255, 255));
         catatanField.setColumns(20);
@@ -156,7 +168,12 @@ public class TransaksiPanel extends javax.swing.JPanel {
         addBtn.setBackground(new java.awt.Color(13, 110, 253));
         addBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         addBtn.setForeground(new java.awt.Color(255, 255, 255));
-        addBtn.setText("Tambah");
+        addBtn.setText("Tambah Item");
+
+        saveBtn.setBackground(new java.awt.Color(25, 135, 84));
+        saveBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        saveBtn.setForeground(new java.awt.Color(255, 255, 255));
+        saveBtn.setText("Simpan");
 
         javax.swing.GroupLayout rootPanelLayout = new javax.swing.GroupLayout(rootPanel);
         rootPanel.setLayout(rootPanelLayout);
@@ -212,8 +229,9 @@ public class TransaksiPanel extends javax.swing.JPanel {
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(listBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                                    .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+                                    .addComponent(listBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(saveBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(22, 22, 22))))))
         );
         rootPanelLayout.setVerticalGroup(
@@ -246,7 +264,13 @@ public class TransaksiPanel extends javax.swing.JPanel {
                     .addComponent(jenisComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(catatanLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(rootPanelLayout.createSequentialGroup()
+                        .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(listBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(rootPanelLayout.createSequentialGroup()
                         .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(namaBarangComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -259,11 +283,7 @@ public class TransaksiPanel extends javax.swing.JPanel {
                         .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(hargaDibayarField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(hargaDibayarLabel)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rootPanelLayout.createSequentialGroup()
-                        .addComponent(listBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
@@ -295,15 +315,16 @@ public class TransaksiPanel extends javax.swing.JPanel {
     private javax.swing.JTextArea keluhanField;
     private javax.swing.JLabel keluhanLabel;
     private javax.swing.JButton listBtn;
-    private javax.swing.JComboBox<String> mekanikComboBox;
+    private javax.swing.JComboBox<ComboBoxItem> mekanikComboBox;
     private javax.swing.JLabel mekanikLabel;
-    private javax.swing.JComboBox<String> namaBarangComboBox;
+    private javax.swing.JComboBox<ComboBoxItem> namaBarangComboBox;
     private javax.swing.JLabel namaBarangLabel;
     private javax.swing.JTextField nopolField;
     private javax.swing.JLabel nopolLabel;
     private javax.swing.JTextField pelangganField;
     private javax.swing.JLabel pelangganLabel;
     private javax.swing.JPanel rootPanel;
+    private javax.swing.JButton saveBtn;
     private javax.swing.JButton searchBtn;
     private javax.swing.JSeparator separator;
     private javax.swing.JLabel title;

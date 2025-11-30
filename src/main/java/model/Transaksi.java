@@ -1,8 +1,6 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class Transaksi {
     private String noFaktur;
@@ -11,7 +9,6 @@ public class Transaksi {
     private String namaMekanik;
     private String keluhan;
     private double totalBelanja;
-    private List<TransaksiDetail> listDetail = new ArrayList<>();
 
     public Transaksi() {
     }
@@ -71,10 +68,6 @@ public class Transaksi {
 
     public void setTotalBelanja(double totalBelanja) {
         this.totalBelanja = totalBelanja;
-    }
-
-    public void setListDetail(List<TransaksiDetail> listDetail) {
-        this.listDetail = listDetail;
     }
 }
 
