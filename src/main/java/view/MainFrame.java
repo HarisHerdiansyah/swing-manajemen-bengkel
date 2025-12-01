@@ -4,6 +4,8 @@
  */
 package view;
 
+import util.ApplicationState;
+import util.Routing;
 import view.panel.barang.BarangPanel;
 import view.panel.dashboard.DashboardPanel;
 import view.panel.mekanik.MekanikPanel;
@@ -25,17 +27,28 @@ public class MainFrame extends javax.swing.JFrame {
      * Creates new form MainFrame
      */
     public MainFrame() {
+        ApplicationState appState = ApplicationState.getInstance();
+
+        if (appState.getAdmin() == null) {
+            logger.severe("Admin is not authenticated, redirecting to LoginFrame");
+            new LoginFrame().setVisible(true);
+            dispose();
+            return;
+        }
+
         initComponents();
 
-        contentPanel.add(new DashboardPanel(), "dashboardPanel");
-        contentPanel.add(new BarangPanel(), "barangPanel");
-        contentPanel.add(new MekanikPanel(), "mekanikPanel");
-        contentPanel.add(new PelangganPanel(), "pelangganPanel");
-        contentPanel.add(new TransaksiPanel(), "transaksiPanel");
-        contentPanel.add(new HistoriTransaksiPanel(), "historiTransaksiPanel");
+        contentPanel.add(new DashboardPanel(), Routing.DASHBOARD.toString());
+        contentPanel.add(new BarangPanel(), Routing.BARANG.toString());
+        contentPanel.add(new MekanikPanel(), Routing.MEKANIK.toString());
+        contentPanel.add(new PelangganPanel(), Routing.PELANGGAN.toString());
+        contentPanel.add(new TransaksiPanel(), Routing.TRANSAKSI.toString());
+        contentPanel.add(new HistoriTransaksiPanel(), Routing.HISTORI_TRANSAKSI.toString());
 
         CardLayout cl = (CardLayout) (contentPanel.getLayout());
-        cl.show(contentPanel, "dashboardPanel");
+        cl.show(contentPanel, Routing.DASHBOARD.toString());
+
+        appState.setContentPanel(contentPanel);
     }
 
     /**
@@ -138,10 +151,15 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        logoutNav.setBackground(new java.awt.Color(254, 250, 224));
+        logoutNav.setBackground(new java.awt.Color(220, 53, 69));
         logoutNav.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 14)); // NOI18N
-        logoutNav.setForeground(new java.awt.Color(0, 49, 31));
+        logoutNav.setForeground(new java.awt.Color(255, 255, 255));
         logoutNav.setText("Keluar");
+        logoutNav.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutNavActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout navigationPanelLayout = new javax.swing.GroupLayout(navigationPanel);
         navigationPanel.setLayout(navigationPanelLayout);
@@ -220,38 +238,46 @@ public class MainFrame extends javax.swing.JFrame {
     private void dashboardNavActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardNavActionPerformed
         // TODO add your handling code here:
         CardLayout cl = (CardLayout) (contentPanel.getLayout());
-        cl.show(contentPanel, "dashboardPanel");
+        cl.show(contentPanel, Routing.DASHBOARD.toString());
     }//GEN-LAST:event_dashboardNavActionPerformed
 
     private void stokBarangNavActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stokBarangNavActionPerformed
         // TODO add your handling code here:
         CardLayout cl = (CardLayout) (contentPanel.getLayout());
-        cl.show(contentPanel, "barangPanel");
+        cl.show(contentPanel, Routing.BARANG.toString());
     }//GEN-LAST:event_stokBarangNavActionPerformed
 
     private void mekanikNavActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mekanikNavActionPerformed
         // TODO add your handling code here:
         CardLayout cl = (CardLayout) (contentPanel.getLayout());
-        cl.show(contentPanel, "mekanikPanel");
+        cl.show(contentPanel, Routing.MEKANIK.toString());
     }//GEN-LAST:event_mekanikNavActionPerformed
 
     private void pelangganNavActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pelangganNavActionPerformed
         // TODO add your handling code here:
         CardLayout cl = (CardLayout) (contentPanel.getLayout());
-        cl.show(contentPanel, "pelangganPanel");
+        cl.show(contentPanel, Routing.PELANGGAN.toString());
     }//GEN-LAST:event_pelangganNavActionPerformed
 
     private void transaksiNavActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transaksiNavActionPerformed
         // TODO add your handling code here:
         CardLayout cl = (CardLayout) (contentPanel.getLayout());
-        cl.show(contentPanel, "transaksiPanel");
+        cl.show(contentPanel, Routing.TRANSAKSI.toString());
     }//GEN-LAST:event_transaksiNavActionPerformed
 
     private void laporanNavActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laporanNavActionPerformed
         // TODO add your handling code here:
         CardLayout cl = (CardLayout) (contentPanel.getLayout());
-        cl.show(contentPanel, "historiTransaksiPanel");
+        cl.show(contentPanel, Routing.HISTORI_TRANSAKSI.toString());
     }//GEN-LAST:event_laporanNavActionPerformed
+
+    private void logoutNavActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutNavActionPerformed
+        // TODO add your handling code here:
+        ApplicationState appState = ApplicationState.getInstance();
+        appState.setAdmin(null);
+        new LoginFrame().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_logoutNavActionPerformed
 
     /**
      * @param args the command line arguments

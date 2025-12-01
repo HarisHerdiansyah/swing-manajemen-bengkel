@@ -81,20 +81,25 @@
                           <Component id="separator" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="namaBarangLabel" alignment="1" min="-2" pref="140" max="-2" attributes="0"/>
-                              <Component id="jumlahItemLabel" alignment="1" min="-2" pref="140" max="-2" attributes="0"/>
-                              <Component id="hargaDibayarLabel" alignment="1" min="-2" pref="140" max="-2" attributes="0"/>
-                              <Component id="jenisLabel" alignment="1" min="-2" pref="140" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jumlahItemField" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                              <Component id="namaBarangComboBox" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                              <Component id="hargaDibayarField" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                              <Component id="jenisComboBox" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="hitungBtn" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="namaBarangLabel" alignment="1" min="-2" pref="140" max="-2" attributes="0"/>
+                                      <Component id="jumlahItemLabel" alignment="1" min="-2" pref="140" max="-2" attributes="0"/>
+                                      <Component id="hargaDibayarLabel" alignment="1" min="-2" pref="140" max="-2" attributes="0"/>
+                                      <Component id="jenisLabel" alignment="1" min="-2" pref="140" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jumlahItemField" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                      <Component id="namaBarangComboBox" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                      <Component id="hargaDibayarField" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                      <Component id="jenisComboBox" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -106,8 +111,9 @@
                                   <Component id="jScrollPane2" min="-2" pref="251" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="listBtn" alignment="0" pref="100" max="32767" attributes="0"/>
-                                      <Component id="addBtn" alignment="0" pref="100" max="32767" attributes="0"/>
+                                      <Component id="listBtn" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="addBtn" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="saveBtn" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                               </Group>
@@ -152,7 +158,14 @@
                       <Component id="catatanLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="addBtn" min="-2" pref="30" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="listBtn" min="-2" pref="30" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="saveBtn" min="-2" pref="30" max="-2" attributes="0"/>
+                      </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="namaBarangComboBox" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
@@ -170,13 +183,10 @@
                           </Group>
                       </Group>
                       <Component id="jScrollPane2" alignment="0" min="-2" pref="102" max="-2" attributes="0"/>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="listBtn" min="-2" pref="30" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="addBtn" min="-2" pref="30" max="-2" attributes="0"/>
-                      </Group>
                   </Group>
-                  <EmptySpace pref="50" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="hitungBtn" min="-2" pref="30" max="-2" attributes="0"/>
+                  <EmptySpace pref="14" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -230,6 +240,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Cari"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchBtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="pelangganLabel">
           <Properties>
@@ -278,16 +291,11 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;ComboBoxItem&gt;"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="keluhanLabel">
@@ -350,14 +358,15 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+              <StringArray count="2">
+                <StringItem index="0" value="JASA"/>
+                <StringItem index="1" value="BARANG"/>
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jenisComboBoxActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -385,16 +394,11 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;ComboBoxItem&gt;"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jumlahItemLabel">
@@ -453,7 +457,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Nama Barang"/>
+            <Property name="text" type="java.lang.String" value="Catatan"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane2">
@@ -493,6 +497,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Lihat Detail"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listBtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="addBtn">
           <Properties>
@@ -505,8 +512,45 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Tambah"/>
+            <Property name="text" type="java.lang.String" value="Tambah Item"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addBtnActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="saveBtn">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="54" green="87" red="19" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Microsoft JhengHei" size="12" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Simpan"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveBtnActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="hitungBtn">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="7d" green="75" red="6c" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Microsoft JhengHei" size="12" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Hitung"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hitungBtnActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

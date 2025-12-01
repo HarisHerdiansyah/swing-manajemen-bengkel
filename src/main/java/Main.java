@@ -1,8 +1,10 @@
-import view.MainFrame;
+import util.ApplicationState;
+import view.LoginFrame;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello, World!");
-        new MainFrame().setVisible(true);
+        ApplicationState.getInstance();
+        new LoginFrame().setVisible(true);
     }
 }

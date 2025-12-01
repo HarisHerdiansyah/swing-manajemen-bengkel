@@ -4,6 +4,11 @@
  */
 package view.component;
 
+import dto.request.TransaksiRequestDTO;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author haris
@@ -11,6 +16,7 @@ package view.component;
 public class DetailTransaksiDialog extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DetailTransaksiDialog.class.getName());
+    private TransaksiRequestDTO requestDTO;
 
     /**
      * Creates new form DetailTransaksiDialog
@@ -18,6 +24,14 @@ public class DetailTransaksiDialog extends javax.swing.JDialog {
     public DetailTransaksiDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+
+    public DetailTransaksiDialog(java.awt.Frame parent, boolean modal, TransaksiRequestDTO requestDTO) {
+        super(parent, modal);
+        this.requestDTO = requestDTO;
+        initComponents();
+
+        initialLoad();
     }
 
     /**
@@ -103,10 +117,20 @@ public class DetailTransaksiDialog extends javax.swing.JDialog {
         closeBtn.setBackground(new java.awt.Color(108, 117, 125));
         closeBtn.setForeground(new java.awt.Color(255, 255, 255));
         closeBtn.setText("Tutup");
+        closeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeBtnActionPerformed(evt);
+            }
+        });
 
         deleteBtn.setBackground(new java.awt.Color(220, 53, 69));
         deleteBtn.setForeground(new java.awt.Color(255, 255, 255));
         deleteBtn.setText("Hapus");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -172,6 +196,45 @@ public class DetailTransaksiDialog extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void initialLoad() {
+        nopolValue.setText(requestDTO.getNopol());
+        namaValue.setText(requestDTO.getNamaMekanik());
+        mekanikValue.setText(requestDTO.getNamaMekanik());
+
+        DefaultTableModel model = (DefaultTableModel) daftarTransaksiTable.getModel();
+        model.setRowCount(0);
+
+        for (var detail : requestDTO.getDetailRequestDTOList()) {
+            Object[] row = new Object[]{
+                detail.getJenis(),
+                detail.getNamaBarang(),
+                detail.getJumlah(),
+                detail.getHargaDibayar(),
+                detail.getJumlah() * detail.getHargaDibayar()
+            };
+            model.addRow(row);
+        }
+    }
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+        int row = daftarTransaksiTable.getSelectedRow();
+
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Pilih data yang akan dihapus!", "Peringatan", javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        requestDTO.removeDetailRequestDTOList(row);
+        DefaultTableModel model = (DefaultTableModel) daftarTransaksiTable.getModel();
+        model.removeRow(row);
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_closeBtnActionPerformed
 
     /**
      * @param args the command line arguments

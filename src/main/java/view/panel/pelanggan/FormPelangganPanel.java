@@ -4,11 +4,23 @@
  */
 package view.panel.pelanggan;
 
+import dto.request.PelangganRequestDTO;
+import dto.response.PelangganResponseDTO;
+import service.PelangganService;
+import util.ApplicationState;
+import util.Response;
+import util.Routing;
+
+import javax.swing.*;
+import java.awt.*;
+
 /**
  *
  * @author haris
  */
 public class FormPelangganPanel extends javax.swing.JPanel {
+    private ApplicationState appState = ApplicationState.getInstance();
+    private PelangganService service = new PelangganService();
     private boolean isEdit = false;
     
     /**
@@ -16,6 +28,16 @@ public class FormPelangganPanel extends javax.swing.JPanel {
      */
     public FormPelangganPanel() {
         initComponents();
+    }
+
+    public FormPelangganPanel(boolean isEdit, PelangganResponseDTO pelanggan) {
+        this.isEdit = isEdit;
+        initComponents();
+
+        nopolField.setText(pelanggan.getNopol());
+        namaField.setText(pelanggan.getNama());
+        noTelpField.setText(pelanggan.getNoTelp());
+        jenisMotorField.setText(pelanggan.getJenisMotor());
     }
 
     /**
@@ -53,11 +75,21 @@ public class FormPelangganPanel extends javax.swing.JPanel {
         cancelBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         cancelBtn.setForeground(new java.awt.Color(255, 255, 255));
         cancelBtn.setText("Batal");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
 
         addBtn.setBackground(new java.awt.Color(13, 110, 253));
         addBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         addBtn.setForeground(new java.awt.Color(255, 255, 255));
         addBtn.setText(this.isEdit ? "Edit" : "Tambah");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
 
         nopolLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         nopolLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -161,6 +193,56 @@ public class FormPelangganPanel extends javax.swing.JPanel {
             .addComponent(rootPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        // TODO add your handling code here:
+        backAction();
+    }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void backAction() {
+        JPanel contentPanel = appState.getContentPanel();
+        contentPanel.add(new PelangganPanel(), Routing.PELANGGAN.toString());
+
+        CardLayout cl = (CardLayout) (contentPanel.getLayout());
+        cl.show(contentPanel, Routing.PELANGGAN.toString());
+        contentPanel.remove(this);
+    }
+
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        // TODO add your handling code here:
+        String nopol = nopolField.getText();
+        String nama = namaField.getText();
+        String noTelp = noTelpField.getText();
+        String jenisMotor = jenisMotorField.getText();
+
+        PelangganRequestDTO dto = new PelangganRequestDTO(nopol, nama, noTelp, jenisMotor);
+
+        if (isEdit) {
+            editAction(dto);
+        } else {
+            addAction(dto);
+        }
+    }//GEN-LAST:event_addBtnActionPerformed
+
+    private void addAction(PelangganRequestDTO dto) {
+        Response<PelangganResponseDTO> response = service.createPelanggan(dto);
+        if (!response.isSuccess()) {
+            JOptionPane.showMessageDialog(this, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        backAction();
+    }
+
+    private void editAction(PelangganRequestDTO dto) {
+        Response<Void> response = service.updatePelanggan(dto.getNopol(), dto);
+        if (!response.isSuccess()) {
+            JOptionPane.showMessageDialog(this, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        backAction();
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

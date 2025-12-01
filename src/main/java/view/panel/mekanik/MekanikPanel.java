@@ -4,17 +4,32 @@
  */
 package view.panel.mekanik;
 
+import dto.response.MekanikResponseDTO;
+import service.MekanikService;
+import util.ApplicationState;
+import util.Response;
+import view.component.FormMekanikDialog;
+
+import java.util.List;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+
 /**
  *
  * @author haris
  */
 public class MekanikPanel extends javax.swing.JPanel {
+    private ApplicationState appState = ApplicationState.getInstance();
+    private MekanikService service = new MekanikService();
 
     /**
      * Creates new form MekanikPanel
      */
     public MekanikPanel() {
         initComponents();
+        initialLoad();
     }
 
     /**
@@ -29,12 +44,13 @@ public class MekanikPanel extends javax.swing.JPanel {
         rootPanel = new javax.swing.JPanel();
         title = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        barangTable = new javax.swing.JTable();
+        mekanikTable = new javax.swing.JTable();
         searchField = new javax.swing.JTextField();
         searchBtn = new javax.swing.JButton();
         addBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
+        resetBtn = new javax.swing.JButton();
 
         rootPanel.setBackground(new java.awt.Color(255, 255, 255));
         rootPanel.setForeground(new java.awt.Color(0, 0, 0));
@@ -45,29 +61,32 @@ public class MekanikPanel extends javax.swing.JPanel {
         title.setForeground(new java.awt.Color(0, 0, 0));
         title.setText("Mekanik");
 
-        barangTable.setBackground(new java.awt.Color(255, 255, 255));
-        barangTable.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        barangTable.setForeground(new java.awt.Color(0, 0, 0));
-        barangTable.setModel(new javax.swing.table.DefaultTableModel(
+        mekanikTable.setBackground(new java.awt.Color(255, 255, 255));
+        mekanikTable.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        mekanikTable.setForeground(new java.awt.Color(0, 0, 0));
+        mekanikTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Kode", "Nama Barang", "Harga Beli (Modal)", "Harga Jual", "Stok Tersedia"
+                "Nama", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(barangTable);
+        jScrollPane1.setViewportView(mekanikTable);
+        if (mekanikTable.getColumnModel().getColumnCount() > 0) {
+            mekanikTable.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         searchField.setBackground(new java.awt.Color(255, 255, 255));
         searchField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
@@ -76,18 +95,47 @@ public class MekanikPanel extends javax.swing.JPanel {
         searchBtn.setBackground(new java.awt.Color(108, 117, 125));
         searchBtn.setForeground(new java.awt.Color(255, 255, 255));
         searchBtn.setText("Cari");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
 
         addBtn.setBackground(new java.awt.Color(13, 110, 253));
         addBtn.setForeground(new java.awt.Color(255, 255, 255));
         addBtn.setText("Tambah");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
 
         editBtn.setBackground(new java.awt.Color(255, 193, 7));
         editBtn.setForeground(new java.awt.Color(0, 0, 0));
         editBtn.setText("Edit");
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
 
         deleteBtn.setBackground(new java.awt.Color(220, 53, 69));
         deleteBtn.setForeground(new java.awt.Color(255, 255, 255));
         deleteBtn.setText("Hapus");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
+
+        resetBtn.setBackground(new java.awt.Color(108, 117, 125));
+        resetBtn.setForeground(new java.awt.Color(255, 255, 255));
+        resetBtn.setText("Reset");
+        resetBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout rootPanelLayout = new javax.swing.GroupLayout(rootPanel);
         rootPanel.setLayout(rootPanelLayout);
@@ -108,9 +156,11 @@ public class MekanikPanel extends javax.swing.JPanel {
                                 .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(rootPanelLayout.createSequentialGroup()
-                                .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rootPanelLayout.createSequentialGroup()
+                                .addComponent(resetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
                                 .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(96, Short.MAX_VALUE))
         );
@@ -125,12 +175,13 @@ public class MekanikPanel extends javax.swing.JPanel {
                     .addComponent(searchField)
                     .addComponent(searchBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(27, 27, 27)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(deleteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(editBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
-                .addGap(46, 46, 46))
+                .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                    .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(resetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -145,13 +196,111 @@ public class MekanikPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        // TODO add your handling code here:
+        JPanel contentPanel = appState.getContentPanel();
+        new FormMekanikDialog(
+                (Frame) contentPanel.getParent().getParent().getParent().getParent().getParent(),
+                this,
+                true
+        ).setVisible(true);
+    }//GEN-LAST:event_addBtnActionPerformed
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        // TODO add your handling code here:
+        int row = mekanikTable.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(rootPanel, "Pilih mekanik yang akan diubah.", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        Response<MekanikResponseDTO> response = service.getMekanikByExactName((String) mekanikTable.getValueAt(row, 0));
+        if (!response.isSuccess()) {
+            JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        JPanel contentPanel = appState.getContentPanel();
+        new FormMekanikDialog(
+                (Frame) contentPanel.getParent().getParent().getParent().getParent().getParent(),
+                this,
+                true,
+                true,
+                response.getData()
+        ).setVisible(true);
+    }//GEN-LAST:event_editBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+        int row = mekanikTable.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Pilih mekanik yang akan dihapus.", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        Response<Void> response = service.deleteMekanik((String) mekanikTable.getValueAt(row, 0));
+        if (!response.isSuccess()) {
+            JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        ((DefaultTableModel) mekanikTable.getModel()).removeRow(row);
+        JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Sukses", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void resetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBtnActionPerformed
+        // TODO add your handling code here:
+        searchField.setText("");
+        initialLoad();
+    }//GEN-LAST:event_resetBtnActionPerformed
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        // TODO add your handling code here:
+        String search = searchField.getText();
+        if (search.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPanel, "Masukkan nama mekanik untuk mencari.", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        Response<List<MekanikResponseDTO>> response = service.getMekanikByLikeName(search);
+        if (!response.isSuccess()) {
+            JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        mapMekanik(response.getData());
+    }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void initialLoad() {
+        Response<List<MekanikResponseDTO>> response = service.getAllMekanik();
+        if (!response.isSuccess()) {
+            JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        mapMekanik(response.getData());
+    }
+
+    private void mapMekanik(List<MekanikResponseDTO> list) {
+        DefaultTableModel model = (DefaultTableModel) mekanikTable.getModel();
+        model.setRowCount(0);
+
+        for (MekanikResponseDTO mekanik : list) {
+            Object[] row = new Object[]{ mekanik.getNama(), mekanik.getStatus() == 1 ? "Aktif" : "Tidak Aktif" };
+            model.addRow(row);
+        }
+    }
+
+    public JButton getResetBtn() {
+        return resetBtn;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
-    private javax.swing.JTable barangTable;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JButton editBtn;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable mekanikTable;
+    private javax.swing.JButton resetBtn;
     private javax.swing.JPanel rootPanel;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchField;

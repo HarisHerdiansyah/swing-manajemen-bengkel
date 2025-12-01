@@ -1,24 +1,19 @@
-package model;
+package dto.response;
 
 import java.util.Date;
 
-public class Transaksi {
+public class TransaksiResponseDTO {
     private String noFaktur;
     private Date tanggal;
-    private String nopolPelanggan;
+    private String namaPelanggan;
     private String namaMekanik;
-    private String keluhan;
     private double totalBelanja;
 
-    public Transaksi() {
-    }
-
-    public Transaksi(String noFaktur, Date tanggal, String nopolPelanggan, String namaMekanik, String keluhan, double totalBelanja) {
+    public TransaksiResponseDTO(String noFaktur, Date tanggal, String namaPelanggan, String namaMekanik, double totalBelanja) {
         this.noFaktur = noFaktur;
         this.tanggal = tanggal;
-        this.nopolPelanggan = nopolPelanggan;
+        this.namaPelanggan = namaPelanggan;
         this.namaMekanik = namaMekanik;
-        this.keluhan = keluhan;
         this.totalBelanja = totalBelanja;
     }
 
@@ -38,12 +33,12 @@ public class Transaksi {
         this.tanggal = tanggal;
     }
 
-    public String getNopolPelanggan() {
-        return nopolPelanggan;
+    public String getNamaPelanggan() {
+        return namaPelanggan;
     }
 
-    public void setNopolPelanggan(String nopolPelanggan) {
-        this.nopolPelanggan = nopolPelanggan;
+    public void setNamaPelanggan(String namaPelanggan) {
+        this.namaPelanggan = namaPelanggan;
     }
 
     public String getNamaMekanik() {
@@ -54,14 +49,6 @@ public class Transaksi {
         this.namaMekanik = namaMekanik;
     }
 
-    public String getKeluhan() {
-        return keluhan;
-    }
-
-    public void setKeluhan(String keluhan) {
-        this.keluhan = keluhan;
-    }
-
     public double getTotalBelanja() {
         return totalBelanja;
     }
@@ -70,15 +57,3 @@ public class Transaksi {
         this.totalBelanja = totalBelanja;
     }
 }
-
-
-/**
- * // Method bantuan untuk hitung total otomatis di aplikasi
- *     public void hitungTotal() {
- *         double total = 0;
- *         for (TransaksiDetail item : listDetail) {
- *             total += item.getSubtotal();
- *         }
- *         this.totalBelanja = total;
- *     }
- */

@@ -4,21 +4,45 @@
  */
 package view.component;
 
+import dto.request.MekanikRequestDTO;
+import dto.response.MekanikResponseDTO;
+import service.MekanikService;
+import util.Response;
+import view.panel.mekanik.MekanikPanel;
+
+import javax.swing.*;
+
 /**
  *
  * @author haris
  */
 public class FormMekanikDialog extends javax.swing.JDialog {
-    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormMekanikDialog.class.getName());
+    private MekanikService service = new MekanikService();
     private boolean isEdit = false;
-    
+    private int idMekanik = -1;
+    private MekanikPanel parentPanel;
+
     /**
      * Creates new form FormMekanikDialog
      */
-    public FormMekanikDialog(java.awt.Frame parent, boolean modal) {
+    public FormMekanikDialog(java.awt.Frame parent, MekanikPanel parentPanel, boolean modal) {
         super(parent, modal);
+        this.parentPanel = parentPanel;
         initComponents();
+
+        statusMekanikComboBox.setSelectedIndex(1);
+    }
+
+    public FormMekanikDialog(java.awt.Frame parent, MekanikPanel parentPanel, boolean modal, boolean isEdit, MekanikResponseDTO mekanik) {
+        super(parent, modal);
+        this.parentPanel = parentPanel;
+        this.isEdit = isEdit;
+        this.idMekanik = mekanik.getId();
+        initComponents();
+
+        namaMekanikField.setText(mekanik.getNama());
+        statusMekanikComboBox.setSelectedIndex(mekanik.getStatus());
     }
 
     /**
@@ -35,7 +59,9 @@ public class FormMekanikDialog extends javax.swing.JDialog {
         namaMekanikLabel = new javax.swing.JLabel();
         namaMekanikField = new javax.swing.JTextField();
         closeBtn = new javax.swing.JButton();
-        closeBtn1 = new javax.swing.JButton();
+        addBtn = new javax.swing.JButton();
+        statusMekanikLabel = new javax.swing.JLabel();
+        statusMekanikComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -57,10 +83,29 @@ public class FormMekanikDialog extends javax.swing.JDialog {
         closeBtn.setBackground(new java.awt.Color(108, 117, 125));
         closeBtn.setForeground(new java.awt.Color(255, 255, 255));
         closeBtn.setText("Tutup");
+        closeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeBtnActionPerformed(evt);
+            }
+        });
 
-        closeBtn1.setBackground(new java.awt.Color(13, 110, 253));
-        closeBtn1.setForeground(new java.awt.Color(255, 255, 255));
-        closeBtn1.setText(this.isEdit ? "Edit" : "Tambah");
+        addBtn.setBackground(new java.awt.Color(13, 110, 253));
+        addBtn.setForeground(new java.awt.Color(255, 255, 255));
+        addBtn.setText(this.isEdit ? "Edit" : "Tambah");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
+
+        statusMekanikLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        statusMekanikLabel.setForeground(new java.awt.Color(0, 0, 0));
+        statusMekanikLabel.setText("Status");
+
+        statusMekanikComboBox.setBackground(new java.awt.Color(255, 255, 255));
+        statusMekanikComboBox.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        statusMekanikComboBox.setForeground(new java.awt.Color(0, 0, 0));
+        statusMekanikComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tidak Aktif", "Aktif" }));
 
         javax.swing.GroupLayout rootPanelLayout = new javax.swing.GroupLayout(rootPanel);
         rootPanel.setLayout(rootPanelLayout);
@@ -75,12 +120,14 @@ public class FormMekanikDialog extends javax.swing.JDialog {
                         .addGap(46, 46, 46)
                         .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(rootPanelLayout.createSequentialGroup()
-                                .addComponent(closeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(closeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
-                                .addComponent(closeBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(namaMekanikLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(namaMekanikField))
-                        .addGap(0, 48, Short.MAX_VALUE)))
+                            .addComponent(namaMekanikField)
+                            .addComponent(statusMekanikLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(statusMekanikComboBox, 0, 302, Short.MAX_VALUE))
+                        .addGap(0, 46, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         rootPanelLayout.setVerticalGroup(
@@ -92,11 +139,15 @@ public class FormMekanikDialog extends javax.swing.JDialog {
                 .addComponent(namaMekanikLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(namaMekanikField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(18, 18, 18)
+                .addComponent(statusMekanikLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(statusMekanikComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(closeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(closeBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
-                .addGap(24, 24, 24))
+                    .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                .addGap(29, 29, 29))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -112,6 +163,50 @@ public class FormMekanikDialog extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_closeBtnActionPerformed
+
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        // TODO add your handling code here:
+        String namaMekanik = namaMekanikField.getText();
+        int statusMekanik = statusMekanikComboBox.getSelectedIndex();
+
+        MekanikRequestDTO dto = new MekanikRequestDTO(namaMekanik, statusMekanik);
+
+        if (isEdit) {
+            editAction(dto);
+        } else {
+            addAction(dto);
+        }
+
+    }//GEN-LAST:event_addBtnActionPerformed
+
+    private void addAction(MekanikRequestDTO dto) {
+        Response<MekanikResponseDTO> response = service.createMekanik(dto);
+        if (!response.isSuccess()) {
+            JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Sukses", JOptionPane.INFORMATION_MESSAGE);
+        parentPanel.getResetBtn().doClick();
+        this.setVisible(false);
+    }
+
+    private void editAction(MekanikRequestDTO dto) {
+        Response<Void> response = service.updateMekanik(idMekanik, dto);
+        if (!response.isSuccess()) {
+            JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Sukses", JOptionPane.INFORMATION_MESSAGE);
+        parentPanel.getResetBtn().doClick();
+        this.setVisible(false);
+    }
 
     /**
      * @param args the command line arguments
@@ -138,7 +233,7 @@ public class FormMekanikDialog extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                FormMekanikDialog dialog = new FormMekanikDialog(new javax.swing.JFrame(), true);
+                FormMekanikDialog dialog = new FormMekanikDialog(new javax.swing.JFrame(), new MekanikPanel(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -151,11 +246,13 @@ public class FormMekanikDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addBtn;
     private javax.swing.JButton closeBtn;
-    private javax.swing.JButton closeBtn1;
     private javax.swing.JTextField namaMekanikField;
     private javax.swing.JLabel namaMekanikLabel;
     private javax.swing.JPanel rootPanel;
+    private javax.swing.JComboBox<String> statusMekanikComboBox;
+    private javax.swing.JLabel statusMekanikLabel;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }

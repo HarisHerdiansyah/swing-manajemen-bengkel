@@ -4,17 +4,32 @@
  */
 package view.panel.barang;
 
+import dto.response.BarangResponseDTO;
+import service.BarangService;
+import util.ApplicationState;
+import util.Response;
+import util.Routing;
+import view.panel.pelanggan.FormPelangganPanel;
+
+import java.util.List;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+
 /**
  *
  * @author haris
  */
 public class BarangPanel extends javax.swing.JPanel {
+    private ApplicationState appState = ApplicationState.getInstance();
+    private BarangService barangService = new BarangService();
 
     /**
      * Creates new form BarangPanel
      */
     public BarangPanel() {
         initComponents();
+        initialLoad();
     }
 
     /**
@@ -35,6 +50,7 @@ public class BarangPanel extends javax.swing.JPanel {
         addBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
+        resetBtn = new javax.swing.JButton();
 
         rootPanel.setBackground(new java.awt.Color(255, 255, 255));
         rootPanel.setForeground(new java.awt.Color(0, 0, 0));
@@ -76,18 +92,47 @@ public class BarangPanel extends javax.swing.JPanel {
         searchBtn.setBackground(new java.awt.Color(108, 117, 125));
         searchBtn.setForeground(new java.awt.Color(255, 255, 255));
         searchBtn.setText("Cari");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
 
         addBtn.setBackground(new java.awt.Color(13, 110, 253));
         addBtn.setForeground(new java.awt.Color(255, 255, 255));
         addBtn.setText("Tambah");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
 
         editBtn.setBackground(new java.awt.Color(255, 193, 7));
         editBtn.setForeground(new java.awt.Color(0, 0, 0));
         editBtn.setText("Edit");
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
 
         deleteBtn.setBackground(new java.awt.Color(220, 53, 69));
         deleteBtn.setForeground(new java.awt.Color(255, 255, 255));
         deleteBtn.setText("Hapus");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
+
+        resetBtn.setBackground(new java.awt.Color(108, 117, 125));
+        resetBtn.setForeground(new java.awt.Color(255, 255, 255));
+        resetBtn.setText("Reset");
+        resetBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout rootPanelLayout = new javax.swing.GroupLayout(rootPanel);
         rootPanel.setLayout(rootPanelLayout);
@@ -108,9 +153,11 @@ public class BarangPanel extends javax.swing.JPanel {
                                 .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(rootPanelLayout.createSequentialGroup()
-                                .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rootPanelLayout.createSequentialGroup()
+                                .addComponent(resetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(96, Short.MAX_VALUE))
         );
@@ -127,9 +174,10 @@ public class BarangPanel extends javax.swing.JPanel {
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(deleteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(editBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(resetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46))
         );
 
@@ -145,6 +193,106 @@ public class BarangPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        // TODO add your handling code here:
+        JPanel contentPanel = appState.getContentPanel();
+        contentPanel.add(new FormBarangPanel(), Routing.FORM_BARANG.toString());
+
+        CardLayout cl = (CardLayout) (contentPanel.getLayout());
+        cl.show(contentPanel, Routing.FORM_BARANG.toString());
+        contentPanel.remove(this);
+    }//GEN-LAST:event_addBtnActionPerformed
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        // TODO add your handling code here:
+        String keyword = searchField.getText().trim();
+        Response<List<BarangResponseDTO>> response = barangService.getBarangByNama(keyword);
+
+        if (!response.isSuccess()) {
+            JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        mapBarang(response.getData());
+    }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        // TODO add your handling code here:
+        int row = barangTable.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(rootPanel, "Pilih barang yang akan diedit", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String kodeBarang = barangTable.getValueAt(row, 0).toString();
+        Response<BarangResponseDTO> response = barangService.getBarangByKode(kodeBarang);
+        if (!response.isSuccess()) {
+            JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        JPanel contentPanel = appState.getContentPanel();
+        contentPanel.add(new FormBarangPanel(response.getData()), Routing.FORM_BARANG.toString());
+
+        CardLayout cl = (CardLayout) (contentPanel.getLayout());
+        cl.show(contentPanel, Routing.FORM_BARANG.toString());
+        contentPanel.remove(this);
+    }//GEN-LAST:event_editBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+        int row = barangTable.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(rootPanel, "Pilih barang yang akan dihapus", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String kodeBarang = barangTable.getValueAt(row, 0).toString();
+        int confirm = JOptionPane.showConfirmDialog(rootPanel, "Apakah Anda yakin ingin menghapus barang dengan kode " + kodeBarang + "?", "Konfirmasi Hapus", JOptionPane.YES_NO_OPTION);
+        if (confirm != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        Response<Void> response = barangService.deleteBarang(kodeBarang);
+        if (!response.isSuccess()) {
+            JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        ((DefaultTableModel) barangTable.getModel()).removeRow(row);
+        JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Success", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void resetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBtnActionPerformed
+        // TODO add your handling code here:
+        searchField.setText("");
+        initialLoad();
+    }//GEN-LAST:event_resetBtnActionPerformed
+
+    private void initialLoad() {
+        Response<List<BarangResponseDTO>> response = barangService.getAllBarang();
+        if (!response.isSuccess()) {
+            JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        mapBarang(response.getData());
+    }
+
+    private void mapBarang(List<BarangResponseDTO> list) {
+        DefaultTableModel model = (DefaultTableModel) barangTable.getModel();
+        model.setRowCount(0);
+
+        for (BarangResponseDTO barang : list) {
+            Object[] row = new Object[]{
+                barang.getKodeBarang(),
+                barang.getNamaBarang(),
+                barang.getHargaBeli(),
+                barang.getHargaJual(),
+                barang.getStok()
+            };
+            model.addRow(row);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
@@ -152,6 +300,7 @@ public class BarangPanel extends javax.swing.JPanel {
     private javax.swing.JButton deleteBtn;
     private javax.swing.JButton editBtn;
     private javax.swing.JScrollPane jScrollPane1;
+    protected javax.swing.JButton resetBtn;
     private javax.swing.JPanel rootPanel;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchField;

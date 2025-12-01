@@ -4,18 +4,43 @@
  */
 package view.panel.barang;
 
+import dto.request.BarangRequestDTO;
+import dto.response.BarangResponseDTO;
+import service.BarangService;
+import util.ApplicationState;
+import util.Response;
+import util.Routing;
+
+import javax.swing.*;
+import java.awt.*;
+
 /**
  *
  * @author haris
  */
 public class FormBarangPanel extends javax.swing.JPanel {
+    private ApplicationState appState = ApplicationState.getInstance();
+    private BarangService barangService = new BarangService();
     private boolean isEdit = false;
-    
+    private String kodeBarang = null;
+
     /**
      * Creates new form FormBarangPanel
      */
     public FormBarangPanel() {
         initComponents();
+    }
+
+    public FormBarangPanel(BarangResponseDTO barang) {
+        this.isEdit = true;
+        this.kodeBarang = barang.getKodeBarang();
+
+        initComponents();
+
+        namaBarangField.setText(barang.getNamaBarang());
+        stokBarangField.setText(String.valueOf(barang.getStok()));
+        hargaBeliField.setText(String.valueOf(barang.getHargaBeli()));
+        hargaJualField.setText(String.valueOf(barang.getHargaJual()));
     }
 
     /**
@@ -29,7 +54,7 @@ public class FormBarangPanel extends javax.swing.JPanel {
 
         rootPanel = new javax.swing.JPanel();
         title = new javax.swing.JLabel();
-        Batal = new javax.swing.JButton();
+        cancelBtn = new javax.swing.JButton();
         addBtn = new javax.swing.JButton();
         namaBarangLabel = new javax.swing.JLabel();
         namaBarangField = new javax.swing.JTextField();
@@ -49,15 +74,25 @@ public class FormBarangPanel extends javax.swing.JPanel {
         title.setForeground(new java.awt.Color(0, 0, 0));
         title.setText(this.isEdit ? "Edit Barang" : "Tambah Barang");
 
-        Batal.setBackground(new java.awt.Color(108, 117, 125));
-        Batal.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        Batal.setForeground(new java.awt.Color(255, 255, 255));
-        Batal.setText("Batal");
+        cancelBtn.setBackground(new java.awt.Color(108, 117, 125));
+        cancelBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        cancelBtn.setForeground(new java.awt.Color(255, 255, 255));
+        cancelBtn.setText("Batal");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
 
         addBtn.setBackground(new java.awt.Color(13, 110, 253));
         addBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         addBtn.setForeground(new java.awt.Color(255, 255, 255));
         addBtn.setText(this.isEdit ? "Edit" : "Tambah");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
 
         namaBarangLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         namaBarangLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -104,7 +139,7 @@ public class FormBarangPanel extends javax.swing.JPanel {
                         .addGap(85, 85, 85)
                         .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(rootPanelLayout.createSequentialGroup()
-                                .addComponent(Batal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(488, 488, 488)
                                 .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(rootPanelLayout.createSequentialGroup()
@@ -146,7 +181,7 @@ public class FormBarangPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
                 .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Batal, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                    .addComponent(cancelBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
                 .addGap(46, 46, 46))
         );
 
@@ -162,10 +197,61 @@ public class FormBarangPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        // TODO add your handling code here:
+        backAction();
+    }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        // TODO add your handling code here:
+        String namaBarang = namaBarangField.getText();
+        int stokBarang = Integer.parseInt(stokBarangField.getText());
+        double hargaBeliText = Double.parseDouble(hargaBeliField.getText());
+        double hargaJualText = Double.parseDouble(hargaJualField.getText());
+
+        BarangRequestDTO request = new BarangRequestDTO(namaBarang, stokBarang, hargaBeliText,  hargaJualText);
+        if (isEdit) {
+            editAction(kodeBarang, request);
+        } else {
+            addAction(request);
+        }
+    }//GEN-LAST:event_addBtnActionPerformed
+
+    private void addAction(BarangRequestDTO request) {
+        Response<BarangResponseDTO> response = barangService.createBarang(request);
+        if (!response.isSuccess()) {
+            JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Success", JOptionPane.INFORMATION_MESSAGE);
+        backAction();
+    }
+
+    private void editAction(String kodeBarang, BarangRequestDTO request) {
+        Response<Void> response = barangService.updateBarang(kodeBarang, request);
+        if (!response.isSuccess()) {
+            JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Success", JOptionPane.INFORMATION_MESSAGE);
+        backAction();
+    }
+
+    private void backAction() {
+        appState.setFormObject(null);
+
+        JPanel contentPanel = appState.getContentPanel();
+        contentPanel.add(new BarangPanel(), Routing.BARANG.toString());
+
+        CardLayout cl = (CardLayout) (contentPanel.getLayout());
+        cl.show(contentPanel, Routing.BARANG.toString());
+
+        contentPanel.remove(this);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Batal;
     private javax.swing.JButton addBtn;
+    private javax.swing.JButton cancelBtn;
     private javax.swing.JTextField hargaBeliField;
     private javax.swing.JLabel hargaBeliLabel;
     private javax.swing.JTextField hargaJualField;

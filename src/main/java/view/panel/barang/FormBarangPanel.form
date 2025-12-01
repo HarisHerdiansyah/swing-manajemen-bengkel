@@ -55,7 +55,7 @@
                           <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="Batal" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="cancelBtn" min="-2" pref="100" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="488" max="-2" attributes="0"/>
                                   <Component id="addBtn" min="-2" pref="99" max="-2" attributes="0"/>
                               </Group>
@@ -110,7 +110,7 @@
                   <EmptySpace pref="171" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="addBtn" alignment="0" max="32767" attributes="0"/>
-                      <Component id="Batal" alignment="0" pref="30" max="32767" attributes="0"/>
+                      <Component id="cancelBtn" alignment="0" pref="30" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
               </Group>
@@ -131,7 +131,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="Batal">
+        <Component class="javax.swing.JButton" name="cancelBtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="7d" green="75" red="6c" type="rgb"/>
@@ -144,6 +144,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Batal"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelBtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="addBtn">
           <Properties>
@@ -160,6 +163,9 @@
               <Connection code="this.isEdit ? &quot;Edit&quot; : &quot;Tambah&quot;" type="code"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addBtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="namaBarangLabel">
           <Properties>

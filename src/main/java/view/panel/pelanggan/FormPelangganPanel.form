@@ -144,6 +144,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Batal"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelBtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="addBtn">
           <Properties>
@@ -160,6 +163,9 @@
               <Connection code="this.isEdit ? &quot;Edit&quot; : &quot;Tambah&quot;" type="code"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addBtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="nopolLabel">
           <Properties>
