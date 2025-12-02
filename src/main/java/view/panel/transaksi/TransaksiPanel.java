@@ -441,9 +441,33 @@ public class TransaksiPanel extends javax.swing.JPanel {
 
         String jenis = (String) jenisComboBox.getSelectedItem();
         String namaBarang = (Objects.requireNonNull(namaBarangComboBox.getSelectedItem())).toString();
-        int jumlahItem = Integer.parseInt(jumlahItemField.getText());
-        double hargaDibayar = Double.parseDouble(hargaDibayarField.getText());
         String catatan = catatanField.getText();
+
+        if (Objects.equals(jenis, "JASA") && hargaDibayarField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPanel, "Harga Jasa Masih Kosong", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        double hargaDibayar = Double.parseDouble(hargaDibayarField.getText());
+        if (Objects.equals(jenis, "JASA") && hargaDibayar <= 0) {
+            JOptionPane.showMessageDialog(rootPanel, "Harga Tidak Boleh Kurang dari atau Sama Dengan Nol", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (Objects.equals(jenis, "BARANG") && jumlahItemField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPanel, "Item Barang Masih Kosong", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int jumlahItem = Integer.parseInt(jumlahItemField.getText());
+        if (Objects.equals(jenis, "BARANG") && jumlahItem <= 0) {
+            JOptionPane.showMessageDialog(rootPanel, "Item Barang Tidak Boleh Kurang dari atau Sama dengan Nol", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (Objects.equals(jenis, "BARANG") && hargaDibayarField.getText().isEmpty()) {
+            hitungBtn.doClick();
+        }
 
         TransaksiDetailRequestDTO dto = new TransaksiDetailRequestDTO(jenis, namaBarang, jumlahItem, hargaDibayar, catatan);
         requestDTO.setDetailRequestDTOList(dto);
@@ -470,6 +494,11 @@ public class TransaksiPanel extends javax.swing.JPanel {
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
+        if (requestDTO.getDetailRequestDTOList().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPanel, "Daftar Transaksi Masih Kosong!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
         requestDTO.setTotalBelanja();
         Response<String> response = transaksiService.createTransaksi(requestDTO);
         if (!response.isSuccess()) {
