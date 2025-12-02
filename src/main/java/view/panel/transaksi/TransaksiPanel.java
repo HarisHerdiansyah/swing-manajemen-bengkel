@@ -440,7 +440,7 @@ public class TransaksiPanel extends javax.swing.JPanel {
         }
 
         String jenis = (String) jenisComboBox.getSelectedItem();
-        String namaBarang = (Objects.requireNonNull(mekanikComboBox.getSelectedItem())).toString();
+        String namaBarang = (Objects.requireNonNull(namaBarangComboBox.getSelectedItem())).toString();
         int jumlahItem = Integer.parseInt(jumlahItemField.getText());
         double hargaDibayar = Double.parseDouble(hargaDibayarField.getText());
         String catatan = catatanField.getText();
@@ -449,6 +449,10 @@ public class TransaksiPanel extends javax.swing.JPanel {
         requestDTO.setDetailRequestDTOList(dto);
         JOptionPane.showMessageDialog(rootPanel, "Item Berhasil Ditambahkan", "Sukses", JOptionPane.INFORMATION_MESSAGE);
 
+        resetAfterAdd();
+    }//GEN-LAST:event_addBtnActionPerformed
+
+    private void resetAfterAdd() {
         jenisComboBox.setSelectedIndex(0);
         namaBarangComboBox.setEnabled(false);
         namaBarangComboBox.removeAllItems();
@@ -457,7 +461,7 @@ public class TransaksiPanel extends javax.swing.JPanel {
         hargaDibayarField.setText("");
         hitungBtn.setEnabled(false);
         catatanField.setText("");
-    }//GEN-LAST:event_addBtnActionPerformed
+    }
 
     private void listBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listBtnActionPerformed
         // TODO add your handling code here:
@@ -466,6 +470,7 @@ public class TransaksiPanel extends javax.swing.JPanel {
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
+        requestDTO.setTotalBelanja();
         Response<String> response = transaksiService.createTransaksi(requestDTO);
         if (!response.isSuccess()) {
             JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -474,6 +479,10 @@ public class TransaksiPanel extends javax.swing.JPanel {
 
         JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Sukses", JOptionPane.INFORMATION_MESSAGE);
 
+        resetAfterCreateTransaction();
+    }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void resetAfterCreateTransaction() {
         nopolField.setText("");
         pelangganField.setText("");
         pelangganLabel.setEnabled(false);
@@ -481,14 +490,8 @@ public class TransaksiPanel extends javax.swing.JPanel {
         mekanikComboBox.setEnabled(false);
         keluhanField.setText("");
         keluhanField.setEnabled(false);
-        jenisComboBox.setSelectedIndex(0);
-        namaBarangComboBox.removeAllItems();
-        namaBarangComboBox.setEnabled(false);
-        jumlahItemField.setText("");
-        jumlahItemField.setEnabled(false);
-        hargaDibayarField.setText("");
-        catatanField.setText("");
-    }//GEN-LAST:event_saveBtnActionPerformed
+        resetAfterAdd();
+    }
 
     private void hitungBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hitungBtnActionPerformed
         // TODO add your handling code here:

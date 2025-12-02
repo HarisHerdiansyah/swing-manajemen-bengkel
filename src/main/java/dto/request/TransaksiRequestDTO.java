@@ -50,8 +50,11 @@ public class TransaksiRequestDTO {
         return totalBelanja;
     }
 
-    public void setTotalBelanja(double totalBelanja) {
-        this.totalBelanja = totalBelanja;
+    public void setTotalBelanja() {
+        totalBelanja = 0.0;
+        for (TransaksiDetailRequestDTO detail : detailRequestDTOList) {
+            totalBelanja += detail.getHargaDibayar();
+        }
     }
 
     public List<TransaksiDetailRequestDTO> getDetailRequestDTOList() {

@@ -34,13 +34,13 @@ public class TransaksiRepository {
 
             // Insert into transaksi_detail
             String sqlDetail = "INSERT INTO transaksi_detail (no_faktur, nama_item, jenis, qty, harga_modal, harga_deal, catatan) VALUES (?, ?, ?, ?, " +
-                "CASE WHEN ? = 'BARANG' THEN (SELECT harga_beli FROM barang WHERE nama_barang = ?) ELSE 0 END, ?, ?)";
+                "CASE WHEN ? = 'BARANG' THEN (SELECT harga_beli FROM barang WHERE nama_barang = ?) * qty ELSE 0 END, ?, ?)";
             stmtDetail = conn.prepareStatement(sqlDetail);
 
             List<TransaksiDetailRequestDTO> details = request.getDetailRequestDTOList();
             for (TransaksiDetailRequestDTO detail : details) {
                 stmtDetail.setString(1, noFaktur);
-                stmtDetail.setString(2, detail.getJenis().equals("BARANG") ? detail.getNamaBarang() : detail.getNamaBarang()); // Assuming namaBarang is namaItem
+                stmtDetail.setString(2, detail.getJenis().equals("BARANG") ? detail.getNamaBarang() : "Jasa"); // Assuming namaBarang is namaItem
                 stmtDetail.setString(3, detail.getJenis());
                 stmtDetail.setInt(4, detail.getJumlah());
                 stmtDetail.setString(5, detail.getJenis());
