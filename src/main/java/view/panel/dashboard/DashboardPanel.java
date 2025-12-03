@@ -4,6 +4,16 @@
  */
 package view.panel.dashboard;
 
+import dto.response.DashboardResponseDTO;
+import dto.response.TransaksiResponseDTO;
+import service.DashboardService;
+import util.Response;
+
+import java.util.List;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author haris
@@ -15,6 +25,7 @@ public class DashboardPanel extends javax.swing.JPanel {
      */
     public DashboardPanel() {
         initComponents();
+        initialLoad();
     }
 
     /**
@@ -53,10 +64,12 @@ public class DashboardPanel extends javax.swing.JPanel {
         totalPendapatanCard.setBackground(new java.awt.Color(0, 49, 31));
 
         totalPendapatanLabel.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
+        totalPendapatanLabel.setForeground(new java.awt.Color(255, 255, 255));
         totalPendapatanLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         totalPendapatanLabel.setText("Total Pendapatan");
 
-        totalPendapatanValue.setFont(new java.awt.Font("Microsoft JhengHei", 0, 14)); // NOI18N
+        totalPendapatanValue.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
+        totalPendapatanValue.setForeground(new java.awt.Color(255, 255, 255));
         totalPendapatanValue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         totalPendapatanValue.setText("Rp0,00");
 
@@ -84,12 +97,14 @@ public class DashboardPanel extends javax.swing.JPanel {
         totalTransaksiCard.setBackground(new java.awt.Color(0, 49, 31));
 
         totalTransaksiLabel.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
+        totalTransaksiLabel.setForeground(new java.awt.Color(255, 255, 255));
         totalTransaksiLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         totalTransaksiLabel.setText("Total Transaksi");
 
-        totalTransaksiValue.setFont(new java.awt.Font("Microsoft JhengHei", 0, 14)); // NOI18N
+        totalTransaksiValue.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
+        totalTransaksiValue.setForeground(new java.awt.Color(255, 255, 255));
         totalTransaksiValue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        totalTransaksiValue.setText("Rp0,00");
+        totalTransaksiValue.setText("0");
 
         javax.swing.GroupLayout totalTransaksiCardLayout = new javax.swing.GroupLayout(totalTransaksiCard);
         totalTransaksiCard.setLayout(totalTransaksiCardLayout);
@@ -115,12 +130,14 @@ public class DashboardPanel extends javax.swing.JPanel {
         stokKritisCard.setBackground(new java.awt.Color(0, 49, 31));
 
         stokKritisLabel.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
+        stokKritisLabel.setForeground(new java.awt.Color(255, 255, 255));
         stokKritisLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         stokKritisLabel.setText("Stok Kritis");
 
-        stokKritisValue.setFont(new java.awt.Font("Microsoft JhengHei", 0, 14)); // NOI18N
+        stokKritisValue.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
+        stokKritisValue.setForeground(new java.awt.Color(255, 255, 255));
         stokKritisValue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        stokKritisValue.setText("Rp0,00");
+        stokKritisValue.setText("0");
 
         javax.swing.GroupLayout stokKritisCardLayout = new javax.swing.GroupLayout(stokKritisCard);
         stokKritisCard.setLayout(stokKritisCardLayout);
@@ -152,17 +169,17 @@ public class DashboardPanel extends javax.swing.JPanel {
         transaksiTerakhirTable.setForeground(new java.awt.Color(0, 0, 0));
         transaksiTerakhirTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "ID", "Nomor Polisi", "Keluhan", "Total"
+                "Tanggal Transaksi", "Nomor Polisi", "Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -222,6 +239,32 @@ public class DashboardPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void initialLoad() {
+        DashboardService service = new DashboardService();
+        Response<DashboardResponseDTO> response = service.getDashboardData();
+        if (!response.isSuccess()) {
+            JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        DashboardResponseDTO data = response.getData();
+        totalPendapatanValue.setText(String.format("Rp%,.2f", data.getTotalPendapatan()));
+        totalTransaksiValue.setText(String.valueOf(data.getTotalTransaksi()));
+        stokKritisValue.setText(String.valueOf(data.getBarangStokRendah()));
+
+        List<TransaksiResponseDTO> transaksiList = data.getTransaksiTerakhir();
+
+        DefaultTableModel model = (DefaultTableModel) transaksiTerakhirTable.getModel();
+        model.setRowCount(0);
+        for (TransaksiResponseDTO transaksi : transaksiList) {
+            Object[] row = new Object[]{
+                transaksi.getTanggal(),
+                transaksi.getNopol(),
+                String.format("Rp%,.2f", transaksi.getTotalBelanja())
+            };
+            model.addRow(row);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
