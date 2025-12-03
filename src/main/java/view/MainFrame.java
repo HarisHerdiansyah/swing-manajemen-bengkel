@@ -62,6 +62,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         rootPanel = new javax.swing.JPanel();
         titlePanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         navigationPanel = new javax.swing.JPanel();
         dashboardNav = new javax.swing.JButton();
         stokBarangNav = new javax.swing.JButton();
@@ -78,15 +79,25 @@ public class MainFrame extends javax.swing.JFrame {
 
         titlePanel.setBackground(new java.awt.Color(0, 49, 31));
 
+        jLabel1.setFont(new java.awt.Font("Montserrat Black", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel1.setText("KELOLA BENGKEL");
+
         javax.swing.GroupLayout titlePanelLayout = new javax.swing.GroupLayout(titlePanel);
         titlePanel.setLayout(titlePanelLayout);
         titlePanelLayout.setHorizontalGroup(
             titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, titlePanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(320, 320, 320))
         );
         titlePanelLayout.setVerticalGroup(
             titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 91, Short.MAX_VALUE)
+            .addGroup(titlePanelLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jLabel1)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         navigationPanel.setBackground(new java.awt.Color(0, 49, 31));
@@ -192,11 +203,12 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(transaksiNav)
                 .addGap(19, 19, 19)
                 .addComponent(laporanNav)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 221, Short.MAX_VALUE)
                 .addComponent(logoutNav)
                 .addGap(14, 14, 14))
         );
 
+        contentPanel.setBackground(new java.awt.Color(223, 226, 220));
         contentPanel.setOpaque(false);
         contentPanel.setPreferredSize(new java.awt.Dimension(868, 479));
         contentPanel.setLayout(new java.awt.CardLayout());
@@ -208,17 +220,21 @@ public class MainFrame extends javax.swing.JFrame {
             .addComponent(titlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(rootPanelLayout.createSequentialGroup()
                 .addComponent(navigationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         rootPanelLayout.setVerticalGroup(
             rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rootPanelLayout.createSequentialGroup()
                 .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(navigationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(rootPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, 0)
+                        .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(rootPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, 0)
+                        .addComponent(navigationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -307,6 +323,7 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contentPanel;
     private javax.swing.JButton dashboardNav;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton laporanNav;
     private javax.swing.JButton logoutNav;
     private javax.swing.JButton mekanikNav;

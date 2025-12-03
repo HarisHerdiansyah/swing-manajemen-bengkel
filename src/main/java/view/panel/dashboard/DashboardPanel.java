@@ -52,18 +52,16 @@ public class DashboardPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         transaksiTerakhirTable = new javax.swing.JTable();
 
-        rootPanel.setBackground(new java.awt.Color(255, 255, 255));
-        rootPanel.setForeground(new java.awt.Color(0, 0, 0));
+        rootPanel.setBackground(new java.awt.Color(223, 226, 220));
         rootPanel.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 12)); // NOI18N
         rootPanel.setPreferredSize(new java.awt.Dimension(868, 479));
 
-        title.setFont(new java.awt.Font("Microsoft JhengHei", 1, 24)); // NOI18N
-        title.setForeground(new java.awt.Color(0, 0, 0));
+        title.setFont(new java.awt.Font("Montserrat Black", 1, 24)); // NOI18N
         title.setText("Dashboard");
 
-        totalPendapatanCard.setBackground(new java.awt.Color(0, 49, 31));
+        totalPendapatanCard.setBackground(new java.awt.Color(124, 126, 115));
 
-        totalPendapatanLabel.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
+        totalPendapatanLabel.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         totalPendapatanLabel.setForeground(new java.awt.Color(255, 255, 255));
         totalPendapatanLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         totalPendapatanLabel.setText("Total Pendapatan");
@@ -81,22 +79,22 @@ public class DashboardPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(totalPendapatanCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(totalPendapatanLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                    .addComponent(totalPendapatanValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(totalPendapatanValue, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
                 .addContainerGap())
         );
         totalPendapatanCardLayout.setVerticalGroup(
             totalPendapatanCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(totalPendapatanCardLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addComponent(totalPendapatanLabel)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(totalPendapatanValue)
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
-        totalTransaksiCard.setBackground(new java.awt.Color(0, 49, 31));
+        totalTransaksiCard.setBackground(new java.awt.Color(124, 126, 115));
 
-        totalTransaksiLabel.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
+        totalTransaksiLabel.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         totalTransaksiLabel.setForeground(new java.awt.Color(255, 255, 255));
         totalTransaksiLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         totalTransaksiLabel.setText("Total Transaksi");
@@ -113,23 +111,23 @@ public class DashboardPanel extends javax.swing.JPanel {
             .addGroup(totalTransaksiCardLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(totalTransaksiCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(totalTransaksiLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                    .addComponent(totalTransaksiValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(totalTransaksiValue, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                    .addComponent(totalTransaksiLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
                 .addContainerGap())
         );
         totalTransaksiCardLayout.setVerticalGroup(
             totalTransaksiCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(totalTransaksiCardLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addComponent(totalTransaksiLabel)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(totalTransaksiValue)
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
-        stokKritisCard.setBackground(new java.awt.Color(0, 49, 31));
+        stokKritisCard.setBackground(new java.awt.Color(124, 126, 115));
 
-        stokKritisLabel.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
+        stokKritisLabel.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         stokKritisLabel.setForeground(new java.awt.Color(255, 255, 255));
         stokKritisLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         stokKritisLabel.setText("Stok Kritis");
@@ -146,27 +144,24 @@ public class DashboardPanel extends javax.swing.JPanel {
             .addGroup(stokKritisCardLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(stokKritisCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(stokKritisLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                    .addComponent(stokKritisValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(stokKritisValue, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                    .addComponent(stokKritisLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
                 .addContainerGap())
         );
         stokKritisCardLayout.setVerticalGroup(
             stokKritisCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(stokKritisCardLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addComponent(stokKritisLabel)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(stokKritisValue)
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
-        tableLabel.setFont(new java.awt.Font("Microsoft JhengHei", 1, 20)); // NOI18N
-        tableLabel.setForeground(new java.awt.Color(0, 0, 0));
+        tableLabel.setFont(new java.awt.Font("Montserrat Black", 1, 20)); // NOI18N
         tableLabel.setText("Transaksi Terbaru");
 
-        transaksiTerakhirTable.setBackground(new java.awt.Color(255, 255, 255));
         transaksiTerakhirTable.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        transaksiTerakhirTable.setForeground(new java.awt.Color(0, 0, 0));
         transaksiTerakhirTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -224,7 +219,7 @@ public class DashboardPanel extends javax.swing.JPanel {
                 .addComponent(tableLabel)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
