@@ -91,7 +91,7 @@ public class BarangPanel extends javax.swing.JPanel {
 
         searchBtn.setBackground(new java.awt.Color(108, 117, 125));
         searchBtn.setForeground(new java.awt.Color(255, 255, 255));
-        searchBtn.setText("Cari");
+        searchBtn.setText("Cari Nama");
         searchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchBtnActionPerformed(evt);
