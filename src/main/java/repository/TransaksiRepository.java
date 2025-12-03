@@ -115,7 +115,7 @@ public class TransaksiRepository {
     }
 
     public List<TransaksiResponseDTO> getAllTransaksi() {
-        String sql = "SELECT t.no_faktur, t.tanggal, p.nama_pemilik, t.nama_mekanik, t.total_belanja FROM transaksi t JOIN pelanggan p ON t.nopol = p.nopol ORDER BY t.tanggal DESC";
+        String sql = "SELECT t.no_faktur, t.tanggal, p.nopol, p.nama_pemilik, t.nama_mekanik, t.total_belanja FROM transaksi t JOIN pelanggan p ON t.nopol = p.nopol ORDER BY t.tanggal DESC";
         List<TransaksiResponseDTO> list = new ArrayList<>();
         Connection conn = null;
         Statement stmt = null;
@@ -129,10 +129,11 @@ public class TransaksiRepository {
             while (rs.next()) {
                 String noFaktur = rs.getString("no_faktur");
                 Date tanggal = rs.getTimestamp("tanggal");
+                String nopol = rs.getString("nopol");
                 String namaPelanggan = rs.getString("nama_pemilik");
                 String namaMekanik = rs.getString("nama_mekanik");
                 double totalBelanja = rs.getDouble("total_belanja");
-                list.add(new TransaksiResponseDTO(noFaktur, tanggal, namaPelanggan, namaMekanik, totalBelanja));
+                list.add(new TransaksiResponseDTO(noFaktur, tanggal, nopol, namaPelanggan, namaMekanik, totalBelanja));
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -5,13 +5,15 @@ import java.util.Date;
 public class TransaksiResponseDTO {
     private String noFaktur;
     private Date tanggal;
+    private String nopol;
     private String namaPelanggan;
     private String namaMekanik;
     private double totalBelanja;
 
-    public TransaksiResponseDTO(String noFaktur, Date tanggal, String namaPelanggan, String namaMekanik, double totalBelanja) {
+    public TransaksiResponseDTO(String noFaktur, Date tanggal, String nopol, String namaPelanggan, String namaMekanik, double totalBelanja) {
         this.noFaktur = noFaktur;
         this.tanggal = tanggal;
+        this.nopol = nopol;
         this.namaPelanggan = namaPelanggan;
         this.namaMekanik = namaMekanik;
         this.totalBelanja = totalBelanja;
@@ -55,5 +57,13 @@ public class TransaksiResponseDTO {
 
     public void setTotalBelanja(double totalBelanja) {
         this.totalBelanja = totalBelanja;
+    }
+
+    public String getNopol() {
+        return nopol;
+    }
+
+    public void setNopol(String nopol) {
+        this.nopol = nopol;
     }
 }
