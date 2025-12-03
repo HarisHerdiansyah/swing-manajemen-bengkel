@@ -57,35 +57,26 @@ public class DetailTransaksiDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(223, 226, 220));
 
         nopolLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        nopolLabel.setForeground(new java.awt.Color(0, 0, 0));
         nopolLabel.setText("No. Polisi");
 
         nopolValue.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        nopolValue.setForeground(new java.awt.Color(0, 0, 0));
         nopolValue.setText("-");
 
         namaLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        namaLabel.setForeground(new java.awt.Color(0, 0, 0));
         namaLabel.setText("Nama");
 
         namaValue.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        namaValue.setForeground(new java.awt.Color(0, 0, 0));
         namaValue.setText("-");
 
         mekanikLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        mekanikLabel.setForeground(new java.awt.Color(0, 0, 0));
         mekanikLabel.setText("Mekanik");
 
         mekanikValue.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        mekanikValue.setForeground(new java.awt.Color(0, 0, 0));
         mekanikValue.setText("-");
 
-        daftarTransaksiTable.setBackground(new java.awt.Color(255, 255, 255));
-        daftarTransaksiTable.setForeground(new java.awt.Color(0, 0, 0));
         daftarTransaksiTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},

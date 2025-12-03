@@ -52,18 +52,14 @@ public class BarangPanel extends javax.swing.JPanel {
         deleteBtn = new javax.swing.JButton();
         resetBtn = new javax.swing.JButton();
 
-        rootPanel.setBackground(new java.awt.Color(255, 255, 255));
-        rootPanel.setForeground(new java.awt.Color(0, 0, 0));
+        rootPanel.setBackground(new java.awt.Color(223, 226, 220));
         rootPanel.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 12)); // NOI18N
         rootPanel.setPreferredSize(new java.awt.Dimension(868, 479));
 
-        title.setFont(new java.awt.Font("Microsoft JhengHei", 1, 24)); // NOI18N
-        title.setForeground(new java.awt.Color(0, 0, 0));
+        title.setFont(new java.awt.Font("Montserrat Black", 1, 24)); // NOI18N
         title.setText("Stok Barang");
 
-        barangTable.setBackground(new java.awt.Color(255, 255, 255));
         barangTable.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        barangTable.setForeground(new java.awt.Color(0, 0, 0));
         barangTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -85,9 +81,7 @@ public class BarangPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(barangTable);
 
-        searchField.setBackground(new java.awt.Color(255, 255, 255));
         searchField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        searchField.setForeground(new java.awt.Color(0, 0, 0));
 
         searchBtn.setBackground(new java.awt.Color(108, 117, 125));
         searchBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -108,7 +102,6 @@ public class BarangPanel extends javax.swing.JPanel {
         });
 
         editBtn.setBackground(new java.awt.Color(255, 193, 7));
-        editBtn.setForeground(new java.awt.Color(0, 0, 0));
         editBtn.setText("Edit");
         editBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,9 +134,6 @@ public class BarangPanel extends javax.swing.JPanel {
             .addGroup(rootPanelLayout.createSequentialGroup()
                 .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(rootPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(rootPanelLayout.createSequentialGroup()
                         .addGap(85, 85, 85)
                         .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -158,21 +148,24 @@ public class BarangPanel extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(rootPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(96, Short.MAX_VALUE))
         );
         rootPanelLayout.setVerticalGroup(
             rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rootPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(title)
-                .addGap(18, 18, 18)
+                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                     .addComponent(searchField)
                     .addComponent(searchBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(27, 27, 27)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)

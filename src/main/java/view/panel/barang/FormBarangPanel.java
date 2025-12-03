@@ -65,13 +65,11 @@ public class FormBarangPanel extends javax.swing.JPanel {
         hargaJualLabel = new javax.swing.JLabel();
         hargaJualField = new javax.swing.JTextField();
 
-        rootPanel.setBackground(new java.awt.Color(255, 255, 255));
-        rootPanel.setForeground(new java.awt.Color(0, 0, 0));
+        rootPanel.setBackground(new java.awt.Color(223, 226, 220));
         rootPanel.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 12)); // NOI18N
         rootPanel.setPreferredSize(new java.awt.Dimension(868, 479));
 
         title.setFont(new java.awt.Font("Microsoft JhengHei", 1, 24)); // NOI18N
-        title.setForeground(new java.awt.Color(0, 0, 0));
         title.setText(this.isEdit ? "Edit Barang" : "Tambah Barang");
 
         cancelBtn.setBackground(new java.awt.Color(108, 117, 125));
@@ -95,36 +93,24 @@ public class FormBarangPanel extends javax.swing.JPanel {
         });
 
         namaBarangLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        namaBarangLabel.setForeground(new java.awt.Color(0, 0, 0));
         namaBarangLabel.setText("Nama Barang");
 
-        namaBarangField.setBackground(new java.awt.Color(255, 255, 255));
         namaBarangField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        namaBarangField.setForeground(new java.awt.Color(0, 0, 0));
 
         stokBarangLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        stokBarangLabel.setForeground(new java.awt.Color(0, 0, 0));
         stokBarangLabel.setText("Stok Barang");
 
-        stokBarangField.setBackground(new java.awt.Color(255, 255, 255));
         stokBarangField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        stokBarangField.setForeground(new java.awt.Color(0, 0, 0));
 
         hargaBeliLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        hargaBeliLabel.setForeground(new java.awt.Color(0, 0, 0));
         hargaBeliLabel.setText("Harga Beli (Modal)");
 
-        hargaBeliField.setBackground(new java.awt.Color(255, 255, 255));
         hargaBeliField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        hargaBeliField.setForeground(new java.awt.Color(0, 0, 0));
 
         hargaJualLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        hargaJualLabel.setForeground(new java.awt.Color(0, 0, 0));
         hargaJualLabel.setText("Harga Jual");
 
-        hargaJualField.setBackground(new java.awt.Color(255, 255, 255));
         hargaJualField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        hargaJualField.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout rootPanelLayout = new javax.swing.GroupLayout(rootPanel);
         rootPanel.setLayout(rootPanelLayout);

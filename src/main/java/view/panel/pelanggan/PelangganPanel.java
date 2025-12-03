@@ -41,7 +41,6 @@ public class PelangganPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         rootPanel = new javax.swing.JPanel();
-        title = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         pelangganTable = new javax.swing.JTable();
         searchField = new javax.swing.JTextField();
@@ -50,19 +49,13 @@ public class PelangganPanel extends javax.swing.JPanel {
         resetBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
+        title = new javax.swing.JLabel();
 
-        rootPanel.setBackground(new java.awt.Color(255, 255, 255));
-        rootPanel.setForeground(new java.awt.Color(0, 0, 0));
+        rootPanel.setBackground(new java.awt.Color(223, 226, 220));
         rootPanel.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 12)); // NOI18N
         rootPanel.setPreferredSize(new java.awt.Dimension(868, 479));
 
-        title.setFont(new java.awt.Font("Microsoft JhengHei", 1, 24)); // NOI18N
-        title.setForeground(new java.awt.Color(0, 0, 0));
-        title.setText("Pelanggan");
-
-        pelangganTable.setBackground(new java.awt.Color(255, 255, 255));
         pelangganTable.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        pelangganTable.setForeground(new java.awt.Color(0, 0, 0));
         pelangganTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -84,9 +77,7 @@ public class PelangganPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(pelangganTable);
 
-        searchField.setBackground(new java.awt.Color(255, 255, 255));
         searchField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        searchField.setForeground(new java.awt.Color(0, 0, 0));
 
         searchBtn.setBackground(new java.awt.Color(108, 117, 125));
         searchBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -125,7 +116,6 @@ public class PelangganPanel extends javax.swing.JPanel {
         });
 
         editBtn.setBackground(new java.awt.Color(255, 193, 7));
-        editBtn.setForeground(new java.awt.Color(0, 0, 0));
         editBtn.setText("Edit");
         editBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,15 +123,15 @@ public class PelangganPanel extends javax.swing.JPanel {
             }
         });
 
+        title.setFont(new java.awt.Font("Montserrat Black", 1, 24)); // NOI18N
+        title.setText("Pelanggan");
+
         javax.swing.GroupLayout rootPanelLayout = new javax.swing.GroupLayout(rootPanel);
         rootPanel.setLayout(rootPanelLayout);
         rootPanelLayout.setHorizontalGroup(
             rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rootPanelLayout.createSequentialGroup()
                 .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(rootPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(rootPanelLayout.createSequentialGroup()
                         .addGap(85, 85, 85)
                         .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -157,15 +147,18 @@ public class PelangganPanel extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(rootPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(96, Short.MAX_VALUE))
         );
         rootPanelLayout.setVerticalGroup(
             rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rootPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(title)
-                .addGap(18, 18, 18)
+                .addGap(7, 7, 7)
+                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                     .addComponent(searchField)

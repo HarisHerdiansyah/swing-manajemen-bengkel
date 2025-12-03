@@ -62,13 +62,11 @@ public class FormPelangganPanel extends javax.swing.JPanel {
         jenisMotorLabel = new javax.swing.JLabel();
         jenisMotorField = new javax.swing.JTextField();
 
-        rootPanel.setBackground(new java.awt.Color(255, 255, 255));
-        rootPanel.setForeground(new java.awt.Color(0, 0, 0));
+        rootPanel.setBackground(new java.awt.Color(223, 226, 220));
         rootPanel.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 12)); // NOI18N
         rootPanel.setPreferredSize(new java.awt.Dimension(868, 479));
 
         title.setFont(new java.awt.Font("Microsoft JhengHei", 1, 24)); // NOI18N
-        title.setForeground(new java.awt.Color(0, 0, 0));
         title.setText(this.isEdit ? "Edit Pelanggan" : "Tambah Pelanggan");
 
         cancelBtn.setBackground(new java.awt.Color(108, 117, 125));
@@ -92,36 +90,24 @@ public class FormPelangganPanel extends javax.swing.JPanel {
         });
 
         nopolLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        nopolLabel.setForeground(new java.awt.Color(0, 0, 0));
         nopolLabel.setText("No. Polisi Kendaraan");
 
-        nopolField.setBackground(new java.awt.Color(255, 255, 255));
         nopolField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        nopolField.setForeground(new java.awt.Color(0, 0, 0));
 
         namaLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        namaLabel.setForeground(new java.awt.Color(0, 0, 0));
         namaLabel.setText("Nama Pelanggan");
 
-        namaField.setBackground(new java.awt.Color(255, 255, 255));
         namaField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        namaField.setForeground(new java.awt.Color(0, 0, 0));
 
         noTelpLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        noTelpLabel.setForeground(new java.awt.Color(0, 0, 0));
         noTelpLabel.setText("Nomor Telepon");
 
-        noTelpField.setBackground(new java.awt.Color(255, 255, 255));
         noTelpField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        noTelpField.setForeground(new java.awt.Color(0, 0, 0));
 
         jenisMotorLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        jenisMotorLabel.setForeground(new java.awt.Color(0, 0, 0));
         jenisMotorLabel.setText("Jenis Motor");
 
-        jenisMotorField.setBackground(new java.awt.Color(255, 255, 255));
         jenisMotorField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        jenisMotorField.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout rootPanelLayout = new javax.swing.GroupLayout(rootPanel);
         rootPanel.setLayout(rootPanelLayout);

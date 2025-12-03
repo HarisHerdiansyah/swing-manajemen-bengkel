@@ -44,18 +44,14 @@ public class HistoriTransaksiPanel extends javax.swing.JPanel {
         searchBtn = new javax.swing.JButton();
         refreshBtn = new javax.swing.JButton();
 
-        rootPanel.setBackground(new java.awt.Color(255, 255, 255));
-        rootPanel.setForeground(new java.awt.Color(0, 0, 0));
+        rootPanel.setBackground(new java.awt.Color(223, 226, 220));
         rootPanel.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 12)); // NOI18N
         rootPanel.setPreferredSize(new java.awt.Dimension(868, 479));
 
-        title.setFont(new java.awt.Font("Microsoft JhengHei", 1, 24)); // NOI18N
-        title.setForeground(new java.awt.Color(0, 0, 0));
+        title.setFont(new java.awt.Font("Montserrat Black", 1, 24)); // NOI18N
         title.setText("Histori Transaksi");
 
-        transaksiTable.setBackground(new java.awt.Color(255, 255, 255));
         transaksiTable.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        transaksiTable.setForeground(new java.awt.Color(0, 0, 0));
         transaksiTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -77,9 +73,7 @@ public class HistoriTransaksiPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(transaksiTable);
 
-        searchField.setBackground(new java.awt.Color(255, 255, 255));
         searchField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        searchField.setForeground(new java.awt.Color(0, 0, 0));
 
         searchBtn.setBackground(new java.awt.Color(108, 117, 125));
         searchBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -135,7 +129,7 @@ public class HistoriTransaksiPanel extends javax.swing.JPanel {
                         .addGap(27, 27, 27)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(refreshBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

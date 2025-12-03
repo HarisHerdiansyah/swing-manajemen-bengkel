@@ -88,22 +88,17 @@ public class TransaksiPanel extends javax.swing.JPanel {
         addBtn = new javax.swing.JButton();
         saveBtn = new javax.swing.JButton();
 
-        rootPanel.setBackground(new java.awt.Color(255, 255, 255));
-        rootPanel.setForeground(new java.awt.Color(0, 0, 0));
+        rootPanel.setBackground(new java.awt.Color(223, 226, 220));
         rootPanel.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 12)); // NOI18N
         rootPanel.setPreferredSize(new java.awt.Dimension(868, 479));
 
-        title.setFont(new java.awt.Font("Microsoft JhengHei", 1, 24)); // NOI18N
-        title.setForeground(new java.awt.Color(0, 0, 0));
+        title.setFont(new java.awt.Font("Montserrat Black", 1, 24)); // NOI18N
         title.setText("Transaksi");
 
         nopolLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        nopolLabel.setForeground(new java.awt.Color(0, 0, 0));
         nopolLabel.setText("No. Polisi Kendaraan");
 
-        nopolField.setBackground(new java.awt.Color(255, 255, 255));
         nopolField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        nopolField.setForeground(new java.awt.Color(0, 0, 0));
 
         searchBtn.setBackground(new java.awt.Color(108, 117, 125));
         searchBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
@@ -116,39 +111,27 @@ public class TransaksiPanel extends javax.swing.JPanel {
         });
 
         pelangganLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        pelangganLabel.setForeground(new java.awt.Color(0, 0, 0));
         pelangganLabel.setText("Nama Pelanggan");
 
-        pelangganField.setBackground(new java.awt.Color(255, 255, 255));
         pelangganField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        pelangganField.setForeground(new java.awt.Color(0, 0, 0));
 
         mekanikLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        mekanikLabel.setForeground(new java.awt.Color(0, 0, 0));
         mekanikLabel.setText("Mekanik");
 
-        mekanikComboBox.setBackground(new java.awt.Color(255, 255, 255));
         mekanikComboBox.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        mekanikComboBox.setForeground(new java.awt.Color(0, 0, 0));
 
         keluhanLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        keluhanLabel.setForeground(new java.awt.Color(0, 0, 0));
         keluhanLabel.setText("Keluhan");
 
-        keluhanField.setBackground(new java.awt.Color(255, 255, 255));
         keluhanField.setColumns(20);
         keluhanField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        keluhanField.setForeground(new java.awt.Color(0, 0, 0));
         keluhanField.setRows(5);
         jScrollPane1.setViewportView(keluhanField);
 
         jenisLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        jenisLabel.setForeground(new java.awt.Color(0, 0, 0));
         jenisLabel.setText("Jenis");
 
-        jenisComboBox.setBackground(new java.awt.Color(255, 255, 255));
         jenisComboBox.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        jenisComboBox.setForeground(new java.awt.Color(0, 0, 0));
         jenisComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "JASA", "BARANG" }));
         jenisComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,37 +140,25 @@ public class TransaksiPanel extends javax.swing.JPanel {
         });
 
         namaBarangLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        namaBarangLabel.setForeground(new java.awt.Color(0, 0, 0));
         namaBarangLabel.setText("Nama Barang");
 
-        namaBarangComboBox.setBackground(new java.awt.Color(255, 255, 255));
         namaBarangComboBox.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        namaBarangComboBox.setForeground(new java.awt.Color(0, 0, 0));
 
         jumlahItemLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        jumlahItemLabel.setForeground(new java.awt.Color(0, 0, 0));
         jumlahItemLabel.setText("Jumlah");
 
-        jumlahItemField.setBackground(new java.awt.Color(255, 255, 255));
         jumlahItemField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        jumlahItemField.setForeground(new java.awt.Color(0, 0, 0));
 
         hargaDibayarLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        hargaDibayarLabel.setForeground(new java.awt.Color(0, 0, 0));
         hargaDibayarLabel.setText("Harga Dibayar");
 
-        hargaDibayarField.setBackground(new java.awt.Color(255, 255, 255));
         hargaDibayarField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        hargaDibayarField.setForeground(new java.awt.Color(0, 0, 0));
 
         catatanLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        catatanLabel.setForeground(new java.awt.Color(0, 0, 0));
         catatanLabel.setText("Catatan");
 
-        catatanField.setBackground(new java.awt.Color(255, 255, 255));
         catatanField.setColumns(20);
         catatanField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        catatanField.setForeground(new java.awt.Color(0, 0, 0));
         catatanField.setRows(5);
         jScrollPane2.setViewportView(catatanField);
 
@@ -330,7 +301,7 @@ public class TransaksiPanel extends javax.swing.JPanel {
                             .addComponent(hargaDibayarField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(hargaDibayarLabel)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

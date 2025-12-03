@@ -65,20 +65,15 @@ public class FormMekanikDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        rootPanel.setBackground(new java.awt.Color(255, 255, 255));
-        rootPanel.setForeground(new java.awt.Color(0, 0, 0));
+        rootPanel.setBackground(new java.awt.Color(223, 226, 220));
 
         title.setFont(new java.awt.Font("Microsoft JhengHei", 0, 14)); // NOI18N
-        title.setForeground(new java.awt.Color(0, 0, 0));
         title.setText(this.isEdit ? "Edit Mekanik" : "Tambah Mekanik");
 
         namaMekanikLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        namaMekanikLabel.setForeground(new java.awt.Color(0, 0, 0));
         namaMekanikLabel.setText("Nama Mekanik");
 
-        namaMekanikField.setBackground(new java.awt.Color(255, 255, 255));
         namaMekanikField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        namaMekanikField.setForeground(new java.awt.Color(0, 0, 0));
 
         closeBtn.setBackground(new java.awt.Color(108, 117, 125));
         closeBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -99,12 +94,9 @@ public class FormMekanikDialog extends javax.swing.JDialog {
         });
 
         statusMekanikLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        statusMekanikLabel.setForeground(new java.awt.Color(0, 0, 0));
         statusMekanikLabel.setText("Status");
 
-        statusMekanikComboBox.setBackground(new java.awt.Color(255, 255, 255));
         statusMekanikComboBox.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        statusMekanikComboBox.setForeground(new java.awt.Color(0, 0, 0));
         statusMekanikComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tidak Aktif", "Aktif" }));
 
         javax.swing.GroupLayout rootPanelLayout = new javax.swing.GroupLayout(rootPanel);
