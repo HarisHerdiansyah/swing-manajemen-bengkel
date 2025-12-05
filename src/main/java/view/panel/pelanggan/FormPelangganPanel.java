@@ -62,11 +62,12 @@ public class FormPelangganPanel extends javax.swing.JPanel {
         jenisMotorLabel = new javax.swing.JLabel();
         jenisMotorField = new javax.swing.JTextField();
 
-        rootPanel.setBackground(new java.awt.Color(223, 226, 220));
+        rootPanel.setBackground(new java.awt.Color(255, 255, 255));
         rootPanel.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 12)); // NOI18N
         rootPanel.setPreferredSize(new java.awt.Dimension(868, 479));
 
         title.setFont(new java.awt.Font("Microsoft JhengHei", 1, 24)); // NOI18N
+        title.setForeground(new java.awt.Color(0, 0, 0));
         title.setText(this.isEdit ? "Edit Pelanggan" : "Tambah Pelanggan");
 
         cancelBtn.setBackground(new java.awt.Color(108, 117, 125));
@@ -90,21 +91,25 @@ public class FormPelangganPanel extends javax.swing.JPanel {
         });
 
         nopolLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        nopolLabel.setForeground(new java.awt.Color(0, 0, 0));
         nopolLabel.setText("No. Polisi Kendaraan");
 
         nopolField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
 
         namaLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        namaLabel.setForeground(new java.awt.Color(0, 0, 0));
         namaLabel.setText("Nama Pelanggan");
 
         namaField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
 
         noTelpLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        noTelpLabel.setForeground(new java.awt.Color(0, 0, 0));
         noTelpLabel.setText("Nomor Telepon");
 
         noTelpField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
 
         jenisMotorLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        jenisMotorLabel.setForeground(new java.awt.Color(0, 0, 0));
         jenisMotorLabel.setText("Jenis Motor");
 
         jenisMotorField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N

@@ -51,7 +51,7 @@ public class PelangganPanel extends javax.swing.JPanel {
         editBtn = new javax.swing.JButton();
         title = new javax.swing.JLabel();
 
-        rootPanel.setBackground(new java.awt.Color(223, 226, 220));
+        rootPanel.setBackground(new java.awt.Color(255, 255, 255));
         rootPanel.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 12)); // NOI18N
         rootPanel.setPreferredSize(new java.awt.Dimension(868, 479));
 
@@ -116,6 +116,7 @@ public class PelangganPanel extends javax.swing.JPanel {
         });
 
         editBtn.setBackground(new java.awt.Color(255, 193, 7));
+        editBtn.setForeground(new java.awt.Color(0, 0, 0));
         editBtn.setText("Edit");
         editBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,7 +124,7 @@ public class PelangganPanel extends javax.swing.JPanel {
             }
         });
 
-        title.setFont(new java.awt.Font("Montserrat Black", 1, 24)); // NOI18N
+        title.setFont(new java.awt.Font("Microsoft JhengHei", 1, 24)); // NOI18N
         title.setText("Pelanggan");
 
         javax.swing.GroupLayout rootPanelLayout = new javax.swing.GroupLayout(rootPanel);

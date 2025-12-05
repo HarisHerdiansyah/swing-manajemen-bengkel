@@ -52,16 +52,17 @@ public class DashboardPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         transaksiTerakhirTable = new javax.swing.JTable();
 
-        rootPanel.setBackground(new java.awt.Color(223, 226, 220));
+        rootPanel.setBackground(new java.awt.Color(255, 255, 255));
         rootPanel.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 12)); // NOI18N
         rootPanel.setPreferredSize(new java.awt.Dimension(868, 479));
 
-        title.setFont(new java.awt.Font("Montserrat Black", 1, 24)); // NOI18N
+        title.setFont(new java.awt.Font("Microsoft JhengHei", 1, 20)); // NOI18N
+        title.setForeground(new java.awt.Color(0, 0, 0));
         title.setText("Dashboard");
 
-        totalPendapatanCard.setBackground(new java.awt.Color(124, 126, 115));
+        totalPendapatanCard.setBackground(new java.awt.Color(0, 49, 31));
 
-        totalPendapatanLabel.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+        totalPendapatanLabel.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
         totalPendapatanLabel.setForeground(new java.awt.Color(255, 255, 255));
         totalPendapatanLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         totalPendapatanLabel.setText("Total Pendapatan");
@@ -92,9 +93,9 @@ public class DashboardPanel extends javax.swing.JPanel {
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
-        totalTransaksiCard.setBackground(new java.awt.Color(124, 126, 115));
+        totalTransaksiCard.setBackground(new java.awt.Color(0, 49, 31));
 
-        totalTransaksiLabel.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+        totalTransaksiLabel.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
         totalTransaksiLabel.setForeground(new java.awt.Color(255, 255, 255));
         totalTransaksiLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         totalTransaksiLabel.setText("Total Transaksi");
@@ -125,9 +126,9 @@ public class DashboardPanel extends javax.swing.JPanel {
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
-        stokKritisCard.setBackground(new java.awt.Color(124, 126, 115));
+        stokKritisCard.setBackground(new java.awt.Color(0, 49, 31));
 
-        stokKritisLabel.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+        stokKritisLabel.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
         stokKritisLabel.setForeground(new java.awt.Color(255, 255, 255));
         stokKritisLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         stokKritisLabel.setText("Stok Kritis");
@@ -158,7 +159,8 @@ public class DashboardPanel extends javax.swing.JPanel {
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
-        tableLabel.setFont(new java.awt.Font("Montserrat Black", 1, 20)); // NOI18N
+        tableLabel.setFont(new java.awt.Font("Microsoft JhengHei", 1, 20)); // NOI18N
+        tableLabel.setForeground(new java.awt.Color(0, 0, 0));
         tableLabel.setText("Transaksi Terbaru");
 
         transaksiTerakhirTable.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
@@ -219,7 +221,7 @@ public class DashboardPanel extends javax.swing.JPanel {
                 .addComponent(tableLabel)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

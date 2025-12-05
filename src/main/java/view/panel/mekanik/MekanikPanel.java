@@ -52,11 +52,13 @@ public class MekanikPanel extends javax.swing.JPanel {
         deleteBtn = new javax.swing.JButton();
         resetBtn = new javax.swing.JButton();
 
-        rootPanel.setBackground(new java.awt.Color(223, 226, 220));
+        rootPanel.setBackground(new java.awt.Color(255, 255, 255));
+        rootPanel.setForeground(new java.awt.Color(0, 0, 0));
         rootPanel.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 12)); // NOI18N
         rootPanel.setPreferredSize(new java.awt.Dimension(868, 479));
 
-        title.setFont(new java.awt.Font("Montserrat Black", 1, 24)); // NOI18N
+        title.setFont(new java.awt.Font("Microsoft JhengHei", 1, 24)); // NOI18N
+        title.setForeground(new java.awt.Color(0, 0, 0));
         title.setText("Mekanik");
 
         mekanikTable.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
@@ -105,6 +107,7 @@ public class MekanikPanel extends javax.swing.JPanel {
         });
 
         editBtn.setBackground(new java.awt.Color(255, 193, 7));
+        editBtn.setForeground(new java.awt.Color(0, 0, 0));
         editBtn.setText("Edit");
         editBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,7 +171,7 @@ public class MekanikPanel extends javax.swing.JPanel {
                     .addComponent(searchField)
                     .addComponent(searchBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(27, 27, 27)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
                     .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)

@@ -65,12 +65,14 @@ public class FormMekanikDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        rootPanel.setBackground(new java.awt.Color(223, 226, 220));
+        rootPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         title.setFont(new java.awt.Font("Microsoft JhengHei", 0, 14)); // NOI18N
+        title.setForeground(new java.awt.Color(0, 0, 0));
         title.setText(this.isEdit ? "Edit Mekanik" : "Tambah Mekanik");
 
         namaMekanikLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        namaMekanikLabel.setForeground(new java.awt.Color(0, 0, 0));
         namaMekanikLabel.setText("Nama Mekanik");
 
         namaMekanikField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
@@ -94,6 +96,7 @@ public class FormMekanikDialog extends javax.swing.JDialog {
         });
 
         statusMekanikLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        statusMekanikLabel.setForeground(new java.awt.Color(0, 0, 0));
         statusMekanikLabel.setText("Status");
 
         statusMekanikComboBox.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N

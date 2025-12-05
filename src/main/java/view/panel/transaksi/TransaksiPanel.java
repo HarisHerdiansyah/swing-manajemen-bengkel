@@ -88,14 +88,16 @@ public class TransaksiPanel extends javax.swing.JPanel {
         addBtn = new javax.swing.JButton();
         saveBtn = new javax.swing.JButton();
 
-        rootPanel.setBackground(new java.awt.Color(223, 226, 220));
+        rootPanel.setBackground(new java.awt.Color(255, 255, 255));
         rootPanel.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 12)); // NOI18N
         rootPanel.setPreferredSize(new java.awt.Dimension(868, 479));
 
-        title.setFont(new java.awt.Font("Montserrat Black", 1, 24)); // NOI18N
+        title.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 24)); // NOI18N
+        title.setForeground(new java.awt.Color(0, 0, 0));
         title.setText("Transaksi");
 
         nopolLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        nopolLabel.setForeground(new java.awt.Color(0, 0, 0));
         nopolLabel.setText("No. Polisi Kendaraan");
 
         nopolField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
@@ -111,16 +113,19 @@ public class TransaksiPanel extends javax.swing.JPanel {
         });
 
         pelangganLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        pelangganLabel.setForeground(new java.awt.Color(0, 0, 0));
         pelangganLabel.setText("Nama Pelanggan");
 
         pelangganField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
 
         mekanikLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        mekanikLabel.setForeground(new java.awt.Color(0, 0, 0));
         mekanikLabel.setText("Mekanik");
 
         mekanikComboBox.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
 
         keluhanLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        keluhanLabel.setForeground(new java.awt.Color(0, 0, 0));
         keluhanLabel.setText("Keluhan");
 
         keluhanField.setColumns(20);
@@ -129,6 +134,7 @@ public class TransaksiPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(keluhanField);
 
         jenisLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        jenisLabel.setForeground(new java.awt.Color(0, 0, 0));
         jenisLabel.setText("Jenis");
 
         jenisComboBox.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
@@ -140,21 +146,25 @@ public class TransaksiPanel extends javax.swing.JPanel {
         });
 
         namaBarangLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        namaBarangLabel.setForeground(new java.awt.Color(0, 0, 0));
         namaBarangLabel.setText("Nama Barang");
 
         namaBarangComboBox.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
 
         jumlahItemLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        jumlahItemLabel.setForeground(new java.awt.Color(0, 0, 0));
         jumlahItemLabel.setText("Jumlah");
 
         jumlahItemField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
 
         hargaDibayarLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        hargaDibayarLabel.setForeground(new java.awt.Color(0, 0, 0));
         hargaDibayarLabel.setText("Harga Dibayar");
 
         hargaDibayarField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
 
         catatanLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        catatanLabel.setForeground(new java.awt.Color(0, 0, 0));
         catatanLabel.setText("Catatan");
 
         catatanField.setColumns(20);
