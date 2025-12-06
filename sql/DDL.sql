@@ -11,8 +11,10 @@ CREATE TABLE admin (
     username VARCHAR(50) NOT NULL,
     password VARCHAR(255) NOT NULL,
     nama_lengkap VARCHAR(100),
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    UNIQUE KEY unique_username (username)  -- Sebagai constraint terpisah
 ) ENGINE=InnoDB;
+
 
 -- 2. Tabel Pelanggan
 -- Primary Key menggunakan Nopol (String) untuk pencarian cepat
