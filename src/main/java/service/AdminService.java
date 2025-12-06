@@ -185,4 +185,31 @@ public class AdminService {
             return Response.failure("Terjadi kesalahan: " + e.getMessage());
         }
     }
+
+    public Response<List<AdminResponseDTO>> getAdminsByLikeName(String namaLengkap) {
+        try {
+            // Validasi input
+            if (namaLengkap == null || namaLengkap.trim().isEmpty()) {
+                return Response.failure("Nama lengkap tidak boleh kosong");
+            }
+
+            List<Admin> admins = repository.getAdminsByLikeName(namaLengkap);
+            List<AdminResponseDTO> response = admins.stream()
+                    .map(admin -> new AdminResponseDTO(
+                            admin.getId(),
+                            admin.getUsername(),
+                            admin.getNamaLengkap()
+                    ))
+                    .collect(Collectors.toList());
+
+            if (response.isEmpty()) {
+                return Response.failure("Admin dengan nama '" + namaLengkap + "' tidak ditemukan");
+            }
+
+            return Response.success("Data admin ditemukan", response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.failure("Terjadi kesalahan: " + e.getMessage());
+        }
+    }
 }

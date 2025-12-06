@@ -206,8 +206,13 @@ public class AkunPanel extends javax.swing.JPanel {
             return;
         }
 
-        // For now, just load all and filter client-side (since we don't have search by name in AdminService)
-        initialLoad();
+        Response<List<AdminResponseDTO>> response = service.getAdminsByLikeName(search);
+        if (!response.isSuccess()) {
+            JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        mapAdmin(response.getData());
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed

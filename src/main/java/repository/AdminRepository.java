@@ -292,4 +292,37 @@ public class AdminRepository {
         }
         return false;
     }
+
+    public java.util.List<Admin> getAdminsByLikeName(String namaLengkap) {
+        String sql = "SELECT id, username, nama_lengkap FROM admin WHERE nama_lengkap LIKE ? ORDER BY id";
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        java.util.List<Admin> admins = new java.util.ArrayList<>();
+
+        try {
+            conn = DBConnection.get();
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, "%" + namaLengkap + "%");
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String username = rs.getString("username");
+                String nama = rs.getString("nama_lengkap");
+                admins.add(new Admin(id, username, nama));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                DBConnection.close(conn);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return admins;
+    }
 }
