@@ -64,13 +64,14 @@ public class MainFrame extends javax.swing.JFrame {
         titlePanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         navigationPanel = new javax.swing.JPanel();
-        dashboardNav = new javax.swing.JButton();
         stokBarangNav = new javax.swing.JButton();
         mekanikNav = new javax.swing.JButton();
         pelangganNav = new javax.swing.JButton();
         transaksiNav = new javax.swing.JButton();
         laporanNav = new javax.swing.JButton();
         logoutNav = new javax.swing.JButton();
+        dashboardNav = new javax.swing.JButton();
+        akunNav = new javax.swing.JButton();
         contentPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -102,20 +103,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         navigationPanel.setBackground(new java.awt.Color(0, 49, 31));
 
-        dashboardNav.setBackground(new java.awt.Color(254, 250, 224));
-        dashboardNav.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 14)); // NOI18N
-        dashboardNav.setForeground(new java.awt.Color(0, 49, 31));
-        dashboardNav.setText("Dashboard");
-        dashboardNav.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dashboardNavActionPerformed(evt);
-            }
-        });
-
         stokBarangNav.setBackground(new java.awt.Color(254, 250, 224));
         stokBarangNav.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 14)); // NOI18N
         stokBarangNav.setForeground(new java.awt.Color(0, 49, 31));
-        stokBarangNav.setText("Stok Barang");
+        stokBarangNav.setText("Barang");
         stokBarangNav.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stokBarangNavActionPerformed(evt);
@@ -155,7 +146,7 @@ public class MainFrame extends javax.swing.JFrame {
         laporanNav.setBackground(new java.awt.Color(254, 250, 224));
         laporanNav.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 14)); // NOI18N
         laporanNav.setForeground(new java.awt.Color(0, 49, 31));
-        laporanNav.setText("Laporan");
+        laporanNav.setText("Riwayat");
         laporanNav.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 laporanNavActionPerformed(evt);
@@ -172,6 +163,26 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        dashboardNav.setBackground(new java.awt.Color(254, 250, 224));
+        dashboardNav.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 14)); // NOI18N
+        dashboardNav.setForeground(new java.awt.Color(0, 49, 31));
+        dashboardNav.setText("Dashboard");
+        dashboardNav.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dashboardNavActionPerformed(evt);
+            }
+        });
+
+        akunNav.setBackground(new java.awt.Color(254, 250, 224));
+        akunNav.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 14)); // NOI18N
+        akunNav.setForeground(new java.awt.Color(0, 49, 31));
+        akunNav.setText("Akun");
+        akunNav.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                akunNavActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout navigationPanelLayout = new javax.swing.GroupLayout(navigationPanel);
         navigationPanel.setLayout(navigationPanelLayout);
         navigationPanelLayout.setHorizontalGroup(
@@ -179,31 +190,34 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(navigationPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(navigationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dashboardNav, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(stokBarangNav, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                     .addComponent(mekanikNav, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                     .addComponent(pelangganNav, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                     .addComponent(transaksiNav, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                     .addComponent(laporanNav, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                    .addComponent(logoutNav, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
+                    .addComponent(logoutNav, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                    .addComponent(akunNav, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                    .addComponent(dashboardNav, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         navigationPanelLayout.setVerticalGroup(
             navigationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(navigationPanelLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap()
                 .addComponent(dashboardNav)
-                .addGap(19, 19, 19)
+                .addGap(18, 18, 18)
+                .addComponent(akunNav)
+                .addGap(18, 18, 18)
                 .addComponent(stokBarangNav)
-                .addGap(19, 19, 19)
+                .addGap(18, 18, 18)
                 .addComponent(mekanikNav)
-                .addGap(19, 19, 19)
+                .addGap(18, 18, 18)
                 .addComponent(pelangganNav)
-                .addGap(19, 19, 19)
+                .addGap(18, 18, 18)
                 .addComponent(transaksiNav)
-                .addGap(19, 19, 19)
+                .addGap(18, 18, 18)
                 .addComponent(laporanNav)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 221, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 226, Short.MAX_VALUE)
                 .addComponent(logoutNav)
                 .addGap(14, 14, 14))
         );
@@ -292,6 +306,10 @@ public class MainFrame extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_logoutNavActionPerformed
 
+    private void akunNavActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_akunNavActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_akunNavActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -318,6 +336,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton akunNav;
     private javax.swing.JPanel contentPanel;
     private javax.swing.JButton dashboardNav;
     private javax.swing.JLabel jLabel1;

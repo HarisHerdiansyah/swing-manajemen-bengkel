@@ -2,34 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package view.panel.mekanik;
-
-import dto.response.MekanikResponseDTO;
-import service.MekanikService;
-import util.ApplicationState;
-import util.Response;
-import view.component.FormMekanikDialog;
-
-import java.util.List;
-
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
+package view.panel.akun;
 
 /**
  *
  * @author haris
  */
-public class MekanikPanel extends javax.swing.JPanel {
-    private ApplicationState appState = ApplicationState.getInstance();
-    private MekanikService service = new MekanikService();
+public class AkunPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form MekanikPanel
+     * Creates new form AkunPanel
      */
-    public MekanikPanel() {
+    public AkunPanel() {
         initComponents();
-        initialLoad();
     }
 
     /**
@@ -44,7 +29,7 @@ public class MekanikPanel extends javax.swing.JPanel {
         rootPanel = new javax.swing.JPanel();
         title = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        mekanikTable = new javax.swing.JTable();
+        akunTable = new javax.swing.JTable();
         searchField = new javax.swing.JTextField();
         searchBtn = new javax.swing.JButton();
         addBtn = new javax.swing.JButton();
@@ -59,12 +44,12 @@ public class MekanikPanel extends javax.swing.JPanel {
 
         title.setFont(new java.awt.Font("Microsoft JhengHei", 1, 24)); // NOI18N
         title.setForeground(new java.awt.Color(0, 0, 0));
-        title.setText("Mekanik");
+        title.setText("Akun");
 
-        mekanikTable.setBackground(new java.awt.Color(255, 255, 255));
-        mekanikTable.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        mekanikTable.setForeground(new java.awt.Color(0, 0, 0));
-        mekanikTable.setModel(new javax.swing.table.DefaultTableModel(
+        akunTable.setBackground(new java.awt.Color(255, 255, 255));
+        akunTable.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        akunTable.setForeground(new java.awt.Color(0, 0, 0));
+        akunTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -72,7 +57,7 @@ public class MekanikPanel extends javax.swing.JPanel {
                 {null, null}
             },
             new String [] {
-                "Nama", "Status"
+                "Nama Lengkap", "Username"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -83,10 +68,7 @@ public class MekanikPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(mekanikTable);
-        if (mekanikTable.getColumnModel().getColumnCount() > 0) {
-            mekanikTable.getColumnModel().getColumn(1).setResizable(false);
-        }
+        jScrollPane1.setViewportView(akunTable);
 
         searchField.setBackground(new java.awt.Color(255, 255, 255));
         searchField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
@@ -201,64 +183,6 @@ public class MekanikPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        // TODO add your handling code here:
-        JPanel contentPanel = appState.getContentPanel();
-        new FormMekanikDialog(
-                (Frame) contentPanel.getParent().getParent().getParent().getParent().getParent(),
-                this,
-                true
-        ).setVisible(true);
-    }//GEN-LAST:event_addBtnActionPerformed
-
-    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
-        // TODO add your handling code here:
-        int row = mekanikTable.getSelectedRow();
-        if (row == -1) {
-            JOptionPane.showMessageDialog(rootPanel, "Pilih mekanik yang akan diubah.", "Peringatan", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        Response<MekanikResponseDTO> response = service.getMekanikByExactName((String) mekanikTable.getValueAt(row, 0));
-        if (!response.isSuccess()) {
-            JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        JPanel contentPanel = appState.getContentPanel();
-        new FormMekanikDialog(
-                (Frame) contentPanel.getParent().getParent().getParent().getParent().getParent(),
-                this,
-                true,
-                true,
-                response.getData()
-        ).setVisible(true);
-    }//GEN-LAST:event_editBtnActionPerformed
-
-    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        // TODO add your handling code here:
-        int row = mekanikTable.getSelectedRow();
-        if (row == -1) {
-            JOptionPane.showMessageDialog(this, "Pilih mekanik yang akan dihapus.", "Peringatan", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        Response<Void> response = service.deleteMekanik((String) mekanikTable.getValueAt(row, 0));
-        if (!response.isSuccess()) {
-            JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        ((DefaultTableModel) mekanikTable.getModel()).removeRow(row);
-        JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Sukses", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_deleteBtnActionPerformed
-
-    private void resetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBtnActionPerformed
-        // TODO add your handling code here:
-        searchField.setText("");
-        initialLoad();
-    }//GEN-LAST:event_resetBtnActionPerformed
-
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         // TODO add your handling code here:
         String search = searchField.getText();
@@ -276,35 +200,71 @@ public class MekanikPanel extends javax.swing.JPanel {
         mapMekanik(response.getData());
     }//GEN-LAST:event_searchBtnActionPerformed
 
-    private void initialLoad() {
-        Response<List<MekanikResponseDTO>> response = service.getAllMekanik();
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        // TODO add your handling code here:
+        JPanel contentPanel = appState.getContentPanel();
+        new FormMekanikDialog(
+            (Frame) contentPanel.getParent().getParent().getParent().getParent().getParent(),
+            this,
+            true
+        ).setVisible(true);
+    }//GEN-LAST:event_addBtnActionPerformed
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        // TODO add your handling code here:
+        int row = akunTable.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(rootPanel, "Pilih mekanik yang akan diubah.", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        Response<MekanikResponseDTO> response = service.getMekanikByExactName((String) akunTable.getValueAt(row, 0));
         if (!response.isSuccess()) {
             JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        mapMekanik(response.getData());
-    }
 
-    private void mapMekanik(List<MekanikResponseDTO> list) {
-        DefaultTableModel model = (DefaultTableModel) mekanikTable.getModel();
-        model.setRowCount(0);
+        JPanel contentPanel = appState.getContentPanel();
+        new FormMekanikDialog(
+            (Frame) contentPanel.getParent().getParent().getParent().getParent().getParent(),
+            this,
+            true,
+            true,
+            response.getData()
+        ).setVisible(true);
+    }//GEN-LAST:event_editBtnActionPerformed
 
-        for (MekanikResponseDTO mekanik : list) {
-            Object[] row = new Object[]{ mekanik.getNama(), mekanik.getStatus() == 1 ? "Aktif" : "Tidak Aktif" };
-            model.addRow(row);
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+        int row = akunTable.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Pilih mekanik yang akan dihapus.", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            return;
         }
-    }
 
-    public JButton getResetBtn() {
-        return resetBtn;
-    }
+        Response<Void> response = service.deleteMekanik((String) akunTable.getValueAt(row, 0));
+        if (!response.isSuccess()) {
+            JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        ((DefaultTableModel) akunTable.getModel()).removeRow(row);
+        JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Sukses", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void resetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBtnActionPerformed
+        // TODO add your handling code here:
+        searchField.setText("");
+        initialLoad();
+    }//GEN-LAST:event_resetBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
+    private javax.swing.JTable akunTable;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JButton editBtn;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable mekanikTable;
     private javax.swing.JButton resetBtn;
     private javax.swing.JPanel rootPanel;
     private javax.swing.JButton searchBtn;

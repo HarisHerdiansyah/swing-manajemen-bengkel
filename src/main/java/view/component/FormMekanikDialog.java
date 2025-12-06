@@ -75,7 +75,9 @@ public class FormMekanikDialog extends javax.swing.JDialog {
         namaMekanikLabel.setForeground(new java.awt.Color(0, 0, 0));
         namaMekanikLabel.setText("Nama Mekanik");
 
+        namaMekanikField.setBackground(new java.awt.Color(255, 255, 255));
         namaMekanikField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        namaMekanikField.setForeground(new java.awt.Color(0, 0, 0));
 
         closeBtn.setBackground(new java.awt.Color(108, 117, 125));
         closeBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -99,7 +101,9 @@ public class FormMekanikDialog extends javax.swing.JDialog {
         statusMekanikLabel.setForeground(new java.awt.Color(0, 0, 0));
         statusMekanikLabel.setText("Status");
 
+        statusMekanikComboBox.setBackground(new java.awt.Color(255, 255, 255));
         statusMekanikComboBox.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        statusMekanikComboBox.setForeground(new java.awt.Color(0, 0, 0));
         statusMekanikComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tidak Aktif", "Aktif" }));
 
         javax.swing.GroupLayout rootPanelLayout = new javax.swing.GroupLayout(rootPanel);
