@@ -199,7 +199,7 @@ public class DetailTransaksiDialog extends javax.swing.JDialog {
 
     private void initialLoad() {
         nopolValue.setText(requestDTO.getNopol());
-        namaValue.setText(requestDTO.getNamaMekanik());
+        namaValue.setText(requestDTO.getNamaPelangan());
         mekanikValue.setText(requestDTO.getNamaMekanik());
 
         DefaultTableModel model = (DefaultTableModel) daftarTransaksiTable.getModel();

@@ -356,7 +356,7 @@ public class TransaksiPanel extends javax.swing.JPanel {
         if (barangList != null) {
             namaBarangComboBox.removeAllItems();
             for (BarangResponseDTO barang : barangList) {
-                namaBarangComboBox.addItem(new ComboBoxItem(barang.getNamaBarang(), barang.getNamaBarang()));
+                namaBarangComboBox.addItem(new ComboBoxItem(barang.getNamaBarang(), barang.getHargaJual()));
             }
             return;
         }
