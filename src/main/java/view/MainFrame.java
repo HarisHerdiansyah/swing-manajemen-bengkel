@@ -80,6 +80,7 @@ public class MainFrame extends javax.swing.JFrame {
         titlePanel.setBackground(new java.awt.Color(0, 49, 31));
 
         jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("KELOLA BENGKEL");
 
         javax.swing.GroupLayout titlePanelLayout = new javax.swing.GroupLayout(titlePanel);

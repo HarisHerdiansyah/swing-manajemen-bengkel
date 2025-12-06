@@ -72,6 +72,16 @@ public class MekanikService {
         }
     }
 
+    public Response<List<MekanikResponseDTO>> getMekanikByStatus(int status) {
+        try {
+            List<MekanikResponseDTO> list = repository.getByStatus(status);
+            return Response.success("Data mekanik berhasil diambil berdasarkan status", list);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.failure("Terjadi kesalahan saat mengambil data mekanik berdasarkan status: " + e.getMessage());
+        }
+    }
+
     public Response<Void> updateMekanik(int idMekanik, MekanikRequestDTO request) {
         try {
             boolean updated = repository.update(idMekanik, request);

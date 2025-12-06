@@ -2,7 +2,6 @@ package repository;
 
 import dto.request.BarangRequestDTO;
 import dto.response.BarangResponseDTO;
-import model.Barang;
 import util.DBConnection;
 
 import java.sql.*;

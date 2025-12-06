@@ -47,11 +47,11 @@ public class LoginFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        rootPanel.setBackground(new java.awt.Color(223, 226, 220));
+        rootPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel1.setBackground(new java.awt.Color(0, 49, 31));
 
-        jLabel1.setFont(new java.awt.Font("Montserrat Black", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Welcome Admin");
 
@@ -85,10 +85,12 @@ public class LoginFrame extends javax.swing.JFrame {
             .addGap(0, 82, Short.MAX_VALUE)
         );
 
-        usernameLabel.setFont(new java.awt.Font("Mona Sans ExtraLight", 0, 14)); // NOI18N
+        usernameLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 14)); // NOI18N
+        usernameLabel.setForeground(new java.awt.Color(0, 0, 0));
         usernameLabel.setText("Username :");
 
-        passwordLabel.setFont(new java.awt.Font("Mona Sans ExtraLight", 0, 14)); // NOI18N
+        passwordLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 14)); // NOI18N
+        passwordLabel.setForeground(new java.awt.Color(0, 0, 0));
         passwordLabel.setText("Password   :");
 
         usernameField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 14)); // NOI18N
@@ -96,7 +98,7 @@ public class LoginFrame extends javax.swing.JFrame {
         passwordField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 14)); // NOI18N
 
         closeBtn.setBackground(new java.awt.Color(220, 53, 69));
-        closeBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        closeBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 14)); // NOI18N
         closeBtn.setForeground(new java.awt.Color(255, 255, 255));
         closeBtn.setText("Batal");
         closeBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -106,7 +108,7 @@ public class LoginFrame extends javax.swing.JFrame {
         });
 
         submitBtn.setBackground(new java.awt.Color(13, 110, 253));
-        submitBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        submitBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 14)); // NOI18N
         submitBtn.setForeground(new java.awt.Color(255, 255, 255));
         submitBtn.setText("Login");
         submitBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -154,7 +156,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(closeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 

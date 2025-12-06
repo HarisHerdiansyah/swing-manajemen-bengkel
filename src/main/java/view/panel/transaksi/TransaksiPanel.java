@@ -404,7 +404,8 @@ public class TransaksiPanel extends javax.swing.JPanel {
         }
 
         String jenis = (String) jenisComboBox.getSelectedItem();
-        String namaBarang = (Objects.requireNonNull(namaBarangComboBox.getSelectedItem())).toString();
+        ComboBoxItem selectedNamaBarang = (ComboBoxItem) namaBarangComboBox.getSelectedItem();
+        String namaBarang = selectedNamaBarang != null ? selectedNamaBarang.toString() : "Jasa Servis";
         String catatan = catatanField.getText();
 
         if (Objects.equals(jenis, "JASA") && hargaDibayarField.getText().isEmpty()) {
@@ -412,7 +413,8 @@ public class TransaksiPanel extends javax.swing.JPanel {
             return;
         }
 
-        double hargaDibayar = Double.parseDouble(hargaDibayarField.getText());
+        String hargaDibayarText = hargaDibayarField.getText();
+        double hargaDibayar = !hargaDibayarText.isEmpty() ? Double.parseDouble(hargaDibayarText) : 0;
         if (Objects.equals(jenis, "JASA") && hargaDibayar <= 0) {
             JOptionPane.showMessageDialog(rootPanel, "Harga Tidak Boleh Kurang dari atau Sama Dengan Nol", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
@@ -429,7 +431,7 @@ public class TransaksiPanel extends javax.swing.JPanel {
             return;
         }
 
-        if (Objects.equals(jenis, "BARANG") && hargaDibayarField.getText().isEmpty()) {
+        if (Objects.equals(jenis, "BARANG") && hargaDibayarText.isEmpty()) {
             calculateSubtotal();
         }
 
@@ -496,7 +498,7 @@ public class TransaksiPanel extends javax.swing.JPanel {
         mekanikComboBox.setEnabled(true);
         mekanikComboBox.removeAllItems();
 
-        Response<List<MekanikResponseDTO>> response = mekanikService.getAllMekanik();
+        Response<List<MekanikResponseDTO>> response = mekanikService.getMekanikByStatus(1);
         if (!response.isSuccess()) {
             JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             return;
@@ -504,7 +506,7 @@ public class TransaksiPanel extends javax.swing.JPanel {
 
         List<MekanikResponseDTO> mekanik = response.getData();
         for (MekanikResponseDTO m : mekanik) {
-            mekanikComboBox.addItem(new ComboBoxItem(m.getNama(), Integer.valueOf(m.getId())));
+            mekanikComboBox.addItem(new ComboBoxItem(m.getNama(), m.getId()));
         }
     }
 

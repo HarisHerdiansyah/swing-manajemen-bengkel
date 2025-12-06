@@ -166,6 +166,39 @@ public class MekanikRepository {
         return list;
     }
 
+    public List<MekanikResponseDTO> getByStatus(int status) {
+        String sql = "SELECT id_mekanik, nama_mekanik, status_aktif FROM mekanik WHERE status_aktif = ?";
+        List<MekanikResponseDTO> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DBConnection.get();
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, status);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int idMekanik = rs.getInt("id_mekanik");
+                String nama = rs.getString("nama_mekanik");
+                int statusAktif = rs.getInt("status_aktif");
+                list.add(new MekanikResponseDTO(idMekanik, nama, statusAktif));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                DBConnection.close(conn);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+
     public boolean update(int idMekanik, MekanikRequestDTO request) {
         String sql = "UPDATE mekanik SET nama_mekanik = ?, status_aktif = ? WHERE id_mekanik = ?";
         Connection conn = null;

@@ -80,6 +80,7 @@ public class PelangganPanel extends javax.swing.JPanel {
         searchField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
 
         searchBtn.setBackground(new java.awt.Color(108, 117, 125));
+        searchBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         searchBtn.setForeground(new java.awt.Color(255, 255, 255));
         searchBtn.setText("Cari Nama");
         searchBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -89,6 +90,7 @@ public class PelangganPanel extends javax.swing.JPanel {
         });
 
         addBtn.setBackground(new java.awt.Color(13, 110, 253));
+        addBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         addBtn.setForeground(new java.awt.Color(255, 255, 255));
         addBtn.setText("Tambah");
         addBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -98,6 +100,7 @@ public class PelangganPanel extends javax.swing.JPanel {
         });
 
         resetBtn.setBackground(new java.awt.Color(108, 117, 125));
+        resetBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         resetBtn.setForeground(new java.awt.Color(255, 255, 255));
         resetBtn.setText("Reset");
         resetBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -107,6 +110,7 @@ public class PelangganPanel extends javax.swing.JPanel {
         });
 
         deleteBtn.setBackground(new java.awt.Color(220, 53, 69));
+        deleteBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         deleteBtn.setForeground(new java.awt.Color(255, 255, 255));
         deleteBtn.setText("Hapus");
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -116,6 +120,7 @@ public class PelangganPanel extends javax.swing.JPanel {
         });
 
         editBtn.setBackground(new java.awt.Color(255, 193, 7));
+        editBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         editBtn.setForeground(new java.awt.Color(0, 0, 0));
         editBtn.setText("Edit");
         editBtn.addActionListener(new java.awt.event.ActionListener() {
