@@ -18,6 +18,15 @@ public class TransaksiService {
             } else {
                 return Response.failure("Gagal membuat transaksi");
             }
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+            String errorMessage = e.getMessage();
+            if (errorMessage != null && (errorMessage.contains("Stok tidak cukup") ||
+                                        errorMessage.contains("tidak ditemukan") ||
+                                        errorMessage.contains("Gagal mengurangi stok"))) {
+                return Response.failure(errorMessage);
+            }
+            return Response.failure("Terjadi kesalahan saat membuat transaksi: " + errorMessage);
         } catch (Exception e) {
             e.printStackTrace();
             return Response.failure("Terjadi kesalahan saat membuat transaksi: " + e.getMessage());

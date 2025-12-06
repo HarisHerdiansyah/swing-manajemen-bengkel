@@ -12,15 +12,22 @@ import java.util.List;
 
 public class TransaksiRepository {
 
-    public String createTransaksi(TransaksiRequestDTO request) {
+    public String createTransaksi(TransaksiRequestDTO request) throws SQLException {
         String noFaktur = generateNoFaktur();
         Connection conn = null;
         PreparedStatement stmtTransaksi = null;
         PreparedStatement stmtDetail = null;
+        PreparedStatement stmtUpdateStok = null;
 
         try {
             conn = DBConnection.get();
             conn.setAutoCommit(false); // Start transaction
+
+            // Validasi stok untuk semua barang sebelum memproses transaksi
+            String validationError = validateStok(request.getDetailRequestDTOList(), conn);
+            if (validationError != null) {
+                throw new SQLException(validationError);
+            }
 
             // Insert into transaksi
             String sqlTransaksi = "INSERT INTO transaksi (no_faktur, nopol, nama_mekanik, keluhan, total_belanja) VALUES (?, ?, ?, ?, ?)";
@@ -34,20 +41,37 @@ public class TransaksiRepository {
 
             // Insert into transaksi_detail
             String sqlDetail = "INSERT INTO transaksi_detail (no_faktur, nama_item, jenis, qty, harga_modal, harga_deal, catatan) VALUES (?, ?, ?, ?, " +
-                "CASE WHEN ? = 'BARANG' THEN (SELECT harga_beli FROM barang WHERE nama_barang = ?) * qty ELSE 0 END, ?, ?)";
+                "CASE WHEN ? = 'BARANG' THEN (SELECT harga_beli FROM barang WHERE nama_barang = ?) * ? ELSE 0 END, ?, ?)";
             stmtDetail = conn.prepareStatement(sqlDetail);
+
+            // Prepare statement untuk update stok
+            String sqlUpdateStok = "UPDATE barang SET stok = stok - ? WHERE nama_barang = ?";
+            stmtUpdateStok = conn.prepareStatement(sqlUpdateStok);
 
             List<TransaksiDetailRequestDTO> details = request.getDetailRequestDTOList();
             for (TransaksiDetailRequestDTO detail : details) {
+                // Insert transaksi detail
                 stmtDetail.setString(1, noFaktur);
-                stmtDetail.setString(2, detail.getJenis().equals("BARANG") ? detail.getNamaBarang() : "Jasa"); // Assuming namaBarang is namaItem
+                stmtDetail.setString(2, detail.getJenis().equals("BARANG") ? detail.getNamaBarang() : "Jasa");
                 stmtDetail.setString(3, detail.getJenis());
                 stmtDetail.setInt(4, detail.getJumlah());
                 stmtDetail.setString(5, detail.getJenis());
                 stmtDetail.setString(6, detail.getNamaBarang());
-                stmtDetail.setDouble(7, detail.getSubtotal());
-                stmtDetail.setString(8, detail.getCatatan());
+                stmtDetail.setInt(7, detail.getJumlah());
+                stmtDetail.setDouble(8, detail.getSubtotal());
+                stmtDetail.setString(9, detail.getCatatan());
                 stmtDetail.executeUpdate();
+
+                // Kurangi stok jika jenis adalah BARANG
+                if ("BARANG".equals(detail.getJenis())) {
+                    stmtUpdateStok.setInt(1, detail.getJumlah());
+                    stmtUpdateStok.setString(2, detail.getNamaBarang());
+                    int updatedRows = stmtUpdateStok.executeUpdate();
+
+                    if (updatedRows == 0) {
+                        throw new SQLException("Gagal mengurangi stok untuk barang: " + detail.getNamaBarang());
+                    }
+                }
             }
 
             conn.commit();
@@ -58,17 +82,58 @@ public class TransaksiRepository {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-            e.printStackTrace();
+            throw e; // Re-throw exception agar bisa ditangani di service layer
         } finally {
             try {
                 if (stmtTransaksi != null) stmtTransaksi.close();
                 if (stmtDetail != null) stmtDetail.close();
+                if (stmtUpdateStok != null) stmtUpdateStok.close();
                 DBConnection.close(conn);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        return null;
+    }
+
+    private String validateStok(List<TransaksiDetailRequestDTO> details, Connection conn) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            String sql = "SELECT stok FROM barang WHERE nama_barang = ?";
+            stmt = conn.prepareStatement(sql);
+
+            for (TransaksiDetailRequestDTO detail : details) {
+                if ("BARANG".equals(detail.getJenis())) {
+                    stmt.setString(1, detail.getNamaBarang());
+                    rs = stmt.executeQuery();
+
+                    if (rs.next()) {
+                        int stokTersedia = rs.getInt("stok");
+                        if (stokTersedia < detail.getJumlah()) {
+                            return "Stok tidak cukup untuk barang '" + detail.getNamaBarang() +
+                                   "'. Stok tersedia: " + stokTersedia + ", diminta: " + detail.getJumlah();
+                        }
+                    } else {
+                        return "Barang '" + detail.getNamaBarang() + "' tidak ditemukan dalam database";
+                    }
+
+                    rs.close();
+                }
+            }
+
+            return null; // Semua validasi berhasil
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "Terjadi kesalahan saat validasi stok: " + e.getMessage();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private String generateNoFaktur() {
