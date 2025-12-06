@@ -7,6 +7,7 @@ package view.panel.transaksi;
 import dto.response.TransaksiResponseDTO;
 import service.TransaksiService;
 import util.Response;
+import view.component.FilterTransaksiDialog;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -43,6 +44,7 @@ public class HistoriTransaksiPanel extends javax.swing.JPanel {
         searchField = new javax.swing.JTextField();
         searchBtn = new javax.swing.JButton();
         refreshBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         rootPanel.setBackground(new java.awt.Color(255, 255, 255));
         rootPanel.setForeground(new java.awt.Color(0, 0, 0));
@@ -53,7 +55,9 @@ public class HistoriTransaksiPanel extends javax.swing.JPanel {
         title.setForeground(new java.awt.Color(0, 0, 0));
         title.setText("Histori Transaksi");
 
+        transaksiTable.setBackground(new java.awt.Color(255, 255, 255));
         transaksiTable.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        transaksiTable.setForeground(new java.awt.Color(0, 0, 0));
         transaksiTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -75,9 +79,12 @@ public class HistoriTransaksiPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(transaksiTable);
 
+        searchField.setBackground(new java.awt.Color(255, 255, 255));
         searchField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        searchField.setForeground(new java.awt.Color(0, 0, 0));
 
         searchBtn.setBackground(new java.awt.Color(108, 117, 125));
+        searchBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         searchBtn.setForeground(new java.awt.Color(255, 255, 255));
         searchBtn.setText("Cari No. Faktur");
         searchBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -93,6 +100,13 @@ public class HistoriTransaksiPanel extends javax.swing.JPanel {
         refreshBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshBtnActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("dialog");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -113,6 +127,8 @@ public class HistoriTransaksiPanel extends javax.swing.JPanel {
                                 .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(refreshBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(96, Short.MAX_VALUE))
@@ -127,7 +143,9 @@ public class HistoriTransaksiPanel extends javax.swing.JPanel {
                     .addGroup(rootPanelLayout.createSequentialGroup()
                         .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(searchField, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                            .addComponent(searchBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(searchBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1)))
                         .addGap(27, 27, 27)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(refreshBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -157,6 +175,11 @@ public class HistoriTransaksiPanel extends javax.swing.JPanel {
         String search = searchField.getText().trim();
     }//GEN-LAST:event_searchBtnActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        new FilterTransaksiDialog(null, true).setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void initialLoad() {
         Response<List<TransaksiResponseDTO>> response = service.getAllTransaksi();
         if (!response.isSuccess()) {
@@ -180,6 +203,7 @@ public class HistoriTransaksiPanel extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton refreshBtn;
     private javax.swing.JPanel rootPanel;
