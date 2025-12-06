@@ -26,6 +26,7 @@ import java.util.Objects;
  * @author haris
  */
 public class TransaksiPanel extends javax.swing.JPanel {
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TransaksiPanel.class.getName());
     private PelangganService pelangganService = new PelangganService();
     private BarangService barangService = new BarangService();
     private MekanikService mekanikService = new MekanikService();
