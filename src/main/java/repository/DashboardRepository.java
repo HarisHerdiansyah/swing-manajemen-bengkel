@@ -12,8 +12,8 @@ import java.util.List;
 public class DashboardRepository {
     public Object[] getStatistikDashboard() {
         String sql = "SELECT " +
-                "    (SELECT COALESCE(SUM(total_belanja), 0) FROM transaksi) AS total_pendapatan, " +
-                "    (SELECT COUNT(*) FROM transaksi) AS total_transaksi, " +
+                "    (SELECT COALESCE(SUM(total_belanja), 0) FROM transaksi WHERE DATE(tanggal) = CURDATE()) AS total_pendapatan, " +
+                "    (SELECT COUNT(*) FROM transaksi WHERE DATE(tanggal) = CURDATE()) AS total_transaksi, " +
                 "    (SELECT COUNT(*) FROM barang WHERE stok < 5) AS barang_stok_rendah";
 
         Connection conn = null;
