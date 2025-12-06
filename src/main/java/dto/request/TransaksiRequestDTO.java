@@ -53,7 +53,7 @@ public class TransaksiRequestDTO {
     public void setTotalBelanja() {
         totalBelanja = 0.0;
         for (TransaksiDetailRequestDTO detail : detailRequestDTOList) {
-            totalBelanja += detail.getHargaDibayar();
+            totalBelanja += detail.getSubtotal();
         }
     }
 

@@ -409,7 +409,7 @@ public class TransaksiPanel extends javax.swing.JPanel {
 
         String catatan = catatanField.getText();
 
-        TransaksiDetailRequestDTO dto = new TransaksiDetailRequestDTO(jenis, "Jasa Servis", 1, hargaDibayar, catatan);
+        TransaksiDetailRequestDTO dto = new TransaksiDetailRequestDTO(jenis, "Jasa Servis", 1, hargaDibayar, hargaDibayar, catatan);
         requestDTO.setDetailRequestDTOList(dto);
         JOptionPane.showMessageDialog(rootPanel, "Item Berhasil Ditambahkan", "Sukses", JOptionPane.INFORMATION_MESSAGE);
     }
@@ -432,7 +432,7 @@ public class TransaksiPanel extends javax.swing.JPanel {
         String namaBarang = (Objects.requireNonNull(namaBarangComboBox.getSelectedItem())).toString();
         String catatan = catatanField.getText();
 
-        TransaksiDetailRequestDTO dto = new TransaksiDetailRequestDTO(jenis, namaBarang, jumlahItem, subtotal, catatan);
+        TransaksiDetailRequestDTO dto = new TransaksiDetailRequestDTO(jenis, namaBarang, jumlahItem, hargaBarang, subtotal, catatan);
         requestDTO.setDetailRequestDTOList(dto);
         JOptionPane.showMessageDialog(rootPanel, "Item Berhasil Ditambahkan", "Sukses", JOptionPane.INFORMATION_MESSAGE);
     }

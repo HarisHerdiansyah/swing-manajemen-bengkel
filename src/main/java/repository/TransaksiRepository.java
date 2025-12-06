@@ -45,7 +45,7 @@ public class TransaksiRepository {
                 stmtDetail.setInt(4, detail.getJumlah());
                 stmtDetail.setString(5, detail.getJenis());
                 stmtDetail.setString(6, detail.getNamaBarang());
-                stmtDetail.setDouble(7, detail.getHargaDibayar());
+                stmtDetail.setDouble(7, detail.getSubtotal());
                 stmtDetail.setString(8, detail.getCatatan());
                 stmtDetail.executeUpdate();
             }

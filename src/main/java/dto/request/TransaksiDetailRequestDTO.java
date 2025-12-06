@@ -4,14 +4,16 @@ public class TransaksiDetailRequestDTO {
     private final String jenis;
     private final String namaBarang;
     private final int jumlah;
-    private final double hargaDibayar;
+    private final double hargaBarang;
+    private final double subtotal;
     private final String catatan;
 
-    public TransaksiDetailRequestDTO(String jenis, String namaBarang, int jumlah, double hargaDibayar, String catatan) {
+    public TransaksiDetailRequestDTO(String jenis, String namaBarang, int jumlah, double hargaBarang, double subtotal, String catatan) {
         this.jenis = jenis;
         this.namaBarang = namaBarang;
         this.jumlah = jumlah;
-        this.hargaDibayar = hargaDibayar;
+        this.hargaBarang = hargaBarang;
+        this.subtotal = subtotal;
         this.catatan = catatan;
     }
 
@@ -27,8 +29,12 @@ public class TransaksiDetailRequestDTO {
         return jumlah;
     }
 
-    public double getHargaDibayar() {
-        return hargaDibayar;
+    public double getHargaBarang() {
+        return hargaBarang;
+    }
+
+    public double getSubtotal() {
+        return subtotal;
     }
 
     public String getCatatan() {

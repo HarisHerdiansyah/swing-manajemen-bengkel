@@ -207,8 +207,8 @@ public class DetailTransaksiDialog extends javax.swing.JDialog {
                 detail.getJenis(),
                 detail.getNamaBarang(),
                 detail.getJumlah(),
-                detail.getHargaDibayar(),
-                detail.getJumlah() * detail.getHargaDibayar()
+                detail.getHargaBarang(),
+                detail.getSubtotal()
             };
             model.addRow(row);
         }
