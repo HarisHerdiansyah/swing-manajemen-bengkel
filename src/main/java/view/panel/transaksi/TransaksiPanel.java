@@ -448,6 +448,10 @@ public class TransaksiPanel extends javax.swing.JPanel {
             requestDTO.setNopol(nopolField.getText());
         }
 
+        if (requestDTO.getNamaPelangan() == null) {
+            requestDTO.setNamaPelangan(pelangganField.getText());
+        }
+
         if (requestDTO.getNamaMekanik() == null) {
             ComboBoxItem selectedMekanik = (ComboBoxItem) mekanikComboBox.getSelectedItem();
             if (selectedMekanik != null) {

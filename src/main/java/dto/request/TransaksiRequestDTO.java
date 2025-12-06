@@ -5,6 +5,7 @@ import java.util.List;
 
 public class TransaksiRequestDTO {
     private String nopol;
+    private String namaPelangan;
     private String namaMekanik;
     private String keluhan;
     private double totalBelanja;
@@ -14,8 +15,9 @@ public class TransaksiRequestDTO {
         this.detailRequestDTOList = new ArrayList<>();
     }
 
-    public TransaksiRequestDTO(String nopol, String namaMekanik, String keluhan, double totalBelanja) {
+    public TransaksiRequestDTO(String nopol, String namaPelangan, String namaMekanik, String keluhan, double totalBelanja) {
         this.nopol = nopol;
+        this.namaPelangan = namaPelangan;
         this.namaMekanik = namaMekanik;
         this.keluhan = keluhan;
         this.totalBelanja = totalBelanja;
@@ -28,6 +30,14 @@ public class TransaksiRequestDTO {
 
     public void setNopol(String nopol) {
         this.nopol = nopol;
+    }
+
+    public String getNamaPelangan() {
+        return namaPelangan;
+    }
+
+    public void setNamaPelangan(String namaPelangan) {
+        this.namaPelangan = namaPelangan;
     }
 
     public String getNamaMekanik() {

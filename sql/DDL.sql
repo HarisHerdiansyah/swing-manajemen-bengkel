@@ -50,15 +50,16 @@ CREATE TABLE mekanik (
 
 -- 5. Tabel Transaksi (Header/Nota)
 CREATE TABLE transaksi (
-    no_faktur VARCHAR(50) NOT NULL, -- Generate di Java, misal: TRX-281123-001
+    no_faktur VARCHAR(50) NOT NULL,
     tanggal DATETIME DEFAULT CURRENT_TIMESTAMP,
-    nopol VARCHAR(20) NOT NULL,     -- FK ke Pelanggan
-    nama_mekanik VARCHAR(100),      -- SNAPSHOT: Simpan nama (String), bukan ID. Agar kalau mekanik dihapus, history aman.
-    keluhan TEXT,                   -- Diagnosa awal (Free Text)
+    nopol VARCHAR(20),              -- Tidak lagi FK, hanya reference
+    nama_pelanggan VARCHAR(100),    -- SNAPSHOT nama pelanggan
+    nama_mekanik VARCHAR(100),
+    keluhan TEXT,
     total_belanja DECIMAL(12, 2) DEFAULT 0,
-    PRIMARY KEY (no_faktur),
-    FOREIGN KEY (nopol) REFERENCES pelanggan(nopol) ON UPDATE CASCADE ON DELETE RESTRICT
+    PRIMARY KEY (no_faktur)
 ) ENGINE=InnoDB;
+
 
 -- 6. Tabel Transaksi Detail (Keranjang Belanja)
 -- Menyimpan detail Barang DAN Jasa

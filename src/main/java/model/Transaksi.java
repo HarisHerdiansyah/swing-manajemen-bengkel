@@ -6,6 +6,7 @@ public class Transaksi {
     private String noFaktur;
     private Date tanggal;
     private String nopolPelanggan;
+    private String namaPelanggan;
     private String namaMekanik;
     private String keluhan;
     private double totalBelanja;
@@ -13,10 +14,11 @@ public class Transaksi {
     public Transaksi() {
     }
 
-    public Transaksi(String noFaktur, Date tanggal, String nopolPelanggan, String namaMekanik, String keluhan, double totalBelanja) {
+    public Transaksi(String noFaktur, Date tanggal, String nopolPelanggan, String namaPelanggan, String namaMekanik, String keluhan, double totalBelanja) {
         this.noFaktur = noFaktur;
         this.tanggal = tanggal;
         this.nopolPelanggan = nopolPelanggan;
+        this.namaPelanggan = namaPelanggan;
         this.namaMekanik = namaMekanik;
         this.keluhan = keluhan;
         this.totalBelanja = totalBelanja;
@@ -69,16 +71,12 @@ public class Transaksi {
     public void setTotalBelanja(double totalBelanja) {
         this.totalBelanja = totalBelanja;
     }
+
+    public String getNamaPelanggan() {
+        return namaPelanggan;
+    }
+
+    public void setNamaPelanggan(String namaPelanggan) {
+        this.namaPelanggan = namaPelanggan;
+    }
 }
-
-
-/**
- * // Method bantuan untuk hitung total otomatis di aplikasi
- *     public void hitungTotal() {
- *         double total = 0;
- *         for (TransaksiDetail item : listDetail) {
- *             total += item.getSubtotal();
- *         }
- *         this.totalBelanja = total;
- *     }
- */

@@ -58,17 +58,17 @@ public class HistoriTransaksiPanel extends javax.swing.JPanel {
         transaksiTable.setForeground(new java.awt.Color(0, 0, 0));
         transaksiTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "No. Faktur", "Tanggal", "Pelanggan", "Mekanik", "Total"
+                "No. Faktur", "Tanggal", "No. Polisi", "Pelanggan", "Mekanik", "Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -166,6 +166,7 @@ public class HistoriTransaksiPanel extends javax.swing.JPanel {
             Object[] row = {
                 dto.getNoFaktur(),
                 dto.getTanggal(),
+                dto.getNopol(),
                 dto.getNamaPelanggan(),
                 dto.getNamaMekanik(),
                 dto.getTotalBelanja()

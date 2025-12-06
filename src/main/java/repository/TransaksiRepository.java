@@ -30,13 +30,14 @@ public class TransaksiRepository {
             }
 
             // Insert into transaksi
-            String sqlTransaksi = "INSERT INTO transaksi (no_faktur, nopol, nama_mekanik, keluhan, total_belanja) VALUES (?, ?, ?, ?, ?)";
+            String sqlTransaksi = "INSERT INTO transaksi (no_faktur, nopol, nama_pelanggan, nama_mekanik, keluhan, total_belanja) VALUES (?, ?, ?, ?, ?, ?)";
             stmtTransaksi = conn.prepareStatement(sqlTransaksi);
             stmtTransaksi.setString(1, noFaktur);
             stmtTransaksi.setString(2, request.getNopol());
-            stmtTransaksi.setString(3, request.getNamaMekanik());
-            stmtTransaksi.setString(4, request.getKeluhan());
-            stmtTransaksi.setDouble(5, request.getTotalBelanja());
+            stmtTransaksi.setString(3, request.getNamaPelangan());
+            stmtTransaksi.setString(4, request.getNamaMekanik());
+            stmtTransaksi.setString(5, request.getKeluhan());
+            stmtTransaksi.setDouble(6, request.getTotalBelanja());
             stmtTransaksi.executeUpdate();
 
             // Insert into transaksi_detail
