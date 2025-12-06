@@ -65,7 +65,7 @@ public class DashboardPanel extends javax.swing.JPanel {
         totalPendapatanLabel.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
         totalPendapatanLabel.setForeground(new java.awt.Color(255, 255, 255));
         totalPendapatanLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        totalPendapatanLabel.setText("Total Pendapatan");
+        totalPendapatanLabel.setText("Pendapatan Hari ini");
 
         totalPendapatanValue.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
         totalPendapatanValue.setForeground(new java.awt.Color(255, 255, 255));
@@ -98,7 +98,7 @@ public class DashboardPanel extends javax.swing.JPanel {
         totalTransaksiLabel.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
         totalTransaksiLabel.setForeground(new java.awt.Color(255, 255, 255));
         totalTransaksiLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        totalTransaksiLabel.setText("Total Transaksi");
+        totalTransaksiLabel.setText("Transaksi Hari Ini");
 
         totalTransaksiValue.setFont(new java.awt.Font("Microsoft JhengHei", 1, 14)); // NOI18N
         totalTransaksiValue.setForeground(new java.awt.Color(255, 255, 255));

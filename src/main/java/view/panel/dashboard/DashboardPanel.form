@@ -141,7 +141,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Total Pendapatan"/>
+                <Property name="text" type="java.lang.String" value="Pendapatan Hari ini"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="totalPendapatanValue">
@@ -200,7 +200,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Total Transaksi"/>
+                <Property name="text" type="java.lang.String" value="Transaksi Hari Ini"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="totalTransaksiValue">
