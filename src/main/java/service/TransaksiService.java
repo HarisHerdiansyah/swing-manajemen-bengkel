@@ -42,4 +42,38 @@ public class TransaksiService {
             return Response.failure("Terjadi kesalahan saat mengambil transaksi: " + e.getMessage());
         }
     }
+
+    public Response<List<TransaksiResponseDTO>> searchTransaksi(String noFaktur, String tanggal, String namaMekanik, String namaPelanggan) {
+        try {
+            boolean hasFilter = false;
+
+            if (noFaktur != null && !noFaktur.trim().isEmpty()) {
+                hasFilter = true;
+            }
+            if (tanggal != null && !tanggal.trim().isEmpty()) {
+                hasFilter = true;
+            }
+            if (namaMekanik != null && !namaMekanik.trim().isEmpty()) {
+                hasFilter = true;
+            }
+            if (namaPelanggan != null && !namaPelanggan.trim().isEmpty()) {
+                hasFilter = true;
+            }
+
+            if (!hasFilter) {
+                return Response.failure("Minimal 1 field harus terisi untuk melakukan pencarian");
+            }
+
+            List<TransaksiResponseDTO> transaksiList = repository.searchTransaksi(noFaktur, tanggal, namaMekanik, namaPelanggan);
+
+            if (transaksiList.isEmpty()) {
+                return Response.success("Tidak ada transaksi yang sesuai dengan kriteria pencarian", transaksiList);
+            }
+
+            return Response.success("Berhasil menemukan " + transaksiList.size() + " transaksi", transaksiList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.failure("Terjadi kesalahan saat mencari transaksi: " + e.getMessage());
+        }
+    }
 }

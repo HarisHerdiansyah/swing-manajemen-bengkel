@@ -4,6 +4,14 @@
  */
 package view.component;
 
+import dto.response.TransaksiResponseDTO;
+import service.TransaksiService;
+import util.Response;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
+
 /**
  *
  * @author haris
@@ -11,6 +19,7 @@ package view.component;
 public class FilterTransaksiDialog extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FilterTransaksiDialog.class.getName());
+    private JTable uiTable = null;
 
     /**
      * Creates new form FilterTransaksiDialog
@@ -18,6 +27,12 @@ public class FilterTransaksiDialog extends javax.swing.JDialog {
     public FilterTransaksiDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+
+    public FilterTransaksiDialog(java.awt.Frame parent, boolean modal, JTable uiTable) {
+        super(parent, modal);
+        initComponents();
+        this.uiTable = uiTable;
     }
 
     /**
@@ -189,12 +204,31 @@ public class FilterTransaksiDialog extends javax.swing.JDialog {
         String mekanik = mekanikField.getText().trim();
         String pelanggan = pelangganField.getText().trim();
 
-        if (faktur.isEmpty() || tanggal.isEmpty() || mekanik.isEmpty() || pelanggan.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Minimal 1 field harus terisi", "Warning", javax.swing.JOptionPane.WARNING_MESSAGE);
+        if (faktur.isEmpty() && tanggal.isEmpty() && mekanik.isEmpty() && pelanggan.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Minimal 1 field harus terisi", "Warning", javax.swing.JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        // do something
+        TransaksiService transaksiService = new TransaksiService();
+        Response<List<TransaksiResponseDTO>> response = transaksiService.searchTransaksi(faktur, tanggal, mekanik, pelanggan);
+        if (!response.isSuccess()) {
+            JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) uiTable.getModel();
+        model.setRowCount(0);
+
+        for (TransaksiResponseDTO dto : response.getData()) {
+            Object[] row = {
+                    dto.getNoFaktur(),
+                    dto.getTanggal(),
+                    dto.getNamaPelanggan(),
+                    dto.getNamaMekanik(),
+                    dto.getTotalBelanja()
+            };
+            model.addRow(row);
+        }
     }//GEN-LAST:event_searchBtnActionPerformed
 
     /**

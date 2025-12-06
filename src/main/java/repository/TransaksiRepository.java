@@ -213,4 +213,74 @@ public class TransaksiRepository {
         }
         return list;
     }
+
+    public List<TransaksiResponseDTO> searchTransaksi(String noFaktur, String tanggal, String namaMekanik, String namaPelanggan) {
+        StringBuilder sql = new StringBuilder(
+            "SELECT t.no_faktur, t.tanggal, p.nopol, p.nama_pemilik, t.nama_mekanik, t.total_belanja " +
+            "FROM transaksi t " +
+            "JOIN pelanggan p ON t.nopol = p.nopol " +
+            "WHERE 1=1"
+        );
+
+        List<String> params = new ArrayList<>();
+
+        if (noFaktur != null && !noFaktur.trim().isEmpty()) {
+            sql.append(" AND t.no_faktur LIKE ?");
+            params.add("%" + noFaktur.trim() + "%");
+        }
+
+        if (tanggal != null && !tanggal.trim().isEmpty()) {
+            sql.append(" AND DATE_FORMAT(t.tanggal, '%Y-%m-%d') LIKE ?");
+            params.add("%" + tanggal.trim() + "%");
+        }
+
+        if (namaMekanik != null && !namaMekanik.trim().isEmpty()) {
+            sql.append(" AND t.nama_mekanik LIKE ?");
+            params.add("%" + namaMekanik.trim() + "%");
+        }
+
+        if (namaPelanggan != null && !namaPelanggan.trim().isEmpty()) {
+            sql.append(" AND p.nama_pemilik LIKE ?");
+            params.add("%" + namaPelanggan.trim() + "%");
+        }
+
+        sql.append(" ORDER BY t.tanggal DESC");
+
+        List<TransaksiResponseDTO> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DBConnection.get();
+            stmt = conn.prepareStatement(sql.toString());
+
+            for (int i = 0; i < params.size(); i++) {
+                stmt.setString(i + 1, params.get(i));
+            }
+
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                String resultNoFaktur = rs.getString("no_faktur");
+                Date resultTanggal = rs.getTimestamp("tanggal");
+                String nopol = rs.getString("nopol");
+                String resultNamaPelanggan = rs.getString("nama_pemilik");
+                String resultNamaMekanik = rs.getString("nama_mekanik");
+                double totalBelanja = rs.getDouble("total_belanja");
+                list.add(new TransaksiResponseDTO(resultNoFaktur, resultTanggal, nopol, resultNamaPelanggan, resultNamaMekanik, totalBelanja));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                DBConnection.close(conn);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
 }
