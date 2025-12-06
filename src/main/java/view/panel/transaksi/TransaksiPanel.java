@@ -43,12 +43,7 @@ public class TransaksiPanel extends javax.swing.JPanel {
         mekanikComboBox.setEnabled(false);
         keluhanField.setEnabled(false);
 
-        String jenis = (String) jenisComboBox.getSelectedItem();
-        if (jenis != null && jenis.equals("JASA")) {
-            namaBarangComboBox.setEnabled(false);
-            jumlahItemField.setEnabled(false);
-            jumlahItemField.setText("1");
-        }
+        resetAfterAdd();
     }
 
     /**
@@ -347,44 +342,100 @@ public class TransaksiPanel extends javax.swing.JPanel {
         keluhanField.setEnabled(true);
     }//GEN-LAST:event_searchBtnActionPerformed
 
-    private void jenisComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jenisComboBoxActionPerformed
-        // TODO add your handling code here:
-        String jenis = (String) jenisComboBox.getSelectedItem();
-        if (jenis != null && jenis.equals("JASA")) {
-            namaBarangComboBox.setEnabled(false);
-            jumlahItemField.setEnabled(false);
-            jumlahItemField.setText(String.valueOf(1));
+    private void handleJasaView() {
+        namaBarangComboBox.removeAllItems();
+        namaBarangComboBox.setEnabled(false);
+        jumlahItemField.setText("1");
+        jumlahItemField.setEnabled(false);
+        hargaDibayarField.setText("");
+        hargaDibayarField.setEnabled(true);
+    }
+
+    private void populateNamaBarangComboBox() {
+        if (barangList != null) {
+            namaBarangComboBox.removeAllItems();
+            for (BarangResponseDTO barang : barangList) {
+                namaBarangComboBox.addItem(new ComboBoxItem(barang.getNamaBarang(), barang.getNamaBarang()));
+            }
             return;
         }
 
-        if (jenis != null && jenis.equals("BARANG")) {
-            namaBarangComboBox.setEnabled(true);
-            jumlahItemField.setEnabled(true);
-            jumlahItemField.setText("");
-            hargaDibayarField.setEnabled(false);
+        Response<List<BarangResponseDTO>> response = barangService.getAllBarang();
 
-            if (barangList != null) {
-                namaBarangComboBox.removeAllItems();
-                for (BarangResponseDTO barang : barangList) {
-                    namaBarangComboBox.addItem(new ComboBoxItem(barang.getNamaBarang(), barang.getNamaBarang()));
-                }
-                return;
-            }
+        if (!response.isSuccess()) {
+            JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-            Response<List<BarangResponseDTO>> response = barangService.getAllBarang();
+        barangList = response.getData();
+        namaBarangComboBox.removeAllItems();
+        for (BarangResponseDTO barang : barangList) {
+            namaBarangComboBox.addItem(new ComboBoxItem(barang.getNamaBarang(), barang.getHargaJual()));
+        }
+    }
 
-            if (!response.isSuccess()) {
-                JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
+    private void handleBarangView() {
+        namaBarangComboBox.setEnabled(true);
+        populateNamaBarangComboBox();
+        jumlahItemField.setEnabled(true);
+        jumlahItemField.setText("");
+        hargaDibayarField.setEnabled(false);
+        hargaDibayarField.setText("");
+    }
 
-            barangList = response.getData();
-            namaBarangComboBox.removeAllItems();
-            for (BarangResponseDTO barang : barangList) {
-                namaBarangComboBox.addItem(new ComboBoxItem(barang.getNamaBarang(), barang.getHargaJual()));
-            }
+    private void jenisComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jenisComboBoxActionPerformed
+        // TODO add your handling code here:
+        String jenis = (String) jenisComboBox.getSelectedItem();
+
+        if (Objects.equals(jenis, "JASA")) {
+            handleJasaView();
+        } else if (Objects.equals(jenis, "BARANG")) {
+            handleBarangView();
         }
     }//GEN-LAST:event_jenisComboBoxActionPerformed
+
+    private void addJasaAction(String jenis) {
+        String hargaDibayarText = hargaDibayarField.getText();
+        if (hargaDibayarText.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPanel, "Harga Jasa Masih Kosong", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        double hargaDibayar = Double.parseDouble(hargaDibayarText);
+        if (hargaDibayar <= 0) {
+            JOptionPane.showMessageDialog(rootPanel, "Harga Jasa Tidak Boleh Kurang dari atau Sama Dengan Nol", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String catatan = catatanField.getText();
+
+        TransaksiDetailRequestDTO dto = new TransaksiDetailRequestDTO(jenis, "Jasa Servis", 1, hargaDibayar, catatan);
+        requestDTO.setDetailRequestDTOList(dto);
+        JOptionPane.showMessageDialog(rootPanel, "Item Berhasil Ditambahkan", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void addBarangAction(String jenis) {
+        String jumlahItemText = jumlahItemField.getText();
+        if (jumlahItemText.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPanel, "Jumlah Item Masih Kosong", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int jumlahItem = Integer.parseInt(jumlahItemText);
+        if (jumlahItem <= 0) {
+            JOptionPane.showMessageDialog(rootPanel, "Jumlah Item Tidak Boleh Kurang dari atau Sama Dengan Nol", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        double hargaBarang = (double) ((ComboBoxItem) Objects.requireNonNull(namaBarangComboBox.getSelectedItem())).getValue();
+        double subtotal = hargaBarang * jumlahItem;
+        String namaBarang = (Objects.requireNonNull(namaBarangComboBox.getSelectedItem())).toString();
+        String catatan = catatanField.getText();
+
+        TransaksiDetailRequestDTO dto = new TransaksiDetailRequestDTO(jenis, namaBarang, jumlahItem, subtotal, catatan);
+        requestDTO.setDetailRequestDTOList(dto);
+        JOptionPane.showMessageDialog(rootPanel, "Item Berhasil Ditambahkan", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+    }
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
@@ -404,48 +455,17 @@ public class TransaksiPanel extends javax.swing.JPanel {
         }
 
         String jenis = (String) jenisComboBox.getSelectedItem();
-        ComboBoxItem selectedNamaBarang = (ComboBoxItem) namaBarangComboBox.getSelectedItem();
-        String namaBarang = selectedNamaBarang != null ? selectedNamaBarang.toString() : "Jasa Servis";
-        String catatan = catatanField.getText();
 
-        if (Objects.equals(jenis, "JASA") && hargaDibayarField.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPanel, "Harga Jasa Masih Kosong", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        String hargaDibayarText = hargaDibayarField.getText();
-        double hargaDibayar = !hargaDibayarText.isEmpty() ? Double.parseDouble(hargaDibayarText) : 0;
-        if (Objects.equals(jenis, "JASA") && hargaDibayar <= 0) {
-            JOptionPane.showMessageDialog(rootPanel, "Harga Tidak Boleh Kurang dari atau Sama Dengan Nol", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        if (Objects.equals(jenis, "BARANG") && jumlahItemField.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPanel, "Item Barang Masih Kosong", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        int jumlahItem = Integer.parseInt(jumlahItemField.getText());
-        if (Objects.equals(jenis, "BARANG") && jumlahItem <= 0) {
-            JOptionPane.showMessageDialog(rootPanel, "Item Barang Tidak Boleh Kurang dari atau Sama dengan Nol", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        if (Objects.equals(jenis, "BARANG") && hargaDibayarText.isEmpty()) {
-            calculateSubtotal();
-        }
-
-        TransaksiDetailRequestDTO dto = new TransaksiDetailRequestDTO(jenis, namaBarang, jumlahItem, hargaDibayar, catatan);
-        requestDTO.setDetailRequestDTOList(dto);
-        JOptionPane.showMessageDialog(rootPanel, "Item Berhasil Ditambahkan", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+        if (Objects.equals(jenis, "JASA")) addJasaAction(jenis);
+        else addBarangAction(jenis);
 
         resetAfterAdd();
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void resetAfterAdd() {
-        jenisComboBox.setSelectedIndex(0);
-        namaBarangComboBox.setEnabled(false);
+        jenisComboBox.setSelectedItem("JASA");
         namaBarangComboBox.removeAllItems();
+        namaBarangComboBox.setEnabled(false);
         jumlahItemField.setText("1");
         jumlahItemField.setEnabled(false);
         hargaDibayarField.setText("");
@@ -485,13 +505,6 @@ public class TransaksiPanel extends javax.swing.JPanel {
         keluhanField.setText("");
         keluhanField.setEnabled(false);
         resetAfterAdd();
-    }
-
-    private void calculateSubtotal() {
-        double hargaJual = (double) ((ComboBoxItem) Objects.requireNonNull(namaBarangComboBox.getSelectedItem())).getValue();
-        int jumlahItem = Integer.parseInt(jumlahItemField.getText());
-        double totalHarga = hargaJual * jumlahItem;
-        hargaDibayarField.setText(String.valueOf(totalHarga));
     }
 
     private void populateMekanikComboBox() {
