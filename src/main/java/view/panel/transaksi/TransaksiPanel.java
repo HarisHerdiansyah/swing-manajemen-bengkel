@@ -439,6 +439,11 @@ public class TransaksiPanel extends javax.swing.JPanel {
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
+        if (nopolField.getText().isEmpty() || pelangganField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPanel, "Data Pelanggan Belum Diisi", "Warning",  JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
         if (requestDTO.getNopol() == null) {
             requestDTO.setNopol(nopolField.getText());
         }
