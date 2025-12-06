@@ -6,6 +6,7 @@ package view;
 
 import util.ApplicationState;
 import util.Routing;
+import view.panel.akun.AkunPanel;
 import view.panel.barang.BarangPanel;
 import view.panel.dashboard.DashboardPanel;
 import view.panel.mekanik.MekanikPanel;
@@ -39,6 +40,7 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
 
         contentPanel.add(new DashboardPanel(), Routing.DASHBOARD.toString());
+        contentPanel.add(new AkunPanel(), Routing.AKUN.toString());
         contentPanel.add(new BarangPanel(), Routing.BARANG.toString());
         contentPanel.add(new MekanikPanel(), Routing.MEKANIK.toString());
         contentPanel.add(new PelangganPanel(), Routing.PELANGGAN.toString());
@@ -308,6 +310,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void akunNavActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_akunNavActionPerformed
         // TODO add your handling code here:
+        CardLayout cl = (CardLayout) (contentPanel.getLayout());
+        cl.show(contentPanel, Routing.AKUN.toString());
     }//GEN-LAST:event_akunNavActionPerformed
 
     /**

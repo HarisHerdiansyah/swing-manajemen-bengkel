@@ -2,6 +2,7 @@ package util;
 
 public enum Routing {
     DASHBOARD,
+    AKUN,
     BARANG,
     FORM_BARANG,
     MEKANIK,

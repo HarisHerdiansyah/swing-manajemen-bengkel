@@ -4,17 +4,32 @@
  */
 package view.panel.akun;
 
+import dto.response.AdminResponseDTO;
+import service.AdminService;
+import util.ApplicationState;
+import util.Response;
+import view.component.FormAdminDialog;
+
+import java.util.List;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+
 /**
  *
  * @author haris
  */
 public class AkunPanel extends javax.swing.JPanel {
+    private ApplicationState appState = ApplicationState.getInstance();
+    private AdminService service = new AdminService();
 
     /**
      * Creates new form AkunPanel
      */
     public AkunPanel() {
         initComponents();
+        initialLoad();
     }
 
     /**
@@ -187,26 +202,21 @@ public class AkunPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String search = searchField.getText();
         if (search.isEmpty()) {
-            JOptionPane.showMessageDialog(rootPanel, "Masukkan nama mekanik untuk mencari.", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(rootPanel, "Masukkan nama untuk mencari.", "Peringatan", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        Response<List<MekanikResponseDTO>> response = service.getMekanikByLikeName(search);
-        if (!response.isSuccess()) {
-            JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        mapMekanik(response.getData());
+        // For now, just load all and filter client-side (since we don't have search by name in AdminService)
+        initialLoad();
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
         JPanel contentPanel = appState.getContentPanel();
-        new FormMekanikDialog(
-            (Frame) contentPanel.getParent().getParent().getParent().getParent().getParent(),
-            this,
-            true
+        new FormAdminDialog(
+                (Frame) contentPanel.getParent().getParent().getParent().getParent().getParent(),
+                this,
+                true
         ).setVisible(true);
     }//GEN-LAST:event_addBtnActionPerformed
 
@@ -214,23 +224,38 @@ public class AkunPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int row = akunTable.getSelectedRow();
         if (row == -1) {
-            JOptionPane.showMessageDialog(rootPanel, "Pilih mekanik yang akan diubah.", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(rootPanel, "Pilih admin yang akan diubah.", "Peringatan", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        Response<MekanikResponseDTO> response = service.getMekanikByExactName((String) akunTable.getValueAt(row, 0));
+        String username = (String) akunTable.getValueAt(row, 1);
+        Response<List<AdminResponseDTO>> response = service.getAllAdmins();
         if (!response.isSuccess()) {
             JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
+        // Find admin by username
+        AdminResponseDTO selectedAdmin = null;
+        for (AdminResponseDTO admin : response.getData()) {
+            if (admin.getUsername().equals(username)) {
+                selectedAdmin = admin;
+                break;
+            }
+        }
+
+        if (selectedAdmin == null) {
+            JOptionPane.showMessageDialog(rootPanel, "Admin tidak ditemukan.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         JPanel contentPanel = appState.getContentPanel();
-        new FormMekanikDialog(
-            (Frame) contentPanel.getParent().getParent().getParent().getParent().getParent(),
-            this,
-            true,
-            true,
-            response.getData()
+        new FormAdminDialog(
+                (Frame) contentPanel.getParent().getParent().getParent().getParent().getParent(),
+                this,
+                true,
+                true,
+                selectedAdmin
         ).setVisible(true);
     }//GEN-LAST:event_editBtnActionPerformed
 
@@ -238,11 +263,26 @@ public class AkunPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int row = akunTable.getSelectedRow();
         if (row == -1) {
-            JOptionPane.showMessageDialog(this, "Pilih mekanik yang akan dihapus.", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Pilih admin yang akan dihapus.", "Peringatan", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        Response<Void> response = service.deleteMekanik((String) akunTable.getValueAt(row, 0));
+        String username = (String) akunTable.getValueAt(row, 1);
+
+        // Konfirmasi delete
+        int confirm = JOptionPane.showConfirmDialog(
+                rootPanel,
+                "Apakah Anda yakin ingin menghapus admin dengan username: " + username + "?",
+                "Konfirmasi Hapus",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE
+        );
+
+        if (confirm != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        Response<String> response = service.deleteAdmin(username);
         if (!response.isSuccess()) {
             JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             return;
@@ -258,6 +298,28 @@ public class AkunPanel extends javax.swing.JPanel {
         initialLoad();
     }//GEN-LAST:event_resetBtnActionPerformed
 
+    private void initialLoad() {
+        Response<List<AdminResponseDTO>> response = service.getAllAdmins();
+        if (!response.isSuccess()) {
+            JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        mapAdmin(response.getData());
+    }
+
+    private void mapAdmin(List<AdminResponseDTO> list) {
+        DefaultTableModel model = (DefaultTableModel) akunTable.getModel();
+        model.setRowCount(0);
+
+        for (AdminResponseDTO admin : list) {
+            Object[] row = new Object[]{ admin.getNamaLengkap(), admin.getUsername() };
+            model.addRow(row);
+        }
+    }
+
+    public JButton getResetBtn() {
+        return resetBtn;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;

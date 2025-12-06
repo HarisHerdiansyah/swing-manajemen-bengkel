@@ -4,6 +4,14 @@
  */
 package view.component;
 
+import dto.request.AdminRequestDTO;
+import dto.response.AdminResponseDTO;
+import service.AdminService;
+import util.Response;
+import view.panel.akun.AkunPanel;
+
+import javax.swing.*;
+
 /**
  *
  * @author haris
@@ -11,19 +19,34 @@ package view.component;
 public class FormAdminDialog extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormAdminDialog.class.getName());
+    private AdminService service = new AdminService();
     private boolean isEdit = false;
-    
+    private int idAdmin = -1;
+    private String originalUsername = null;
+    private AkunPanel parentPanel;
+
     /**
      * Creates new form FormAdminDialog
      */
-    public FormAdminDialog(java.awt.Frame parent, boolean modal) {
+    public FormAdminDialog(java.awt.Frame parent, AkunPanel parentPanel, boolean modal) {
         super(parent, modal);
+        this.parentPanel = parentPanel;
         initComponents();
     }
     
-    public FormAdminDialog(java.awt.Frame parent, boolean modal, boolean idEdit) {
+    public FormAdminDialog(java.awt.Frame parent, AkunPanel parentPanel, boolean modal, boolean isEdit, AdminResponseDTO admin) {
         super(parent, modal);
+        this.parentPanel = parentPanel;
+        this.isEdit = isEdit;
+        this.idAdmin = admin.getId();
+        this.originalUsername = admin.getUsername();
         initComponents();
+
+        // Set existing data for edit mode
+        namaLengkapField.setText(admin.getNamaLengkap());
+        usernameField.setText(admin.getUsername());
+        // Password field left empty for edit - optional to change
+        passwordLabel.setText("Password (kosongkan jika tidak diubah)");
     }
 
     /**
@@ -39,12 +62,12 @@ public class FormAdminDialog extends javax.swing.JDialog {
         title = new javax.swing.JLabel();
         namaLengkapLabel = new javax.swing.JLabel();
         namaLengkapField = new javax.swing.JTextField();
-        namaLengkapLabel1 = new javax.swing.JLabel();
-        namaLengkapField1 = new javax.swing.JTextField();
-        namaLengkapLabel2 = new javax.swing.JLabel();
-        namaLengkapField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        usernameLabel = new javax.swing.JLabel();
+        usernameField = new javax.swing.JTextField();
+        passwordLabel = new javax.swing.JLabel();
+        passwordField = new javax.swing.JPasswordField();
+        closeBtn = new javax.swing.JButton();
+        saveBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -62,33 +85,43 @@ public class FormAdminDialog extends javax.swing.JDialog {
         namaLengkapField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         namaLengkapField.setForeground(new java.awt.Color(0, 0, 0));
 
-        namaLengkapLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        namaLengkapLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        namaLengkapLabel1.setText("Username");
+        usernameLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        usernameLabel.setForeground(new java.awt.Color(0, 0, 0));
+        usernameLabel.setText("Username");
 
-        namaLengkapField1.setBackground(new java.awt.Color(255, 255, 255));
-        namaLengkapField1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        namaLengkapField1.setForeground(new java.awt.Color(0, 0, 0));
+        usernameField.setBackground(new java.awt.Color(255, 255, 255));
+        usernameField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        usernameField.setForeground(new java.awt.Color(0, 0, 0));
 
-        namaLengkapLabel2.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        namaLengkapLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        namaLengkapLabel2.setText("Password");
+        passwordLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        passwordLabel.setForeground(new java.awt.Color(0, 0, 0));
+        passwordLabel.setText("Password");
 
-        namaLengkapField2.setBackground(new java.awt.Color(255, 255, 255));
-        namaLengkapField2.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        namaLengkapField2.setForeground(new java.awt.Color(0, 0, 0));
+        passwordField.setBackground(new java.awt.Color(255, 255, 255));
+        passwordField.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        passwordField.setForeground(new java.awt.Color(0, 0, 0));
 
-        jButton1.setBackground(new java.awt.Color(108, 117, 125));
-        jButton1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Tutup");
-        jButton1.setPreferredSize(new java.awt.Dimension(100, 30));
+        closeBtn.setBackground(new java.awt.Color(108, 117, 125));
+        closeBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        closeBtn.setForeground(new java.awt.Color(255, 255, 255));
+        closeBtn.setText("Tutup");
+        closeBtn.setPreferredSize(new java.awt.Dimension(100, 30));
+        closeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeBtnActionPerformed(evt);
+            }
+        });
 
-        jButton2.setBackground(new java.awt.Color(13, 110, 253));
-        jButton2.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText(this.isEdit ? "Edit Akun" : "Tambah Akun");
-        jButton2.setPreferredSize(new java.awt.Dimension(100, 30));
+        saveBtn.setBackground(new java.awt.Color(13, 110, 253));
+        saveBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        saveBtn.setForeground(new java.awt.Color(255, 255, 255));
+        saveBtn.setText(this.isEdit ? "Edit" : "Tambah");
+        saveBtn.setPreferredSize(new java.awt.Dimension(100, 30));
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout rootPanelLayout = new javax.swing.GroupLayout(rootPanel);
         rootPanel.setLayout(rootPanelLayout);
@@ -102,16 +135,16 @@ public class FormAdminDialog extends javax.swing.JDialog {
                     .addGroup(rootPanelLayout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(namaLengkapLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(namaLengkapField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(usernameLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(usernameField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(namaLengkapLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(namaLengkapField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(namaLengkapLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(namaLengkapField2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passwordLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(passwordField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, rootPanelLayout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(closeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 46, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -125,17 +158,17 @@ public class FormAdminDialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(namaLengkapField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(namaLengkapLabel1)
+                .addComponent(usernameLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(namaLengkapField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(namaLengkapLabel2)
+                .addComponent(passwordLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(namaLengkapField2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(closeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31))
         );
 
@@ -152,6 +185,50 @@ public class FormAdminDialog extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_closeBtnActionPerformed
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        // TODO add your handling code here:
+        String namaLengkap = namaLengkapField.getText();
+        String username = usernameField.getText();
+        String password = new String(passwordField.getPassword());
+
+        AdminRequestDTO dto = new AdminRequestDTO(username, password, namaLengkap);
+
+        if (isEdit) {
+            editAction(dto);
+        } else {
+            addAction(dto);
+        }
+    }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void addAction(AdminRequestDTO dto) {
+        Response<AdminResponseDTO> response = service.createAdmin(dto);
+        if (!response.isSuccess()) {
+            JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Sukses", JOptionPane.INFORMATION_MESSAGE);
+        parentPanel.getResetBtn().doClick();
+        this.setVisible(false);
+    }
+
+    private void editAction(AdminRequestDTO dto) {
+        Response<AdminResponseDTO> response = service.updateAdmin(idAdmin, dto);
+        if (!response.isSuccess()) {
+            JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Sukses", JOptionPane.INFORMATION_MESSAGE);
+        parentPanel.getResetBtn().doClick();
+        this.setVisible(false);
+    }
 
     /**
      * @param args the command line arguments
@@ -178,7 +255,7 @@ public class FormAdminDialog extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                FormAdminDialog dialog = new FormAdminDialog(new javax.swing.JFrame(), true);
+                FormAdminDialog dialog = new FormAdminDialog(new javax.swing.JFrame(), new view.panel.akun.AkunPanel(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -191,15 +268,15 @@ public class FormAdminDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton closeBtn;
     private javax.swing.JTextField namaLengkapField;
-    private javax.swing.JTextField namaLengkapField1;
-    private javax.swing.JTextField namaLengkapField2;
     private javax.swing.JLabel namaLengkapLabel;
-    private javax.swing.JLabel namaLengkapLabel1;
-    private javax.swing.JLabel namaLengkapLabel2;
+    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JLabel passwordLabel;
     private javax.swing.JPanel rootPanel;
+    private javax.swing.JButton saveBtn;
     private javax.swing.JLabel title;
+    private javax.swing.JTextField usernameField;
+    private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
 }
