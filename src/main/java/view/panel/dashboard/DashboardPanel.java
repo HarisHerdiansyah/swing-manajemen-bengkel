@@ -257,7 +257,7 @@ public class DashboardPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for (TransaksiResponseDTO transaksi : transaksiList) {
             Object[] row = new Object[]{
-                transaksi.getTanggal(),
+                transaksi.getTanggalFormatted(),
                 transaksi.getNopol(),
                 String.format("Rp%,.2f", transaksi.getTotalBelanja())
             };

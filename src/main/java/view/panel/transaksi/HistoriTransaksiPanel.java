@@ -165,7 +165,7 @@ public class HistoriTransaksiPanel extends javax.swing.JPanel {
         for (TransaksiResponseDTO dto : response.getData()) {
             Object[] row = {
                 dto.getNoFaktur(),
-                dto.getTanggal(),
+                dto.getTanggalFormatted(),
                 dto.getNopol(),
                 dto.getNamaPelanggan(),
                 dto.getNamaMekanik(),

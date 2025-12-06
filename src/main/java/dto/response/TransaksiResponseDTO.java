@@ -1,6 +1,8 @@
 package dto.response;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class TransaksiResponseDTO {
     private String noFaktur;
@@ -65,5 +67,13 @@ public class TransaksiResponseDTO {
 
     public void setNopol(String nopol) {
         this.nopol = nopol;
+    }
+
+    public String getTanggalFormatted() {
+        if (tanggal == null) {
+            return "-";
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy", Locale.forLanguageTag("id-ID"));
+        return sdf.format(tanggal);
     }
 }
