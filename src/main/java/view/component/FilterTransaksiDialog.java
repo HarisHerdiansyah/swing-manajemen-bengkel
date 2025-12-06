@@ -66,6 +66,7 @@ public class FilterTransaksiDialog extends javax.swing.JDialog {
         titleLabel.setForeground(new java.awt.Color(0, 0, 0));
         titleLabel.setText("Filter");
 
+        fakturLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         fakturLabel.setForeground(new java.awt.Color(0, 0, 0));
         fakturLabel.setText("Nomor Faktur");
 
@@ -192,9 +193,14 @@ public class FilterTransaksiDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void closeAction() {
+        this.uiTable = null;
+        this.setVisible(false);
+    }
+
     private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
+        closeAction();
     }//GEN-LAST:event_closeBtnActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
@@ -229,6 +235,8 @@ public class FilterTransaksiDialog extends javax.swing.JDialog {
             };
             model.addRow(row);
         }
+
+        closeAction();
     }//GEN-LAST:event_searchBtnActionPerformed
 
     /**

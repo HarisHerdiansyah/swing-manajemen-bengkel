@@ -68,4 +68,8 @@ public class TransaksiRequestDTO {
     public void removeDetailRequestDTOList(int index) {
         this.detailRequestDTOList.remove(index);
     }
+
+    public void cleanUpDetailRequestDTOList() {
+        this.detailRequestDTOList.clear();
+    }
 }

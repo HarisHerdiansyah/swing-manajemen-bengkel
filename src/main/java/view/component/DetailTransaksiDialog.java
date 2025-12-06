@@ -83,6 +83,7 @@ public class DetailTransaksiDialog extends javax.swing.JDialog {
         mekanikValue.setForeground(new java.awt.Color(0, 0, 0));
         mekanikValue.setText("-");
 
+        daftarTransaksiTable.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         daftarTransaksiTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -112,6 +113,7 @@ public class DetailTransaksiDialog extends javax.swing.JDialog {
         }
 
         closeBtn.setBackground(new java.awt.Color(108, 117, 125));
+        closeBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         closeBtn.setForeground(new java.awt.Color(255, 255, 255));
         closeBtn.setText("Tutup");
         closeBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -121,6 +123,7 @@ public class DetailTransaksiDialog extends javax.swing.JDialog {
         });
 
         deleteBtn.setBackground(new java.awt.Color(220, 53, 69));
+        deleteBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
         deleteBtn.setForeground(new java.awt.Color(255, 255, 255));
         deleteBtn.setText("Hapus");
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {

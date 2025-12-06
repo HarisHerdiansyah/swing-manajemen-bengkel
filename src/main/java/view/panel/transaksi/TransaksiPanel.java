@@ -496,6 +496,7 @@ public class TransaksiPanel extends javax.swing.JPanel {
             return;
         }
 
+        requestDTO.cleanUpDetailRequestDTOList();
         JOptionPane.showMessageDialog(rootPanel, response.getMessage(), "Sukses", JOptionPane.INFORMATION_MESSAGE);
 
         resetAfterCreateTransaction();

@@ -163,7 +163,9 @@ public class DashboardPanel extends javax.swing.JPanel {
         tableLabel.setForeground(new java.awt.Color(0, 0, 0));
         tableLabel.setText("Transaksi Terbaru");
 
+        transaksiTerakhirTable.setBackground(new java.awt.Color(255, 255, 255));
         transaksiTerakhirTable.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        transaksiTerakhirTable.setForeground(new java.awt.Color(0, 0, 0));
         transaksiTerakhirTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
