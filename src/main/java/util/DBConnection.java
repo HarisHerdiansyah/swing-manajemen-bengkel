@@ -1,3 +1,9 @@
+/*
+Nama            : (08) Raissa Christabel Sebayang
+                  (44) Abraham Gomes Samosir
+                  (74) Haris Herdiansyah
+*/
+
 package util;
 
 import io.github.cdimascio.dotenv.Dotenv;

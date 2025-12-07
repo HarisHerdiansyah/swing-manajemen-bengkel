@@ -1,4 +1,10 @@
 /*
+Nama            : (08) Raissa Christabel Sebayang
+                  (44) Abraham Gomes Samosir
+                  (74) Haris Herdiansyah
+*/
+
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
