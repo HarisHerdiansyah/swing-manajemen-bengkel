@@ -51,6 +51,7 @@ public class DashboardPanel extends javax.swing.JPanel {
         tableLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         transaksiTerakhirTable = new javax.swing.JTable();
+        refreshBtn = new javax.swing.JButton();
 
         rootPanel.setBackground(new java.awt.Color(255, 255, 255));
         rootPanel.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 12)); // NOI18N
@@ -187,6 +188,17 @@ public class DashboardPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(transaksiTerakhirTable);
 
+        refreshBtn.setBackground(new java.awt.Color(108, 117, 125));
+        refreshBtn.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        refreshBtn.setForeground(new java.awt.Color(255, 255, 255));
+        refreshBtn.setText("Refresh");
+        refreshBtn.setPreferredSize(new java.awt.Dimension(100, 30));
+        refreshBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout rootPanelLayout = new javax.swing.GroupLayout(rootPanel);
         rootPanel.setLayout(rootPanelLayout);
         rootPanelLayout.setHorizontalGroup(
@@ -199,7 +211,10 @@ public class DashboardPanel extends javax.swing.JPanel {
                     .addGroup(rootPanelLayout.createSequentialGroup()
                         .addGap(85, 85, 85)
                         .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tableLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(rootPanelLayout.createSequentialGroup()
+                                .addComponent(tableLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(refreshBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(rootPanelLayout.createSequentialGroup()
                                 .addComponent(totalPendapatanCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(60, 60, 60)
@@ -220,10 +235,12 @@ public class DashboardPanel extends javax.swing.JPanel {
                     .addComponent(totalTransaksiCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(stokKritisCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
-                .addComponent(tableLabel)
+                .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tableLabel)
+                    .addComponent(refreshBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -237,6 +254,11 @@ public class DashboardPanel extends javax.swing.JPanel {
             .addComponent(rootPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
+        // TODO add your handling code here:
+        initialLoad();
+    }//GEN-LAST:event_refreshBtnActionPerformed
 
     private void initialLoad() {
         DashboardService service = new DashboardService();
@@ -267,6 +289,7 @@ public class DashboardPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton refreshBtn;
     private javax.swing.JPanel rootPanel;
     private javax.swing.JPanel stokKritisCard;
     private javax.swing.JLabel stokKritisLabel;
