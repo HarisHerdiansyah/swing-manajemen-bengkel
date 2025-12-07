@@ -229,6 +229,7 @@ public class FilterTransaksiDialog extends javax.swing.JDialog {
             Object[] row = {
                     dto.getNoFaktur(),
                     dto.getTanggal(),
+                    dto.getNopol(),
                     dto.getNamaPelanggan(),
                     dto.getNamaMekanik(),
                     dto.getTotalBelanja()
